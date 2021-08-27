@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>EKAI_PowerArmorStation</defName>
+    <label>power armor station</label>
+    <description>This station where you can register your favorite power armors. \nStation owners can  change into their favorite power armors. \nThe station effectively assists the wearer, freeing the colonists from the hassle. \n\nIf colonists have a locker, colonists will also use the locker when changing power armors. \nIf colonists want to change apparels other than power armor, own a locker and register.</description>
+    <thingClass>Locker.Building_PowerArmorStation</thingClass>
+    <comps>
+      <li Class="Locker.CompProperties_AssignableToPawn_OnlyOne">
+        <drawAssignmentOverlay>true</drawAssignmentOverlay>
+        <buildingClass>Locker.Building_PowerArmorStation</buildingClass>
+        <compClass>Locker.CompAssignableToPawn_Locker</compClass>
+      </li>
+      <li Class="Locker.CompProperties_Locker">
+        <commandLabelKey>EKAI_SelectRegisterApparel</commandLabelKey>
+        <commandDescKey>EKAI_Desc_SelectRegisterPowerArmor</commandDescKey>
+        <dialogTitleKey>EKAI_SelectRegisterPowerArmorWithOwner</dialogTitleKey>
+        <storableThingDefs>
+          <li>Apparel_ArmorRecon</li>
+          <li>Apparel_ArmorReconPrestige</li>
+          <li>Apparel_PowerArmor</li>
+          <li>Apparel_ArmorMarinePrestige</li>
+          <li>Apparel_ArmorCataphract</li>
+          <li>Apparel_ArmorCataphractPrestige</li>
+          <li>Apparel_ArmorHelmetRecon</li>
+          <li>Apparel_ArmorHelmetReconPrestige</li>
+          <li>Apparel_PowerArmorHelmet</li>
+          <li>Apparel_ArmorMarineHelmetPrestige</li>
+          <li>Apparel_ArmorHelmetCataphract</li>
+          <li>Apparel_ArmorHelmetCataphractPrestige</li>
+        </storableThingDefs>
+        <compClass>Locker.CompLocker</compClass>
+      </li>
+    </comps>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <graphicData>
+      <texPath>Things/Building/Misc/Station</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(4,4)</drawSize>
+    </graphicData>
+    <uiIconPath>Things/Building/Misc/Station_MenuIcon</uiIconPath>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <castEdgeShadows>false</castEdgeShadows>
+    <fillPercent>0.3</fillPercent>
+    <designationCategory>Misc</designationCategory>
+    <pathCost>30</pathCost>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToBuild>4000</WorkToBuild>
+      <Flammability>0.4</Flammability>
+    </statBases>
+    <costList>
+      <Steel>160</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <size>(3,2)</size>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <researchPrerequisites>
+      <li>Fabrication</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </ThingDef>
+</Defs>

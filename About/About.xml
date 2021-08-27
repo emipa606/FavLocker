@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Fav Locker (Continued)</name>
+  <packageId>Mlie.FavLocker</packageId>
+  <author>Ekai</author>
+  <url>https://github.com/emipa606/FavLocker</url>
+  <supportedVersions>
+    <li>1.1</li>
+    <li>1.2</li>
+    <li>1.3</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of Ekais mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=2160977038
+
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+    [tr]
+        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/FavLocker][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+[/table]
+	
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+[h1]Features[/h1]
+This mod adds a container where you can register your favorite apparels.
+
+By assigned a colonist as the owner of the container, the colonist can change into all their favorite apparels with one click.
+On the contrary, you can take it off with one click.
+
+The recommended way to use it is to register combat apparels in your favorites.
+By doing so, you can easily change between normal and combat apparels.
+Colonists can usually spend time in work apparels, and when colonists are attacked, colonists can wear combat apparels and intercept them.
+
+
+
+[h1]Details[/h1]
+Add the following two containers.
+
+■Fav Locker
+You can register any apparels.
+When changing into a favorite, colonists change apparels faster than usual.
+
+■Power Armor Station
+It is like a power armor station that appeared in fallout 4, and you can only register power armor that can be produced in the final stage.
+The time to change apparels is significantly reduced.
+
+[h1]Languages[/h1]
+[list]
+	[*]English
+	[*]Japanese(日本語)
+	[*][strike]Russian(русский) by Tkhakiro[/strike] (Not supported from ver2.00)
+[/list]
+
+
+[h1]Changes (v2.00 = v2.10)[/h1]
+■Improvement
+[list]
+	[*] Compatible with Core ver1.2.
+[/list]
+
+■Bug fix
+[list]
+	[*]Fixed a bug that the scroll bar of dialog "Register Favorite" has strange behavior.
+	[*]Fixed a bug that the stored apparels are hidden when "cautioned apparels" is hidden in the dialog "Register favorites".
+[/list]
+
+
+[h1]Known bugs[/h1]
+None.
+
+
+[h1]Improvement plan[/h1]
+[list]
+	[*]Added compatibility patch to other power armor mods
+Vanilla Armor Expanded and more...
+	[*]Added "Power Armor Station" function
+I'm thinking of repairing or modifying the armor.
+[/list]
+
+
+[h1]=== Special thanks ===[/h1]
+[list]
+	[*]Tkhakiro
+I appreciate your cooperation in translating Russian.
+[/list]
+
+
+[h3][u]Note! [/u][/h3]
+v2.xx is compatible with v1.xx.
+However, there are little trouble.
+
+■ Conditions that cause problems
+(1) In v1.xx, save while executing the commands "Change to favorite" and "Remove favorite".
+(2) Load the data of (1) after updating (v2.00 or later).
+
+■ Details of the trouble
+-The command fails.
+
+Thank you.
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
+</ModMetaData>
+

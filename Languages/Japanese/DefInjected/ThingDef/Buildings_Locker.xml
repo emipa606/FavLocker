@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: favorite locker -->
+  <EKAI_Locker.label>ファボロッカー</EKAI_Locker.label>
+  <!-- EN: TODO -->
+  <EKAI_Locker.description>お気に入りの服を登録できるロッカーです。\nロッカーの所有者は、お気に入りの服に着替えることが出来ます。その時は、いつもと比べかなり素早く着替えをするでしょう。</EKAI_Locker.description>
+</LanguageData>

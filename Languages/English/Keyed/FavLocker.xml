@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <EKAI_Desc_AssignPawn>Assign this {0} to be owned by a specific colonist.</EKAI_Desc_AssignPawn>
+  <EKAI_SelectRegisterApparel>Register favorite</EKAI_SelectRegisterApparel>
+  <EKAI_Desc_SelectRegisterApparel>Opens the dialog so you can register favorite apparels.</EKAI_Desc_SelectRegisterApparel>
+  <EKAI_Desc_SelectRegisterPowerArmor>Opens the dialog so you can register favorite Power Armors.</EKAI_Desc_SelectRegisterPowerArmor>
+  <EKAI_WearRegisterApparel>Wear favorite</EKAI_WearRegisterApparel>
+  <EKAI_Desc_WearRegisterApparel>Wear favorite. Remove apparels you can no longer wear and store them in a locker. Change apparel faster than usual. ...Because it is my favorite.</EKAI_Desc_WearRegisterApparel>
+  <EKAI_Msg_NoRegister>Favorite is not registered in the {0}.</EKAI_Msg_NoRegister>
+  <EKAI_Msg_InCompleteWearOrStore>Not all favorite apparels are stored in {0} or {1} is not wearing them.</EKAI_Msg_InCompleteWearOrStore>
+  <EKAI_Msg_NoPath>There is no path to the {0}.</EKAI_Msg_NoPath>
+  <EKAI_RemoveRegisterApparel>Remove favorite</EKAI_RemoveRegisterApparel>
+  <EKAI_Desc_RemoveRegisterApparel>Remove favorite.If alternative apparels are stored in the locker, wear it.</EKAI_Desc_RemoveRegisterApparel>
+  <EKAI_Desc_WearFavoritePowerArmor>Wear favorite Power Armors. The apparels you can no longer wear will be stored in own locker.</EKAI_Desc_WearFavoritePowerArmor>
+  <EKAI_Desc_WearFavoritePowerArmorNotLink>Wear favorite Power Armors. Drop the apparels that you can no longer wear.</EKAI_Desc_WearFavoritePowerArmorNotLink>
+  <EKAI_Desc_RemoveFavoritePowerArmor>Remove favorite Power Armors.If own locker stores alternative apparels, wear it.</EKAI_Desc_RemoveFavoritePowerArmor>
+  <EKAI_Desc_RemoveFavoritePowerArmorNotLink>Remove favorite Power Armors.</EKAI_Desc_RemoveFavoritePowerArmorNotLink>
+  <EKAI_Msg_CantWear>{0} colonists can't change favorite.({1})</EKAI_Msg_CantWear>
+  <EKAI_PartsAndLayerOrder>body parts and layer</EKAI_PartsAndLayerOrder>
+  <EKAI_KindOrder>apparel kind</EKAI_KindOrder>
+  <EKAI_SelectRegisterApparelWithOwner>Register favorite apparels (owner:{0})</EKAI_SelectRegisterApparelWithOwner>
+  <EKAI_SelectRegisterPowerArmorWithOwner>Register favorite PowerArmor (owner:{0})</EKAI_SelectRegisterPowerArmorWithOwner>
+  <EKAI_Msg_NoPathWithItem>There is no path between the {0} and the {1}.</EKAI_Msg_NoPathWithItem>
+  <EKAI_ShowNonOwnerEquip>Show apparels worn by non-owners</EKAI_ShowNonOwnerEquip>
+  <EKAI_ShowHasCaution>Show cautioned apparels</EKAI_ShowHasCaution>
+  <EKAI_Msg_Unknown>This apparel is missing.</EKAI_Msg_Unknown>
+  <EKAI_Msg_Duplication>Can't register because the body parts and layers overlap.</EKAI_Msg_Duplication>
+  <EKAI_Msg_DuplicationWithApparelRegisterdOwnedContainer>Colonist can't wear it at the same time as the apparels registered in own {0} because the body parts and layers overlap. \nTherefore, if you register as a favorite, colonist will change apparels unintentionally.</EKAI_Msg_DuplicationWithApparelRegisterdOwnedContainer>
+  <EKAI_Msg_DropFromContainer>Remove the apparel from the {0}.</EKAI_Msg_DropFromContainer>
+  <EKAI_Msg_CantDropFromContainer>The owner is changing apparels, so can't remove apparels from the {0} at the moment.</EKAI_Msg_CantDropFromContainer>
+  <EKAI_Msg_UnknownDetail>This apparel was favorite, but missing now.</EKAI_Msg_UnknownDetail>
+  <EKAI_Msg_WearPawn>Worn by colonist\n\nColonist:{0}</EKAI_Msg_WearPawn>
+  <EKAI_Msg_Store>Stored in this {0}.</EKAI_Msg_Store>
+  <EKAI_Register>Register</EKAI_Register>
+  <EKAI_Msg_CantComplete>Your {3} can't finish loading the {2}(owner:{0}) because some items became unavailable.({1})</EKAI_Msg_CantComplete>
+  <EKAI_Report_RemoveAndStore>Worn {0} to {1}.</EKAI_Report_RemoveAndStore>
+  <EKAI_Report_Wear>Wearing {0}.</EKAI_Report_Wear>
+  <EKAI_Report_Wear_Default>Wearing Favorite.</EKAI_Report_Wear_Default>
+  <EKAI_Report_Remove>Removing {0}.</EKAI_Report_Remove>
+  <EKAI_Report_Remove_Default>Removing Favorite.</EKAI_Report_Remove_Default>
+</LanguageData>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <EKAI_Desc_AssignPawn>{0}の所有者を決めます｡</EKAI_Desc_AssignPawn>
+  <EKAI_SelectRegisterApparel>お気に入りを登録</EKAI_SelectRegisterApparel>
+  <EKAI_Desc_SelectRegisterApparel>編成ダイアログを開き、お気に入りの服を登録することができます。</EKAI_Desc_SelectRegisterApparel>
+  <EKAI_Desc_SelectRegisterPowerArmor>編成ダイアログを開き、お気に入りのパワーアーマーを登録することができます。</EKAI_Desc_SelectRegisterPowerArmor>
+  <EKAI_WearRegisterApparel>お気に入りに着替える</EKAI_WearRegisterApparel>
+  <EKAI_Desc_WearRegisterApparel>お気に入りに着替えます。着られなくなった服は脱ぎ、ロッカーにしまいます。いつもより素早く着替えます。…お気に入りなので。</EKAI_Desc_WearRegisterApparel>
+  <EKAI_Msg_NoRegister>{0}にお気に入りを登録していません。</EKAI_Msg_NoRegister>
+  <EKAI_Msg_InCompleteWearOrStore>{0}にお気に入りの服が全て収納されていないか、または{1}が着用していません。</EKAI_Msg_InCompleteWearOrStore>
+  <EKAI_Msg_NoPath>{0}までの経路がありません。</EKAI_Msg_NoPath>
+  <EKAI_RemoveRegisterApparel>お気に入りを脱ぐ</EKAI_RemoveRegisterApparel>
+  <EKAI_Desc_RemoveRegisterApparel>お気に入りを脱ぎます。代わりの服がロッカーに収納されていれば、それを着ます。</EKAI_Desc_RemoveRegisterApparel>
+  <EKAI_Desc_WearFavoritePowerArmor>お気に入りのパワーアーマーに着替えます。着られなくなった服は所有しているロッカーにしまいます。</EKAI_Desc_WearFavoritePowerArmor>
+  <EKAI_Desc_WearFavoritePowerArmorNotLink>お気に入りのパワーアーマーに着替えます。着られなくなった服は脱ぎ捨てます。</EKAI_Desc_WearFavoritePowerArmorNotLink>
+  <EKAI_Desc_RemoveFavoritePowerArmor>お気に入りのパワーアーマーを脱ぎます。所有しているロッカーに代わりの服が収納されていれば、それを着ます。</EKAI_Desc_RemoveFavoritePowerArmor>
+  <EKAI_Desc_RemoveFavoritePowerArmorNotLink>お気に入りのパワーアーマーを脱ぎます。</EKAI_Desc_RemoveFavoritePowerArmorNotLink>
+  <EKAI_Msg_CantWear>{0}人がお気に入りに着替えることができません。({1})</EKAI_Msg_CantWear>
+  <EKAI_PartsAndLayerOrder>部位・層順</EKAI_PartsAndLayerOrder>
+  <EKAI_KindOrder>種類順</EKAI_KindOrder>
+  <EKAI_SelectRegisterApparelWithOwner>お気に入りの服を登録(所有者:{0})</EKAI_SelectRegisterApparelWithOwner>
+  <EKAI_SelectRegisterPowerArmorWithOwner>お気に入りのパワーアーマーを登録(所有者:{0})</EKAI_SelectRegisterPowerArmorWithOwner>
+  <EKAI_Msg_NoPathWithItem>{1}を{0}まで運ぶ経路がありません｡</EKAI_Msg_NoPathWithItem>
+  <EKAI_ShowNonOwnerEquip>所有者以外が装備している服を表示</EKAI_ShowNonOwnerEquip>
+  <EKAI_ShowHasCaution>注意のある服を表示</EKAI_ShowHasCaution>
+  <EKAI_Msg_Unknown>服が行方不明です。</EKAI_Msg_Unknown>
+  <EKAI_Msg_Duplication>部位および層が重複しているため登録できません。</EKAI_Msg_Duplication>
+  <EKAI_Msg_DuplicationWithApparelRegisterdOwnedContainer>所有している{0}で登録された服と部位および層が重複しており、その服と同時に着ることができません。\nそのため、お気に入りに登録すると意図しない着替えを行うでしょう。</EKAI_Msg_DuplicationWithApparelRegisterdOwnedContainer>
+  <EKAI_Msg_DropFromContainer>{0}から服を取り出します。</EKAI_Msg_DropFromContainer>
+  <EKAI_Msg_CantDropFromContainer>所有者が着替え中なので、現在{0}から服を取り出せません。</EKAI_Msg_CantDropFromContainer>
+  <EKAI_Msg_UnknownDetail>以前にこの服を登録しましたが、現在行方不明です。</EKAI_Msg_UnknownDetail>
+  <EKAI_Msg_WearPawn>入植者が着用しています。\n\n入植者:{0}</EKAI_Msg_WearPawn>
+  <EKAI_Msg_Store>この{0}に収納されています。</EKAI_Msg_Store>
+  <EKAI_Register>登録</EKAI_Register>
+  <EKAI_Msg_CantComplete>{2}(所有者:{0})への収納を完了できません｡有効ではない服を登録しています｡({1})</EKAI_Msg_CantComplete>
+  <EKAI_Report_RemoveAndStore>着用中の{0}を{1}に収納中</EKAI_Report_RemoveAndStore>
+  <EKAI_Report_Wear>{0}に着替えている</EKAI_Report_Wear>
+  <EKAI_Report_Wear_Default>お気に入りに着替えている</EKAI_Report_Wear_Default>
+  <EKAI_Report_Remove>{0}を脱いでいる</EKAI_Report_Remove>
+  <EKAI_Report_Remove_Default>お気に入りを脱いでいる</EKAI_Report_Remove_Default>
+</LanguageData>

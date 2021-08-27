@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: load locker -->
+  <EKAI_LoadLocker.label>ロッカーに収納</EKAI_LoadLocker.label>
+  <!-- EN: loading -->
+  <EKAI_LoadLocker.gerund>収納</EKAI_LoadLocker.gerund>
+  <!-- EN: load -->
+  <EKAI_LoadLocker.verb>収納</EKAI_LoadLocker.verb>
+</LanguageData>

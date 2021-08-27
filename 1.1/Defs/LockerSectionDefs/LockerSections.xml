@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Locker.LockerSectionDef>
+    <defName>EKAI_LockerSectionDef_ArmorHeadgear</defName>
+    <order>100</order>
+    <thingCategoryDef>ArmorHeadgear</thingCategoryDef>
+    <derivation>true</derivation>
+  </Locker.LockerSectionDef>
+  <Locker.LockerSectionDef>
+    <defName>EKAI_LockerSectionDef_ApparelArmor</defName>
+    <order>200</order>
+    <thingCategoryDef>ApparelArmor</thingCategoryDef>
+  </Locker.LockerSectionDef>
+  <Locker.LockerSectionDef>
+    <defName>EKAI_LockerSectionDef_HeadgearNoble</defName>
+    <order>300</order>
+    <thingCategoryDef>HeadgearNoble</thingCategoryDef>
+    <derivation>true</derivation>
+  </Locker.LockerSectionDef>
+  <Locker.LockerSectionDef>
+    <defName>EKAI_LockerSectionDef_ApparelNoble</defName>
+    <order>400</order>
+    <thingCategoryDef>ApparelNoble</thingCategoryDef>
+  </Locker.LockerSectionDef>
+  <Locker.LockerSectionDef>
+    <defName>EKAI_LockerSectionDef_Headgear</defName>
+    <order>500</order>
+    <thingCategoryDef>Headgear</thingCategoryDef>
+    <derivation>true</derivation>
+  </Locker.LockerSectionDef>
+  <Locker.LockerSectionDef>
+    <defName>EKAI_LockerSectionDef_Apparel</defName>
+    <order>600</order>
+    <thingCategoryDef>Apparel</thingCategoryDef>
+  </Locker.LockerSectionDef>
+</Defs>
