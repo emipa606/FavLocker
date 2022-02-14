@@ -31,6 +31,24 @@
           <li>Apparel_ArmorMarineHelmetPrestige</li>
           <li>Apparel_ArmorHelmetCataphract</li>
           <li>Apparel_ArmorHelmetCataphractPrestige</li>
+          <li MayRequire="Mlie.CASPowerArmour">ArcticPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">ArcticPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">StonePowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">StonePowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">UrbanPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">UrbanPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">WoodlandPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">WoodlandPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">DesertPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">DesertPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">JunglePowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">JunglePowerArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_RoyalTrooperArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_RoyalSiegeArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Footwear_MarineBoots</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_TrooperArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_HeavyMarineArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Handwear_MarineGloves</li>
         </storableThingDefs>
         <compClass>Locker.CompLocker</compClass>
       </li>
