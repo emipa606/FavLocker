@@ -57,7 +57,7 @@
     <graphicData>
       <texPath>Things/Building/Misc/Station</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(4,4)</drawSize>
+      <drawSize>(2.2,2.2)</drawSize>
     </graphicData>
     <uiIconPath>Things/Building/Misc/Station_MenuIcon</uiIconPath>
     <tickerType>Normal</tickerType>
@@ -81,7 +81,7 @@
     <building>
       <destroySound>BuildingDestroyed_Metal_Medium</destroySound>
     </building>
-    <size>(3,2)</size>
+    <size>(1,2)</size>
     <defaultPlacingRot>South</defaultPlacingRot>
     <researchPrerequisites>
       <li>Fabrication</li>

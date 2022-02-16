@@ -5,6 +5,8 @@
 Update of Ekais mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2160977038
 
+- Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=1814988282]Vanilla Armour Expanded and https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119]CAS: Power Armour (Continued) in the power armor station.
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	

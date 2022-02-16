@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.3.2 - The Power Armor station should now look more reasonably sized compared to the armors.
+
+
 1.3.1 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1814988282]Vanilla Armour Expanded[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119]CAS: Power Armour (Continued)[/url] in the power armor station.
 
 
