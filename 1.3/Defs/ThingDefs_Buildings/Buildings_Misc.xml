@@ -43,12 +43,40 @@
           <li MayRequire="Mlie.CASPowerArmour">DesertPowerArmor</li>
           <li MayRequire="Mlie.CASPowerArmour">JunglePowerArmorHelmet</li>
           <li MayRequire="Mlie.CASPowerArmour">JunglePowerArmor</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconArctic</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconArctic</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconDesert</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconDesert</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconJungle</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconJungle</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconStone</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconStone</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconUrban</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconUrban</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconWoodland</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconWoodland</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractArctic</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractArctic</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractDesert</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractDesert</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractJungle</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractJungle</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractStone</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractStone</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractUrban</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractUrban</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractWoodland</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractWoodland</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_RoyalTrooperArmor</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_RoyalSiegeArmor</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Footwear_MarineBoots</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_TrooperArmor</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_HeavyMarineArmor</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Handwear_MarineGloves</li>
+          <li MayRequire="Hlx.UltratechAlteredCarbon">UT_Apparel_ProtectorateArmor</li>
+          <li MayRequire="Hlx.UltratechAlteredCarbon">UT_Apparel_ProtectorateArmorHelmet</li>
+          <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitBodyHeavy</li>
+          <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitHelmetHeavy</li>
         </storableThingDefs>
         <compClass>Locker.CompLocker</compClass>
       </li>

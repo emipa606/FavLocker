@@ -7,309 +7,308 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace Locker
+namespace Locker;
+
+internal class Dialog_RegisterItem : Window
 {
-    internal class Dialog_RegisterItem : Window
+    private static readonly List<TabRecord> tabsList = new List<TabRecord>();
+
+    private readonly Vector2 BottomButtonSize = new Vector2(160f, 40f);
+
+    private readonly CompAssignableToPawn_Locker compAssignable;
+
+    private readonly CompLocker compLocker;
+
+    private readonly Building_RegistableContainer container;
+    private readonly Map map;
+
+    private List<LockerApparel> allApparel;
+
+    private LockerApparelWidget itemsTransfer;
+
+    public Dialog_RegisterItem(Map map, Building_RegistableContainer container)
     {
-        private static readonly List<TabRecord> tabsList = new List<TabRecord>();
+        this.map = map;
+        this.container = container;
+        compLocker = container.GetComp<CompLocker>();
+        compAssignable = container.GetComp<CompAssignableToPawn_Locker>();
+        forcePause = true;
+        absorbInputAroundWindow = true;
+    }
 
-        private readonly Vector2 BottomButtonSize = new Vector2(160f, 40f);
+    public override Vector2 InitialSize => new Vector2(1024f, UI.screenHeight);
 
-        private readonly CompAssignableToPawn_Locker compAssignable;
+    protected override float Margin => 0f;
 
-        private readonly CompLocker compLocker;
+    public override void PostOpen()
+    {
+        base.PostOpen();
+        CalculateAndRecacheTransferables();
+    }
 
-        private readonly Building_RegistableContainer container;
-        private readonly Map map;
+    public override void DoWindowContents(Rect inRect)
+    {
+        var rect = new Rect(0f, 0f, inRect.width, 35f);
+        Text.Font = GameFont.Medium;
+        Text.Anchor = TextAnchor.MiddleCenter;
+        var text = compAssignable.AssignedPawn()?.Label ?? "Nobody".Translate();
+        var label = compLocker.Props.dialogTitleKey.Translate(text);
+        Widgets.Label(rect, label);
+        Text.Font = GameFont.Small;
+        Text.Anchor = TextAnchor.UpperLeft;
+        tabsList.Clear();
+        tabsList.Add(new TabRecord("ItemsTab".Translate(), delegate { }, true));
+        inRect.yMin += 67f;
+        Widgets.DrawMenuSection(inRect);
+        TabDrawer.DrawTabs(inRect, tabsList);
+        inRect = inRect.ContractedBy(17f);
+        GUI.BeginGroup(inRect);
+        var rect2 = inRect.AtZero();
+        DoBottomButtons(rect2);
+        var inRect2 = rect2;
+        inRect2.yMax -= 59f;
+        itemsTransfer.OnGUI(inRect2);
+        GUI.EndGroup();
+    }
 
-        private List<LockerApparel> allApparel;
+    public override bool CausesMessageBackground()
+    {
+        return true;
+    }
 
-        private LockerApparelWidget itemsTransfer;
-
-        public Dialog_RegisterItem(Map map, Building_RegistableContainer container)
+    private void DoBottomButtons(Rect rect)
+    {
+        var rect2 = new Rect((rect.width / 2f) - (BottomButtonSize.x / 2f), rect.height - 55f, BottomButtonSize.x,
+            BottomButtonSize.y);
+        if (Widgets.ButtonText(rect2, "EKAI_Register".Translate()) && TryAccept())
         {
-            this.map = map;
-            this.container = container;
-            compLocker = container.GetComp<CompLocker>();
-            compAssignable = container.GetComp<CompAssignableToPawn_Locker>();
-            forcePause = true;
-            absorbInputAroundWindow = true;
+            SoundDefOf.Tick_High.PlayOneShotOnCamera();
+            Close(false);
         }
 
-        public override Vector2 InitialSize => new Vector2(1024f, UI.screenHeight);
-
-        protected override float Margin => 0f;
-
-        public override void PostOpen()
+        if (Widgets.ButtonText(
+                new Rect(rect2.x - 10f - BottomButtonSize.x, rect2.y, BottomButtonSize.x, BottomButtonSize.y),
+                "ResetButton".Translate()))
         {
-            base.PostOpen();
+            SoundDefOf.Tick_Low.PlayOneShotOnCamera();
             CalculateAndRecacheTransferables();
         }
 
-        public override void DoWindowContents(Rect inRect)
-        {
-            var rect = new Rect(0f, 0f, inRect.width, 35f);
-            Text.Font = GameFont.Medium;
-            Text.Anchor = TextAnchor.MiddleCenter;
-            var text = compAssignable.AssignedPawn()?.Label ?? "Nobody".Translate();
-            var label = compLocker.Props.dialogTitleKey.Translate(text);
-            Widgets.Label(rect, label);
-            Text.Font = GameFont.Small;
-            Text.Anchor = TextAnchor.UpperLeft;
-            tabsList.Clear();
-            tabsList.Add(new TabRecord("ItemsTab".Translate(), delegate { }, true));
-            inRect.yMin += 67f;
-            Widgets.DrawMenuSection(inRect);
-            TabDrawer.DrawTabs(inRect, tabsList);
-            inRect = inRect.ContractedBy(17f);
-            GUI.BeginGroup(inRect);
-            var rect2 = inRect.AtZero();
-            DoBottomButtons(rect2);
-            var inRect2 = rect2;
-            inRect2.yMax -= 59f;
-            itemsTransfer.OnGUI(inRect2);
-            GUI.EndGroup();
-        }
-
-        public override bool CausesMessageBackground()
-        {
-            return true;
-        }
-
-        private void DoBottomButtons(Rect rect)
-        {
-            var rect2 = new Rect((rect.width / 2f) - (BottomButtonSize.x / 2f), rect.height - 55f, BottomButtonSize.x,
-                BottomButtonSize.y);
-            if (Widgets.ButtonText(rect2, "EKAI_Register".Translate()) && TryAccept())
-            {
-                SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                Close(false);
-            }
-
-            if (Widgets.ButtonText(
-                new Rect(rect2.x - 10f - BottomButtonSize.x, rect2.y, BottomButtonSize.x, BottomButtonSize.y),
-                "ResetButton".Translate()))
-            {
-                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                CalculateAndRecacheTransferables();
-            }
-
-            if (Widgets.ButtonText(new Rect(rect2.xMax + 10f, rect2.y, BottomButtonSize.x, BottomButtonSize.y),
+        if (Widgets.ButtonText(new Rect(rect2.xMax + 10f, rect2.y, BottomButtonSize.x, BottomButtonSize.y),
                 "CancelButton".Translate()))
+        {
+            Close();
+        }
+    }
+
+    private void CalculateAndRecacheTransferables()
+    {
+        allApparel = new List<LockerApparel>();
+        AddApparelOnMap();
+        AddApparelInner();
+        AddApparelLoading();
+        AddWornApparel();
+        MarkRegisteredApparel();
+        SetCautionMessage();
+        RemoveRegisteredApparelsByOtherContainer();
+        InitWidget();
+    }
+
+    private bool TryAccept()
+    {
+        if (!CheckForErrors())
+        {
+            return false;
+        }
+
+        compLocker.UnregisterAll();
+        foreach (var item in allApparel)
+        {
+            if (item.Registerd)
             {
-                Close();
+                compLocker.RegisterApparel(item.Contents);
             }
         }
 
-        private void CalculateAndRecacheTransferables()
+        compLocker.resetNotifiedCantLoadMore();
+        JobUtil.EndCurrentAndQueuedJobOnContainer(container, true);
+        return true;
+    }
+
+    private void AddApparelOnMap()
+    {
+        var source = CaravanFormingUtility.AllReachableColonyItems(map, false, true);
+        foreach (var item in source.Where(t => t is Apparel))
         {
-            allApparel = new List<LockerApparel>();
-            AddApparelOnMap();
-            AddApparelInner();
-            AddApparelLoading();
-            AddWornApparel();
-            MarkRegisteredApparel();
-            SetCautionMessage();
-            RemoveRegisteredApparelsByOtherContainer();
-            InitWidget();
+            allApparel.Add(new LockerApparel((Apparel)item));
         }
+    }
 
-        private bool TryAccept()
+    private void AddApparelInner()
+    {
+        foreach (var item in compLocker.InnerApparelsReadOnly())
         {
-            if (!CheckForErrors())
+            var lockerApparel = new LockerApparel(item)
             {
-                return false;
-            }
+                Owner = compLocker
+            };
+            allApparel.Add(lockerApparel);
+        }
+    }
 
-            compLocker.UnregisterAll();
-            foreach (var item in allApparel)
+    private void AddApparelLoading()
+    {
+        foreach (var item in JobUtil.GetCarryThingsToDest(compLocker.parent))
+        {
+            allApparel.Add(new LockerApparel((Apparel)item));
+        }
+    }
+
+    private void AddWornApparel()
+    {
+        foreach (var item in Util.AllPawnsPotentialOwner(compLocker.parent.Map))
+        {
+            var otherPawnWearing = item != compLocker.parent.GetComp<CompAssignableToPawn_Locker>().AssignedPawn();
+            foreach (var item2 in item.apparel.WornApparel)
             {
-                if (item.Registerd)
+                var lockerApparel = new LockerApparel(item2)
                 {
-                    compLocker.RegisterApparel(item.Contents);
-                }
-            }
-
-            compLocker.resetNotifiedCantLoadMore();
-            JobUtil.EndCurrentAndQueuedJobOnContainer(container, true);
-            return true;
-        }
-
-        private void AddApparelOnMap()
-        {
-            var source = CaravanFormingUtility.AllReachableColonyItems(map, false, true);
-            foreach (var item in source.Where(t => t is Apparel))
-            {
-                allApparel.Add(new LockerApparel((Apparel)item));
-            }
-        }
-
-        private void AddApparelInner()
-        {
-            foreach (var item in compLocker.InnerApparelsReadOnly())
-            {
-                var lockerApparel = new LockerApparel(item)
-                {
-                    Owner = compLocker
+                    WearingPawn = item,
+                    OtherPawnWearing = otherPawnWearing
                 };
                 allApparel.Add(lockerApparel);
             }
         }
+    }
 
-        private void AddApparelLoading()
+    private void MarkRegisteredApparel()
+    {
+        foreach (var regApparel in compLocker.RegisteredApparelsReadOnly())
         {
-            foreach (var item in JobUtil.GetCarryThingsToDest(compLocker.parent))
+            var lockerApparel = allApparel.Find(la => la.Contents == regApparel);
+            if (lockerApparel == null)
             {
-                allApparel.Add(new LockerApparel((Apparel)item));
+                var lockerApparel2 = new LockerApparel(regApparel)
+                {
+                    Unknown = true,
+                    Registerd = true
+                };
+                allApparel.Add(lockerApparel2);
+            }
+            else
+            {
+                lockerApparel.Registerd = true;
             }
         }
+    }
 
-        private void AddWornApparel()
+    private void SetCautionMessage()
+    {
+        var linkedContainer = container.GetLinkedContainer<Building_RegistableContainer>();
+        if (linkedContainer == null)
         {
-            foreach (var item in Util.AllPawnsPotentialOwner(compLocker.parent.Map))
-            {
-                var otherPawnWearing = item != compLocker.parent.GetComp<CompAssignableToPawn_Locker>().AssignedPawn();
-                foreach (var item2 in item.apparel.WornApparel)
-                {
-                    var lockerApparel = new LockerApparel(item2)
-                    {
-                        WearingPawn = item,
-                        OtherPawnWearing = otherPawnWearing
-                    };
-                    allApparel.Add(lockerApparel);
-                }
-            }
+            return;
         }
 
-        private void MarkRegisteredApparel()
+        var comp = linkedContainer.GetComp<CompLocker>();
+        foreach (var item in allApparel)
         {
-            foreach (var regApparel in compLocker.RegisteredApparelsReadOnly())
+            if (!Util.AnyCantWearTogetherApparels(comp.RegisteredApparelsReadOnly(), item.Contents))
             {
-                var lockerApparel = allApparel.Find(la => la.Contents == regApparel);
-                if (lockerApparel == null)
-                {
-                    var lockerApparel2 = new LockerApparel(regApparel)
-                    {
-                        Unknown = true,
-                        Registerd = true
-                    };
-                    allApparel.Add(lockerApparel2);
-                }
-                else
-                {
-                    lockerApparel.Registerd = true;
-                }
+                continue;
             }
+
+            item.ConflictWithApparelsRegisterdLinkedContainer = true;
+            item.CautionMessage =
+                "EKAI_Msg_DuplicationWithApparelRegisterdOwnedContainer".Translate(linkedContainer.def.label);
         }
+    }
 
-        private void SetCautionMessage()
+    private void RemoveRegisteredApparelsByOtherContainer()
+    {
+        var list = new List<LockerApparel>();
+        foreach (var item in allApparel)
         {
-            var linkedContainer = container.GetLinkedContainer<Building_RegistableContainer>();
-            if (linkedContainer == null)
-            {
-                return;
-            }
-
-            var comp = linkedContainer.GetComp<CompLocker>();
-            foreach (var item in allApparel)
-            {
-                if (!Util.AnyCantWearTogetherApparels(comp.RegisteredApparelsReadOnly(), item.Contents))
-                {
-                    continue;
-                }
-
-                item.ConflictWithApparelsRegisterdLinkedContainer = true;
-                item.CautionMessage =
-                    "EKAI_Msg_DuplicationWithApparelRegisterdOwnedContainer".Translate(linkedContainer.def.label);
-            }
-        }
-
-        private void RemoveRegisteredApparelsByOtherContainer()
-        {
-            var list = new List<LockerApparel>();
-            foreach (var item in allApparel)
-            {
-                var containersRegisteredApparel =
-                    Util.GetContainersRegisteredApparel<Building_RegistableContainer>(compLocker.Map, item.Contents);
-                if (containersRegisteredApparel.Any(buildingRegistableContainer =>
+            var containersRegisteredApparel =
+                Util.GetContainersRegisteredApparel<Building_RegistableContainer>(compLocker.Map, item.Contents);
+            if (containersRegisteredApparel.Any(buildingRegistableContainer =>
                     buildingRegistableContainer != compLocker.parent))
-                {
-                    list.Add(item);
-                }
-            }
-
-            foreach (var item2 in list)
             {
-                if (!compLocker.InnerApparelsReadOnly().Contains(item2.Contents))
-                {
-                    allApparel.Remove(item2);
-                }
+                list.Add(item);
             }
         }
 
-        private void InitWidget()
+        foreach (var item2 in list)
         {
-            itemsTransfer = new LockerApparelWidget(compLocker, null);
-            if (!compLocker.Props.storableThingDefs.NullOrEmpty())
+            if (!compLocker.InnerApparelsReadOnly().Contains(item2.Contents))
             {
-                var storableThingDefs = compLocker.Props.storableThingDefs;
-                allApparel.RemoveAll(apparel => !storableThingDefs.Contains(apparel.Contents.def));
-            }
-
-            var sortedDictionary = new SortedDictionary<LockerSectionDef, List<LockerApparel>>();
-            foreach (var item in allApparel)
-            {
-                var key = LockerSectionDef.Get(item.ThingDef.thingCategories);
-                if (!sortedDictionary.TryGetValue(key, out var value))
-                {
-                    value = new List<LockerApparel>();
-                    sortedDictionary.Add(key, value);
-                }
-
-                value.Add(item);
-            }
-
-            foreach (var key2 in sortedDictionary.Keys)
-            {
-                itemsTransfer.AddSection(key2.GetLabel(), sortedDictionary[key2]);
+                allApparel.Remove(item2);
             }
         }
+    }
 
-        private bool CheckForErrors()
+    private void InitWidget()
+    {
+        itemsTransfer = new LockerApparelWidget(compLocker, null);
+        if (!compLocker.Props.storableThingDefs.NullOrEmpty())
         {
-            var parentMap = compLocker.parent.Map;
-            foreach (var item in allApparel)
+            var storableThingDefs = compLocker.Props.storableThingDefs;
+            allApparel.RemoveAll(apparel => !storableThingDefs.Contains(apparel.Contents.def));
+        }
+
+        var sortedDictionary = new SortedDictionary<LockerSectionDef, List<LockerApparel>>();
+        foreach (var item in allApparel)
+        {
+            var key = LockerSectionDef.Get(item.ThingDef.thingCategories);
+            if (!sortedDictionary.TryGetValue(key, out var value))
             {
-                if (!item.Registerd)
-                {
-                    continue;
-                }
-
-                var hasFoundItem = false;
-                Thing t = item.Contents;
-                var pawn_CarryTracker = t.ParentHolder as Pawn_CarryTracker;
-                if (Util.AllPawnsPotentialOwner(compLocker.Map).Any(p => p.apparel.Contains(t)) ||
-                    compLocker.InnerApparelsReadOnly().Contains(t) ||
-                    parentMap.reachability.CanReach(t.Position, compLocker.parent, PathEndMode.Touch,
-                        TraverseParms.For(TraverseMode.PassDoors)) ||
-                    (pawn_CarryTracker?.pawn.MapHeld.reachability.CanReach(pawn_CarryTracker.pawn.PositionHeld,
-                        compLocker.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors)) ?? false))
-                {
-                    hasFoundItem = true;
-                }
-
-                if (hasFoundItem && !item.Unknown)
-                {
-                    continue;
-                }
-
-                Messages.Message(
-                    "EKAI_Msg_NoPathWithItem".Translate(compLocker.parent.def.label, item.ThingDef.label),
-                    MessageTypeDefOf.RejectInput, false);
-                return false;
+                value = new List<LockerApparel>();
+                sortedDictionary.Add(key, value);
             }
 
-            return true;
+            value.Add(item);
         }
+
+        foreach (var key2 in sortedDictionary.Keys)
+        {
+            itemsTransfer.AddSection(key2.GetLabel(), sortedDictionary[key2]);
+        }
+    }
+
+    private bool CheckForErrors()
+    {
+        var parentMap = compLocker.parent.Map;
+        foreach (var item in allApparel)
+        {
+            if (!item.Registerd)
+            {
+                continue;
+            }
+
+            var hasFoundItem = false;
+            Thing t = item.Contents;
+            var pawn_CarryTracker = t.ParentHolder as Pawn_CarryTracker;
+            if (Util.AllPawnsPotentialOwner(compLocker.Map).Any(p => p.apparel.Contains(t)) ||
+                compLocker.InnerApparelsReadOnly().Contains(t) ||
+                parentMap.reachability.CanReach(t.Position, compLocker.parent, PathEndMode.Touch,
+                    TraverseParms.For(TraverseMode.PassDoors)) ||
+                (pawn_CarryTracker?.pawn.MapHeld.reachability.CanReach(pawn_CarryTracker.pawn.PositionHeld,
+                    compLocker.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors)) ?? false))
+            {
+                hasFoundItem = true;
+            }
+
+            if (hasFoundItem && !item.Unknown)
+            {
+                continue;
+            }
+
+            Messages.Message(
+                "EKAI_Msg_NoPathWithItem".Translate(compLocker.parent.def.label, item.ThingDef.label),
+                MessageTypeDefOf.RejectInput, false);
+            return false;
+        }
+
+        return true;
     }
 }

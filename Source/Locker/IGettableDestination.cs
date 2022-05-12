@@ -1,9 +1,8 @@
 using Verse;
 
-namespace Locker
+namespace Locker;
+
+public interface IGettableDestination
 {
-    public interface IGettableDestination
-    {
-        Thing GetDestination();
-    }
+    Thing GetDestination();
 }

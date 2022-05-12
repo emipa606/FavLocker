@@ -1,10 +1,9 @@
 using System;
 using RimWorld;
 
-namespace Locker
+namespace Locker;
+
+public class CompProperties_AssignableToPawn_OnlyOne : CompProperties_AssignableToPawn
 {
-    public class CompProperties_AssignableToPawn_OnlyOne : CompProperties_AssignableToPawn
-    {
-        public Type buildingClass;
-    }
+    public Type buildingClass;
 }

@@ -4,265 +4,212 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace Locker
+namespace Locker;
+
+[StaticConstructorOnStartup]
+public class CompLocker : ThingComp, IThingHolder
 {
-    [StaticConstructorOnStartup]
-    public class CompLocker : ThingComp, IThingHolder
+    private List<Apparel> forcedApparels;
+
+    private ThingOwner<Apparel> innerContainer;
+
+    private bool notifiedCantLoadMore;
+
+    private List<Apparel> registeredApparels;
+
+    public CompLocker()
     {
-        private List<Apparel> forcedApparels;
+        innerContainer = new ThingOwner<Apparel>(this);
+        registeredApparels = new List<Apparel>();
+        forcedApparels = new List<Apparel>();
+    }
 
-        private ThingOwner<Apparel> innerContainer;
+    public new Building_RegistableContainer parent => (Building_RegistableContainer)base.parent;
 
-        private bool notifiedCantLoadMore;
+    public Map Map => parent.MapHeld;
 
-        private List<Apparel> registeredApparels;
+    public CompProperties_Locker Props => (CompProperties_Locker)props;
 
-        public CompLocker()
+    public bool AnythingLeftToLoad => FirstThingLeftToLoad != null;
+
+    public Thing FirstThingLeftToLoad => parent.FirstThingLeftToLoad;
+
+    public bool AnyPawnCanLoadAnythingNow
+    {
+        get
         {
-            innerContainer = new ThingOwner<Apparel>(this);
-            registeredApparels = new List<Apparel>();
-            forcedApparels = new List<Apparel>();
-        }
-
-        public new Building_RegistableContainer parent => (Building_RegistableContainer)base.parent;
-
-        public Map Map => parent.MapHeld;
-
-        public CompProperties_Locker Props => (CompProperties_Locker)props;
-
-        public bool AnythingLeftToLoad => FirstThingLeftToLoad != null;
-
-        public Thing FirstThingLeftToLoad => parent.FirstThingLeftToLoad;
-
-        public bool AnyPawnCanLoadAnythingNow
-        {
-            get
+            if (!AnythingLeftToLoad)
             {
-                if (!AnythingLeftToLoad)
-                {
-                    return false;
-                }
-
-                if (!parent.Spawned)
-                {
-                    return false;
-                }
-
-                if (JobUtil.AnyDoingJobOnThing(parent, JobDefOf.EKAI_HaulToLocker))
-                {
-                    return true;
-                }
-
-                if (JobUtil.AnyDoingJobOnThing(parent, JobDefOf.EKAI_RemoveApparelWithLocker))
-                {
-                    return true;
-                }
-
-                if (JobUtil.AnyPawnHasHaulJob(parent))
-                {
-                    return true;
-                }
-
                 return false;
             }
-        }
 
-        public bool AnyRegisteredApparel => registeredApparels.Any();
-
-        public ThingOwner GetDirectlyHeldThings()
-        {
-            return innerContainer;
-        }
-
-        public void GetChildHolders(List<IThingHolder> outChildren)
-        {
-            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
-        }
-
-        public void resetNotifiedCantLoadMore()
-        {
-            notifiedCantLoadMore = false;
-        }
-
-        public ReadOnlyCollection<Apparel> InnerApparelsReadOnly()
-        {
-            return new ReadOnlyCollection<Apparel>(innerContainer);
-        }
-
-        public void AddApparel(Apparel newApparel, bool forced = false)
-        {
-            foreach (var cantWearTogetherApparel in Util.GetCantWearTogetherApparels(innerContainer, newApparel))
+            if (!parent.Spawned)
             {
-                DropApparel(cantWearTogetherApparel);
+                return false;
             }
 
-            innerContainer.TryAdd(newApparel);
-            if (forced)
+            if (JobUtil.AnyDoingJobOnThing(parent, JobDefOf.EKAI_HaulToLocker))
             {
-                forcedApparels.Add(newApparel);
+                return true;
             }
 
-            parent.ChangeContents();
-        }
-
-        public void RemoveApparel(Apparel apparel)
-        {
-            innerContainer.Remove(apparel);
-            forcedApparels.Remove(apparel);
-            parent.ChangeContents();
-        }
-
-        public void DropApparel(Apparel apparel)
-        {
-            innerContainer.TryDrop(apparel, ThingPlaceMode.Near, out var _);
-            forcedApparels.Remove(apparel);
-            parent.ChangeContents();
-        }
-
-        public bool IsForced(Apparel apparel)
-        {
-            return forcedApparels.Contains(apparel);
-        }
-
-        public bool FindStoredApparel(Thing t)
-        {
-            return innerContainer.Contains(t);
-        }
-
-        public ReadOnlyCollection<Apparel> RegisteredApparelsReadOnly()
-        {
-            return new ReadOnlyCollection<Apparel>(registeredApparels);
-        }
-
-        public void RegisterApparel(Apparel t)
-        {
-            if (!registeredApparels.Contains(t))
+            if (JobUtil.AnyDoingJobOnThing(parent, JobDefOf.EKAI_RemoveApparelWithLocker))
             {
-                registeredApparels.Add(t);
-            }
-        }
-
-        public void UnregisterAll()
-        {
-            registeredApparels.Clear();
-        }
-
-        public List<Apparel> GetApparelsRegisterdAndInner()
-        {
-            var list = new List<Apparel>();
-            foreach (var registeredApparel in registeredApparels)
-            {
-                if (innerContainer.Contains(registeredApparel))
-                {
-                    list.Add(registeredApparel);
-                }
+                return true;
             }
 
-            return list;
-        }
-
-        public bool AllStoredOrWear(Pawn p)
-        {
-            foreach (var registeredApparel in registeredApparels)
+            if (JobUtil.AnyPawnHasHaulJob(parent))
             {
-                if (!innerContainer.Contains(registeredApparel) && !p.apparel.WornApparel.Contains(registeredApparel))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public bool AllWear(Pawn p)
-        {
-            foreach (var registeredApparel in registeredApparels)
-            {
-                if (!p.apparel.WornApparel.Contains(registeredApparel))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public bool AnyWear(Pawn p)
-        {
-            foreach (var registeredApparel in registeredApparels)
-            {
-                if (p.apparel.WornApparel.Contains(registeredApparel))
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;
         }
+    }
 
-        public override void PostExposeData()
+    public bool AnyRegisteredApparel => registeredApparels.Any();
+
+    public ThingOwner GetDirectlyHeldThings()
+    {
+        return innerContainer;
+    }
+
+    public void GetChildHolders(List<IThingHolder> outChildren)
+    {
+        ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
+    }
+
+    public void resetNotifiedCantLoadMore()
+    {
+        notifiedCantLoadMore = false;
+    }
+
+    public ReadOnlyCollection<Apparel> InnerApparelsReadOnly()
+    {
+        return new ReadOnlyCollection<Apparel>(innerContainer);
+    }
+
+    public void AddApparel(Apparel newApparel, bool forced = false)
+    {
+        foreach (var cantWearTogetherApparel in Util.GetCantWearTogetherApparels(innerContainer, newApparel))
         {
-            base.PostExposeData();
-            Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
-            if (Scribe.mode == LoadSaveMode.Saving)
-            {
-                var list = new List<Apparel>();
-                foreach (var registeredApparel in registeredApparels)
-                {
-                    if (registeredApparel.Destroyed)
-                    {
-                        list.Add(registeredApparel);
-                    }
-                }
+            DropApparel(cantWearTogetherApparel);
+        }
 
-                foreach (var item in list)
-                {
-                    registeredApparels.Remove(item);
-                }
+        innerContainer.TryAdd(newApparel);
+        if (forced)
+        {
+            forcedApparels.Add(newApparel);
+        }
+
+        parent.ChangeContents();
+    }
+
+    public void RemoveApparel(Apparel apparel)
+    {
+        innerContainer.Remove(apparel);
+        forcedApparels.Remove(apparel);
+        parent.ChangeContents();
+    }
+
+    public void DropApparel(Apparel apparel)
+    {
+        innerContainer.TryDrop(apparel, ThingPlaceMode.Near, out var _);
+        forcedApparels.Remove(apparel);
+        parent.ChangeContents();
+    }
+
+    public bool IsForced(Apparel apparel)
+    {
+        return forcedApparels.Contains(apparel);
+    }
+
+    public bool FindStoredApparel(Thing t)
+    {
+        return innerContainer.Contains(t);
+    }
+
+    public ReadOnlyCollection<Apparel> RegisteredApparelsReadOnly()
+    {
+        return new ReadOnlyCollection<Apparel>(registeredApparels);
+    }
+
+    public void RegisterApparel(Apparel t)
+    {
+        if (!registeredApparels.Contains(t))
+        {
+            registeredApparels.Add(t);
+        }
+    }
+
+    public void UnregisterAll()
+    {
+        registeredApparels.Clear();
+    }
+
+    public List<Apparel> GetApparelsRegisterdAndInner()
+    {
+        var list = new List<Apparel>();
+        foreach (var registeredApparel in registeredApparels)
+        {
+            if (innerContainer.Contains(registeredApparel))
+            {
+                list.Add(registeredApparel);
             }
-
-            Scribe_Collections.Look(ref registeredApparels, "registeredApparels", LookMode.Reference);
-            Scribe_Collections.Look(ref forcedApparels, "forcedApparels", LookMode.Reference);
-            Scribe_Values.Look(ref notifiedCantLoadMore, "notifiedCantLoadMore");
         }
 
-        public override void CompTick()
+        return list;
+    }
+
+    public bool AllStoredOrWear(Pawn p)
+    {
+        foreach (var registeredApparel in registeredApparels)
         {
-            base.CompTick();
-            innerContainer.ThingOwnerTick();
-            if (!parent.IsHashIntervalTick(60) || !parent.Spawned || !AnythingLeftToLoad || notifiedCantLoadMore ||
-                AnyPawnCanLoadAnythingNow)
+            if (!innerContainer.Contains(registeredApparel) && !p.apparel.WornApparel.Contains(registeredApparel))
             {
-                return;
+                return false;
             }
-
-            notifiedCantLoadMore = true;
-            var text = parent.GetComp<CompAssignableToPawn_Locker>().AssignedPawn()?.Label ?? "Nobody".Translate();
-            Messages.Message(
-                "EKAI_Msg_CantComplete".Translate(text, FirstThingLeftToLoad.LabelNoCount, parent.def.label,
-                    Faction.OfPlayer.def.pawnsPlural), parent, MessageTypeDefOf.CautionInput);
         }
 
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        return true;
+    }
+
+    public bool AllWear(Pawn p)
+    {
+        foreach (var registeredApparel in registeredApparels)
         {
-            yield return new Command_RegisterApparel
+            if (!p.apparel.WornApparel.Contains(registeredApparel))
             {
-                defaultLabel = Props.commandLabelKey.Translate(),
-                defaultDesc = Props.commandDescKey.Translate(),
-                icon = ContentFinder<Texture2D>.Get("UI/Commands/RegisterFav"),
-                compLocker = this
-            };
+                return false;
+            }
         }
 
-        public override void PostSpawnSetup(bool respawningAfterLoad)
+        return true;
+    }
+
+    public bool AnyWear(Pawn p)
+    {
+        foreach (var registeredApparel in registeredApparels)
         {
-            base.PostSpawnSetup(respawningAfterLoad);
+            if (p.apparel.WornApparel.Contains(registeredApparel))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public override void PostExposeData()
+    {
+        base.PostExposeData();
+        Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
+        if (Scribe.mode == LoadSaveMode.Saving)
+        {
             var list = new List<Apparel>();
             foreach (var registeredApparel in registeredApparels)
             {
-                var containersRegisteredApparel =
-                    Util.GetContainersRegisteredApparel<Building_RegistableContainer>(Map, registeredApparel);
-                if (containersRegisteredApparel.Any(container => container != parent))
+                if (registeredApparel.Destroyed)
                 {
                     list.Add(registeredApparel);
                 }
@@ -274,15 +221,67 @@ namespace Locker
             }
         }
 
-        public override void PostDeSpawn(Map map)
+        Scribe_Collections.Look(ref registeredApparels, "registeredApparels", LookMode.Reference);
+        Scribe_Collections.Look(ref forcedApparels, "forcedApparels", LookMode.Reference);
+        Scribe_Values.Look(ref notifiedCantLoadMore, "notifiedCantLoadMore");
+    }
+
+    public override void CompTick()
+    {
+        base.CompTick();
+        innerContainer.ThingOwnerTick();
+        if (!parent.IsHashIntervalTick(60) || !parent.Spawned || !AnythingLeftToLoad || notifiedCantLoadMore ||
+            AnyPawnCanLoadAnythingNow)
         {
-            base.PostDeSpawn(map);
-            innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near);
+            return;
         }
 
-        public override string CompInspectStringExtra()
+        notifiedCantLoadMore = true;
+        var text = parent.GetComp<CompAssignableToPawn_Locker>().AssignedPawn()?.Label ?? "Nobody".Translate();
+        Messages.Message(
+            "EKAI_Msg_CantComplete".Translate(text, FirstThingLeftToLoad.LabelNoCount, parent.def.label,
+                Faction.OfPlayer.def.pawnsPlural), parent, MessageTypeDefOf.CautionInput);
+    }
+
+    public override IEnumerable<Gizmo> CompGetGizmosExtra()
+    {
+        yield return new Command_RegisterApparel
         {
-            return "Contents".Translate() + ": " + innerContainer.ContentsString.CapitalizeFirst();
+            defaultLabel = Props.commandLabelKey.Translate(),
+            defaultDesc = Props.commandDescKey.Translate(),
+            icon = ContentFinder<Texture2D>.Get("UI/Commands/RegisterFav"),
+            compLocker = this
+        };
+    }
+
+    public override void PostSpawnSetup(bool respawningAfterLoad)
+    {
+        base.PostSpawnSetup(respawningAfterLoad);
+        var list = new List<Apparel>();
+        foreach (var registeredApparel in registeredApparels)
+        {
+            var containersRegisteredApparel =
+                Util.GetContainersRegisteredApparel<Building_RegistableContainer>(Map, registeredApparel);
+            if (containersRegisteredApparel.Any(container => container != parent))
+            {
+                list.Add(registeredApparel);
+            }
         }
+
+        foreach (var item in list)
+        {
+            registeredApparels.Remove(item);
+        }
+    }
+
+    public override void PostDeSpawn(Map map)
+    {
+        base.PostDeSpawn(map);
+        innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near);
+    }
+
+    public override string CompInspectStringExtra()
+    {
+        return "Contents".Translate() + ": " + innerContainer.ContentsString.CapitalizeFirst();
     }
 }
