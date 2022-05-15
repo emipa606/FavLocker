@@ -77,6 +77,30 @@
           <li MayRequire="Hlx.UltratechAlteredCarbon">UT_Apparel_ProtectorateArmorHelmet</li>
           <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitBodyHeavy</li>
           <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitHelmetHeavy</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_PoweredAssaultArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_EngineerPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ExplorerPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_GrenadierPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_CommandoArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_HazardOperationsArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DiplomatPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DefenderPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ScoutPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_SamuraiPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ShockTrooperArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ReconPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_PoweredAssaultArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_EngineerPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ExplorerPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_GrenadierPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_CommandoArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_HazardOperationsArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DiplomatPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DefenderPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ScoutPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_SamuraiPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ShockTrooperArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ReconPowerArmorHelmet</li>
         </storableThingDefs>
         <compClass>Locker.CompLocker</compClass>
       </li>

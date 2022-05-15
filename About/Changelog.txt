@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.3.4 - Added support for Rimworld: Spartan Foundry
+
+
 1.3.3 - Added support for CAS: Recon Armour, CAS: Cataphract Armour, Ultratech: Altered Carbon Remastered, Save Our Ship 2
 
 
