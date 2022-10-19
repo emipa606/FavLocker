@@ -7,7 +7,7 @@ public class TransferableComparer_BodyPartGroupAndLayer : TransferableComparer
 {
     public override int Compare(Transferable lhs, Transferable rhs)
     {
-        return Compare(lhs.ThingDef, rhs.ThingDef);
+        return Compare(lhs?.ThingDef, rhs?.ThingDef);
     }
 
     public static int Compare(ThingDef lhsTh, ThingDef rhsTh)

@@ -9,18 +9,7 @@ internal class JobDriver_HaulToLocker : JobDriver_HaulToContainer, IGettableDest
 {
     private Apparel Apparel => (Apparel)job.GetTarget(TargetIndex.A).Thing;
 
-    public CompLocker Locker
-    {
-        get
-        {
-            if (Container == null)
-            {
-                return null;
-            }
-
-            return Container.TryGetComp<CompLocker>();
-        }
-    }
+    public CompLocker Locker => Container?.TryGetComp<CompLocker>();
 
     public Thing GetDestination()
     {

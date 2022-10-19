@@ -45,17 +45,15 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
     public override string GetReport()
     {
         var thing = job.GetTarget(TARGET_APPAREL).Thing;
-        if (progress == Progress.REMOVING && thing != null)
+        switch (progress)
         {
-            return "EKAI_Report_Remove".Translate(thing.Label);
+            case Progress.REMOVING when thing != null:
+                return "EKAI_Report_Remove".Translate(thing.Label);
+            case Progress.WEARING when thing != null:
+                return "EKAI_Report_Wear".Translate(thing.Label);
+            default:
+                return GetReportDefault();
         }
-
-        if (progress == Progress.WEARING && thing != null)
-        {
-            return "EKAI_Report_Wear".Translate(thing.Label);
-        }
-
-        return GetReportDefault();
     }
 
     protected virtual string GetReportDefault()

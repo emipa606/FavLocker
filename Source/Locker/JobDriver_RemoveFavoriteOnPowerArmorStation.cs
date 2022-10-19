@@ -153,11 +153,6 @@ public class JobDriver_RemoveFavoriteOnPowerArmorStation : JobDriver_ChangeAppar
             return true;
         }
 
-        if (GetNextRemoveApparel(TARGET_LINKED_CONTAINER) != null)
-        {
-            return true;
-        }
-
-        return false;
+        return GetNextRemoveApparel(TARGET_LINKED_CONTAINER) != null;
     }
 }

@@ -135,7 +135,7 @@ public class ContentsRenderer
             default:
             {
                 var owner = GetOwner();
-                Log.Error("BaseHeadOffsetAt error in " + (owner == null ? "defaultBodyTypeDef" : owner.ToString()));
+                Log.Error($"BaseHeadOffsetAt error in {(owner == null ? "defaultBodyTypeDef" : owner.ToString())}");
                 return Vector3.zero;
             }
         }
@@ -143,24 +143,7 @@ public class ContentsRenderer
 
     public GraphicMeshSet GetHairMeshSet()
     {
-        var owner = GetOwner();
-        if (owner == null)
-        {
-            return MeshPool.humanlikeHairSetAverage;
-        }
-
-        if (owner.story.crownType == CrownType.Average)
-        {
-            return MeshPool.humanlikeHairSetAverage;
-        }
-
-        if (owner.story.crownType == CrownType.Narrow)
-        {
-            return MeshPool.humanlikeHairSetNarrow;
-        }
-
-        Log.Error("Unknown crown type: " + owner.story.crownType);
-        return MeshPool.humanlikeHairSetAverage;
+        return MeshPool.humanlikeHeadSet;
     }
 
     private BodyTypeDef GetBodyTypeDef()

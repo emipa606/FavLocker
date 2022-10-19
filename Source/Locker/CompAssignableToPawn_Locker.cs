@@ -35,12 +35,7 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
 
     public Pawn AssignedPawn()
     {
-        if (assignedPawns.Any())
-        {
-            return assignedPawns[0];
-        }
-
-        return null;
+        return assignedPawns.Any() ? assignedPawns[0] : null;
     }
 
     public bool Assigned(Pawn pawn)
@@ -82,7 +77,7 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
         parent.ChangeOwner(oldOwner, newOwner);
     }
 
-    public override void TryUnassignPawn(Pawn oldOwner, bool sort = true)
+    public override void TryUnassignPawn(Pawn oldOwner, bool sort = true, bool uninstall = false)
     {
         if (!Assigned(oldOwner))
         {

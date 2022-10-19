@@ -528,7 +528,7 @@ public class LockerApparelWidget
             var tipDescription = trad.TipDescription;
             if (!tipDescription.NullOrEmpty())
             {
-                text = text + ": " + tipDescription;
+                text = $"{text}: {tipDescription}";
             }
 
             return text;

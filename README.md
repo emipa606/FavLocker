@@ -13,7 +13,8 @@ Added support for some other mods in the power armor station
 - https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462]CAS: Recon Armour (Continued)
 - https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241]CAS: Cataphract Armour (Continued)
 - https://steamcommunity.com/sharedfiles/filedetails/?id=2196278117]Ultratech: Altered Carbon Remastered
-- https://steamcommunity.com/workshop/filedetails/?id=1909914131]Save Our Ship 2
+- https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2
+- https://steamcommunity.com/sharedfiles/filedetails/?id=2562018758]Rimworld: Spartan Foundry (Continued)
 
 
 
@@ -127,6 +128,7 @@ Thank you.
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+
 
 
 

@@ -167,12 +167,7 @@ public static class JobUtil
 
     public static Thing GetCarryThingToDest(Pawn pawn, Thing dest)
     {
-        if (IsDoingJobOnThing(pawn, dest, JobDefOf.EKAI_HaulToLocker))
-        {
-            return pawn.carryTracker.CarriedThing;
-        }
-
-        return null;
+        return IsDoingJobOnThing(pawn, dest, JobDefOf.EKAI_HaulToLocker) ? pawn.carryTracker.CarriedThing : null;
     }
 
     public static List<Thing> GetAssignedRegisterdApparel(Thing dest)
@@ -192,12 +187,9 @@ public static class JobUtil
 
     public static Thing GetAssignedThingToDest(Pawn pawn, Thing dest)
     {
-        if (IsDoingJobOnThing(pawn, dest, JobDefOf.EKAI_HaulToLocker))
-        {
-            return ((JobDriver_HaulToLocker)pawn.jobs.curDriver).ThingToCarry;
-        }
-
-        return null;
+        return IsDoingJobOnThing(pawn, dest, JobDefOf.EKAI_HaulToLocker)
+            ? ((JobDriver_HaulToLocker)pawn.jobs.curDriver).ThingToCarry
+            : null;
     }
 
     public static bool IsTargetThing(Job job, Thing thing)

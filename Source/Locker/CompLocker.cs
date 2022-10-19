@@ -53,17 +53,8 @@ public class CompLocker : ThingComp, IThingHolder
                 return true;
             }
 
-            if (JobUtil.AnyDoingJobOnThing(parent, JobDefOf.EKAI_RemoveApparelWithLocker))
-            {
-                return true;
-            }
-
-            if (JobUtil.AnyPawnHasHaulJob(parent))
-            {
-                return true;
-            }
-
-            return false;
+            return JobUtil.AnyDoingJobOnThing(parent, JobDefOf.EKAI_RemoveApparelWithLocker) ||
+                   JobUtil.AnyPawnHasHaulJob(parent);
         }
     }
 

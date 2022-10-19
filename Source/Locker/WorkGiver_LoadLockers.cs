@@ -69,12 +69,7 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
             return true;
         }
 
-        if (FindThingToLoad(pawn, compLocker) != null)
-        {
-            return true;
-        }
-
-        return false;
+        return FindThingToLoad(pawn, compLocker) != null;
     }
 
     private static Thing FindRemoveApparel(Pawn p, CompLocker compLocker)

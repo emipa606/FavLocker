@@ -17,12 +17,9 @@ public class DefaultLockerComparer : IComparer<Transferable>
                 return -1;
             }
 
-            if (anyThing2?.Stuff == null)
-            {
-                return 1;
-            }
-
-            return string.Compare(anyThing.Stuff.label, anyThing2.Stuff.label, StringComparison.Ordinal);
+            return anyThing2?.Stuff == null
+                ? 1
+                : string.Compare(anyThing.Stuff.label, anyThing2.Stuff.label, StringComparison.Ordinal);
         }
 
         var num = new TransferableComparer_Quality().Compare(x, y);
@@ -38,11 +35,6 @@ public class DefaultLockerComparer : IComparer<Transferable>
         }
 
         num = new TransferableComparer_MarketValue().Compare(x, y);
-        if (num != 0)
-        {
-            return num;
-        }
-
-        return 0;
+        return num != 0 ? num : 0;
     }
 }

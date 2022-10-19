@@ -28,7 +28,7 @@ public class LockerSectionDef : Def, IComparable<LockerSectionDef>
     {
         if (derivation)
         {
-            return thingCategoryDef.parent.label + "(" + thingCategoryDef.label + ")";
+            return $"{thingCategoryDef.parent.label}({thingCategoryDef.label})";
         }
 
         return thingCategoryDef.label;
