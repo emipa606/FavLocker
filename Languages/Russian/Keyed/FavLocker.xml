@@ -39,4 +39,6 @@
   <EKAI_Report_Wear_Default>Ношу любимую.</EKAI_Report_Wear_Default>
   <EKAI_Report_Remove>Удаление {0}.</EKAI_Report_Remove>
   <EKAI_Report_Remove_Default>Удаление Фаворита.</EKAI_Report_Remove_Default>
+  <EKAI_ApparelRemoved>Хитпоинты {0}, носимого {1}, не находятся в выбранном допустимом диапазоне. Удалено из избранного.</EKAI_ApparelRemoved>
+  <EKAI_AllowedHPRange>Не возвращать предметы, которые не находятся в пределах выбранного диапазона попадания</EKAI_AllowedHPRange>
 </LanguageData>

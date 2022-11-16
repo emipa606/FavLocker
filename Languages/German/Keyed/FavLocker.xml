@@ -39,4 +39,6 @@
   <EKAI_Report_Wear_Default>Lieblingsstück tragen.</EKAI_Report_Wear_Default>
   <EKAI_Report_Remove>Entfernen von {0}.</EKAI_Report_Remove>
   <EKAI_Report_Remove_Default>Favorit entfernen.</EKAI_Report_Remove_Default>
+  <EKAI_ApparelRemoved>Die Trefferpunkte von {0}, die von {1} getragen werden, liegen nicht innerhalb des gewählten zulässigen Bereichs. Aus den Favoriten entfernt.</EKAI_ApparelRemoved>
+  <EKAI_AllowedHPRange>Keine Kleidungsstücke zurückgeben, die nicht innerhalb des gewählten Trefferbereichs liegen</EKAI_AllowedHPRange>
 </LanguageData>

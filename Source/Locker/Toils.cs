@@ -1,4 +1,5 @@
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -146,12 +147,22 @@ public static class Toils
             for (var i = 0; i < targetQueue.Count; i++)
             {
                 var apparel = (Apparel)targetQueue[i].Thing;
-                var forced = countQueue[i] != 0;
                 if (!apparel.Spawned)
                 {
                     continue;
                 }
 
+                if (!compLocker.HealthRange.Includes((float)apparel.HitPoints / apparel.MaxHitPoints))
+                {
+                    Messages.Message("EKAI_ApparelRemoved".Translate(apparel.LabelCap, actor.NameFullColored),
+                        new LookTargets(new GlobalTargetInfo[] { actor, apparel }),
+                        MessageTypeDefOf.NeutralEvent);
+                    compLocker.UnRegisterApparel(apparel);
+                    var unused = compLocker.FirstThingLeftToLoad;
+                    continue;
+                }
+
+                var forced = countQueue[i] != 0;
                 apparel.DeSpawn();
                 compLocker.AddApparel(apparel, forced);
             }

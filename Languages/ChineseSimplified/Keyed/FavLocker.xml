@@ -39,4 +39,6 @@
   <EKAI_Report_Wear_Default>佩戴的最爱。</EKAI_Report_Wear_Default>
   <EKAI_Report_Remove>移除{0}。</EKAI_Report_Remove>
   <EKAI_Report_Remove_Default>删除收藏夹。</EKAI_Report_Remove_Default>
+  <EKAI_ApparelRemoved>由{1}佩戴的{0}的命中率不在选定的允许范围内。已从收藏夹中删除。</EKAI_ApparelRemoved>
+  <EKAI_AllowedHPRange>不返回不在所选打击点范围内的服装。</EKAI_AllowedHPRange>
 </LanguageData>

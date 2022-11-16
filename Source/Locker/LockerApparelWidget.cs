@@ -12,11 +12,10 @@ namespace Locker;
 [StaticConstructorOnStartup]
 public class LockerApparelWidget
 {
+    private const float titleRowHeight = 30f;
     private static readonly float SortButtonAreaWidth = 350f;
 
     private static readonly Color cantSelectColor = new Color(0.5f, 0.5f, 0.5f);
-
-    private static readonly Texture2D Drop = ContentFinder<Texture2D>.Get("UI/Buttons/Drop");
 
     public static readonly Color MouseoverColorInactive = new Color(0.6f, 0.6f, 0.6f);
 
@@ -174,13 +173,8 @@ public class LockerApparelWidget
             return false;
         }
 
-        if (!shouldDisplayHasCaution && lApparel.CautionMessage != null && !lApparel.Registerd &&
-            lApparel.Owner != compLocker)
-        {
-            return false;
-        }
-
-        return true;
+        return shouldDisplayHasCaution || lApparel.CautionMessage == null || lApparel.Registerd ||
+               lApparel.Owner == compLocker;
     }
 
     public void OnGUI(Rect inRect)
@@ -208,19 +202,19 @@ public class LockerApparelWidget
         TransferableSorterDef sorterDef2,
         Action<TransferableSorterDef> sorter1Setter, Action<TransferableSorterDef> sorter2Setter)
     {
-        GUI.BeginGroup(new Rect(0f, 0f, SortButtonAreaWidth, 27f));
+        GUI.BeginGroup(new Rect(0f, 0f, SortButtonAreaWidth, titleRowHeight));
         Text.Font = GameFont.Tiny;
-        var rect = new Rect(0f, 0f, 60f, 27f);
+        var rect = new Rect(0f, 0f, 60f, titleRowHeight);
         Text.Anchor = TextAnchor.MiddleLeft;
         Widgets.Label(rect, "SortBy".Translate());
         Text.Anchor = TextAnchor.UpperLeft;
-        var rect2 = new Rect(rect.xMax + 10f, 0f, 130f, 27f);
+        var rect2 = new Rect(rect.xMax + 10f, 0f, 130f, titleRowHeight);
         if (Widgets.ButtonText(rect2, sorterDef1.LabelCap))
         {
             OpenSorterChangeFloatMenu(sorter1Setter);
         }
 
-        var rect3 = new Rect(rect2.xMax + 10f, 0f, 130f, 27f);
+        var rect3 = new Rect(rect2.xMax + 10f, 0f, 130f, titleRowHeight);
         if (Widgets.ButtonText(rect3, sorterDef2.LabelCap))
         {
             OpenSorterChangeFloatMenu(sorter2Setter);
@@ -228,10 +222,10 @@ public class LockerApparelWidget
 
         GUI.EndGroup();
         Text.Anchor = TextAnchor.MiddleLeft;
-        GUI.BeginGroup(new Rect(rect3.xMax + 20f, 0f, inRect.width - SortButtonAreaWidth - 20f, 27f));
-        var rect4 = new Rect(0f, 0f, 200f, 27f);
+        GUI.BeginGroup(new Rect(rect3.xMax + 20f, 0f, inRect.width - SortButtonAreaWidth - 20f, titleRowHeight));
+        var rect4 = new Rect(0f, 0f, 150f, titleRowHeight);
         Widgets.Label(rect4, "EKAI_ShowNonOwnerEquip".Translate());
-        var rect5 = new Rect(rect4.xMax + 10f, 0f, 24f, 27f);
+        var rect5 = new Rect(rect4.xMax + 10f, 0f, 24f, titleRowHeight);
         var displayOtherPawnEquip = shouldDisplayOtherPawnEquip;
         Widgets.Checkbox(rect5.position, ref shouldDisplayOtherPawnEquip, 24f, false, true);
         if (displayOtherPawnEquip != shouldDisplayOtherPawnEquip)
@@ -239,9 +233,9 @@ public class LockerApparelWidget
             CacheTransferables();
         }
 
-        var rect6 = new Rect(rect5.xMax + 20f, 0f, 200f, 27f);
+        var rect6 = new Rect(rect5.xMax + 20f, 0f, 150f, titleRowHeight);
         Widgets.Label(rect6, "EKAI_ShowHasCaution".Translate());
-        var rect7 = new Rect(rect6.xMax + 10f, 0f, 24f, 27f);
+        var rect7 = new Rect(rect6.xMax + 10f, 0f, 24f, titleRowHeight);
         displayOtherPawnEquip = shouldDisplayHasCaution;
         Widgets.Checkbox(rect7.position, ref shouldDisplayHasCaution, 24f, false, true);
         if (displayOtherPawnEquip != shouldDisplayHasCaution)
@@ -249,6 +243,11 @@ public class LockerApparelWidget
             CacheTransferables();
         }
 
+        var rect8 = new Rect(rect7.xMax + 10f, 0f, 200f, titleRowHeight);
+        var allowedHitPointsPercents = compLocker.HealthRange;
+        Widgets.FloatRange(rect8, 1, ref allowedHitPointsPercents, 0f, 1f, "HitPoints", ToStringStyle.PercentZero);
+        compLocker.HealthRange = allowedHitPointsPercents;
+        TooltipHandler.TipRegion(rect8, "EKAI_AllowedHPRange".Translate());
         GUI.EndGroup();
     }
 
@@ -260,7 +259,7 @@ public class LockerApparelWidget
         list2.Insert(2, thingDefNameSorterDef);
         foreach (var def in list2)
         {
-            if (def.defName == "Category" || def.defName == "Mass")
+            if (def.defName is "Category" or "Mass")
             {
                 continue;
             }
@@ -432,14 +431,14 @@ public class LockerApparelWidget
             var colorInactive = ColorInactive;
             var mouseoverColorInactive = MouseoverColorInactive;
             TooltipHandler.TipRegion(rect, "EKAI_Msg_CantDropFromContainer".Translate(compLocker.parent.def.label));
-            Widgets.ButtonImage(rect, Drop, colorInactive, mouseoverColorInactive);
+            Widgets.ButtonImage(rect, TexButton.Drop, colorInactive, mouseoverColorInactive);
         }
         else
         {
             var white = Color.white;
             var mouseoverColor = GenUI.MouseoverColor;
             TooltipHandler.TipRegion(rect, "EKAI_Msg_DropFromContainer".Translate(compLocker.parent.def.label));
-            if (Widgets.ButtonImage(rect, Drop, white, mouseoverColor))
+            if (Widgets.ButtonImage(rect, TexButton.Drop, white, mouseoverColor))
             {
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 compLocker.DropApparel(trad.Contents);
@@ -454,7 +453,7 @@ public class LockerApparelWidget
     {
         Widgets.DrawHighlightIfMouseover(stateRect);
         GUI.BeginGroup(stateRect);
-        var rect = new Rect(0f, 0f, 27f, 27f);
+        var rect = new Rect(0f, 0f, titleRowHeight, titleRowHeight);
         if (trad.Unknown)
         {
             GUI.DrawTexture(rect, TexQuestion);
@@ -507,7 +506,7 @@ public class LockerApparelWidget
             Widgets.DrawHighlight(idRect);
         }
 
-        var rect = new Rect(0f, 0f, 27f, 27f);
+        var rect = new Rect(0f, 0f, titleRowHeight, titleRowHeight);
         Widgets.ThingIcon(rect, trad.Contents);
         Widgets.InfoCardButton(40f, 0f, trad.Contents);
         Text.Anchor = TextAnchor.MiddleLeft;

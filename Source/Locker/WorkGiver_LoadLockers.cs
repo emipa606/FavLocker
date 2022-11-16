@@ -110,6 +110,7 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
         return GenClosest.ClosestThingReachable(p.Position, p.Map,
             ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.Touch, TraverseParms.For(p),
             9999f,
-            x => neededThings.Contains(x) && p.CanReserve(x));
+            thing => neededThings.Contains(thing) && p.CanReserve(thing) &&
+                     compLocker.HealthRange.Includes((float)thing.HitPoints / thing.MaxHitPoints));
     }
 }

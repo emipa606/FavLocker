@@ -39,4 +39,6 @@
   <EKAI_Report_Wear_Default>Porté favori.</EKAI_Report_Wear_Default>
   <EKAI_Report_Remove>Je retire {0}.</EKAI_Report_Remove>
   <EKAI_Report_Remove_Default>Suppression du favori.</EKAI_Report_Remove_Default>
+  <EKAI_ApparelRemoved>Le nombre de points de vie de {0} porté par {1} n'est pas dans la plage autorisée sélectionnée. Retiré des favoris.</EKAI_ApparelRemoved>
+  <EKAI_AllowedHPRange>Ne pas renvoyer les vêtements qui ne sont pas dans le rayon d'action sélectionné.</EKAI_AllowedHPRange>
 </LanguageData>

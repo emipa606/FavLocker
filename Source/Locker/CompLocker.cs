@@ -10,6 +10,7 @@ namespace Locker;
 public class CompLocker : ThingComp, IThingHolder
 {
     private List<Apparel> forcedApparels;
+    private FloatRange healthRange;
 
     private ThingOwner<Apparel> innerContainer;
 
@@ -22,6 +23,7 @@ public class CompLocker : ThingComp, IThingHolder
         innerContainer = new ThingOwner<Apparel>(this);
         registeredApparels = new List<Apparel>();
         forcedApparels = new List<Apparel>();
+        healthRange = FloatRange.ZeroToOne;
     }
 
     public new Building_RegistableContainer parent => (Building_RegistableContainer)base.parent;
@@ -31,6 +33,12 @@ public class CompLocker : ThingComp, IThingHolder
     public CompProperties_Locker Props => (CompProperties_Locker)props;
 
     public bool AnythingLeftToLoad => FirstThingLeftToLoad != null;
+
+    public FloatRange HealthRange
+    {
+        get => healthRange;
+        set => healthRange = value;
+    }
 
     public Thing FirstThingLeftToLoad => parent.FirstThingLeftToLoad;
 
@@ -133,6 +141,14 @@ public class CompLocker : ThingComp, IThingHolder
         }
     }
 
+    public void UnRegisterApparel(Apparel t)
+    {
+        if (registeredApparels.Contains(t))
+        {
+            registeredApparels.Remove(t);
+        }
+    }
+
     public void UnregisterAll()
     {
         registeredApparels.Clear();
@@ -215,6 +231,7 @@ public class CompLocker : ThingComp, IThingHolder
         Scribe_Collections.Look(ref registeredApparels, "registeredApparels", LookMode.Reference);
         Scribe_Collections.Look(ref forcedApparels, "forcedApparels", LookMode.Reference);
         Scribe_Values.Look(ref notifiedCantLoadMore, "notifiedCantLoadMore");
+        Scribe_Values.Look(ref healthRange, "healthRange", FloatRange.ZeroToOne);
     }
 
     public override void CompTick()

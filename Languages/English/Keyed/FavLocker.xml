@@ -19,7 +19,9 @@
   <EKAI_PartsAndLayerOrder>body parts and layer</EKAI_PartsAndLayerOrder>
   <EKAI_KindOrder>apparel kind</EKAI_KindOrder>
   <EKAI_SelectRegisterApparelWithOwner>Register favorite apparels (owner:{0})</EKAI_SelectRegisterApparelWithOwner>
+  <EKAI_ApparelRemoved>Hitpoints of {0} worn by {1} is not within the selected allowed range. Removed from favourites.</EKAI_ApparelRemoved>
   <EKAI_SelectRegisterPowerArmorWithOwner>Register favorite PowerArmor (owner:{0})</EKAI_SelectRegisterPowerArmorWithOwner>
+  <EKAI_AllowedHPRange>Dont return apparel that is not within the selected hitpoint-range</EKAI_AllowedHPRange>
   <EKAI_Msg_NoPathWithItem>There is no path between the {0} and the {1}.</EKAI_Msg_NoPathWithItem>
   <EKAI_ShowNonOwnerEquip>Show apparels worn by non-owners</EKAI_ShowNonOwnerEquip>
   <EKAI_ShowHasCaution>Show cautioned apparels</EKAI_ShowHasCaution>
