@@ -36,11 +36,13 @@ Added support for some other mods in the power armor station
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2562018758]Rimworld: Spartan Foundry (Continued)[/url]
 [/list]
 
+- Added a hit points filter to the lockers
+
 [img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
     [tr]
-        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://dsc.gg/mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
         [td][url=https://github.com/emipa606/FavLocker][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
     [/tr]
     [tr]
@@ -137,5 +139,6 @@ Thank you.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
 
-</description>
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600]Last updated 2023-05-06[/url]</description>
 </ModMetaData>

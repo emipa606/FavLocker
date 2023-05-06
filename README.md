@@ -18,6 +18,8 @@ Added support for some other mods in the power armor station
 
 
 
+- Added a hit points filter to the lockers
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	
@@ -132,3 +134,4 @@ Thank you.
 
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600]Last updated 2023-05-06

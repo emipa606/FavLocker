@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<HugsLib.UpdateFeatureDef Abstract="true" Name="FavLocker_UpdateFeatureBase">
-		<modNameReadable>FavLocker</modNameReadable>
-		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2586243600</linkUrl>
-	</HugsLib.UpdateFeatureDef>
-	<HugsLib.UpdateFeatureDef ParentName="FavLocker_UpdateFeatureBase">
-		<defName>FavLocker_1_4_2</defName>
-		<assemblyVersion>1.4.2</assemblyVersion>
-		<content>Lockers now has a hitpoints filter. 
+  <HugsLib.UpdateFeatureDef Abstract="true" Name="FavLocker_UpdateFeatureBase">
+    <modNameReadable>FavLocker</modNameReadable>
+    <linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2586243600</linkUrl>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="FavLocker_UpdateFeatureBase">
+    <defName>FavLocker_1_4_2</defName>
+    <assemblyVersion>1.4.2</assemblyVersion>
+    <content>Lockers now has a hitpoints filter. 
 This can be used to stop apparel from being returned to the locker if its hitpoints is not within the defined value.</content>
-	</HugsLib.UpdateFeatureDef>
+  </HugsLib.UpdateFeatureDef>
 </Defs>
-

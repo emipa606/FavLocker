@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.4.3 - Removed references to a UT_Apparel_ProtectorateArmor that has been removed from the UltratechAlteredCarbon mod
+
+
 1.4.2 - Added hitpoints filter.
 Used DeepL to update translations for ChineseSimplified, French, German, Japanese, Russian
 
