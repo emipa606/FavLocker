@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.4.4 - Fixed the extra patches for the Protector Armor/Helmet
+
+
 1.4.3 - Removed references to a UT_Apparel_ProtectorateArmor that has been removed from the UltratechAlteredCarbon mod
 
 
