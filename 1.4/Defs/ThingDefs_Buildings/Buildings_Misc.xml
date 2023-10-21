@@ -73,6 +73,10 @@
           <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_TrooperArmor</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_HeavyMarineArmor</li>
           <li MayRequire="VanillaExpanded.VARME">VAE_Handwear_MarineGloves</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_HeavyMarineHelmet</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_TrooperHelmet</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_RoyalSiegeHelmet</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_RoyalTrooperHelmet</li>
           <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitBodyHeavy</li>
           <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitHelmetHeavy</li>
           <li MayRequire="Mlie.RimworldSpartanFoundry">SF_PoweredAssaultArmor</li>
