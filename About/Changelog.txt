@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.4.5 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1814988282]Vanilla Armour Expanded[/url] thanks to Llama3013
+
+
 1.4.4 - Fixed the extra patches for the Protector Armor/Helmet
 
 
