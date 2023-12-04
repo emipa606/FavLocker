@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -75,8 +74,8 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
             return;
         }
 
-        job.countQueue = new List<int>();
-        foreach (var item in pawn.apparel.WornApparel)
+        job.countQueue = [];
+        foreach (var item in pawn.apparel.UnlockedApparel)
         {
             targetQueue.Add(item);
             var valueOrDefault = (pawn.outfits?.forcedHandler?.IsForced(item)).GetValueOrDefault();

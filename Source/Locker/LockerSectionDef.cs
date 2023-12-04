@@ -26,12 +26,7 @@ public class LockerSectionDef : Def, IComparable<LockerSectionDef>
 
     public string GetLabel()
     {
-        if (derivation)
-        {
-            return $"{thingCategoryDef.parent.label}({thingCategoryDef.label})";
-        }
-
-        return thingCategoryDef.label;
+        return derivation ? $"{thingCategoryDef.parent.label}({thingCategoryDef.label})" : thingCategoryDef.label;
     }
 
     public static LockerSectionDef Get(List<ThingCategoryDef> thingCategorys)

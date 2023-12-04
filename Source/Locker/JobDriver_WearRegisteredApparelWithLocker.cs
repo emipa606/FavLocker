@@ -40,7 +40,7 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
             throw new ArgumentException();
         }
 
-        var list = Util.SortApparelListForDraw(pawn.apparel.WornApparel, true);
+        var list = Util.SortApparelListForDraw(pawn.apparel.UnlockedApparel, true);
         var apparelsRegisterdAndInner = CompLockerFavLocker.GetApparelsRegisterdAndInner();
         foreach (var item in list)
         {

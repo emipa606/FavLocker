@@ -203,6 +203,7 @@ public class Building_PowerArmorStation : Building_RegistableContainer
 
     public override void ChangeOwner(Pawn oldOwner, Pawn newOwner)
     {
+        base.ChangeOwner(oldOwner, newOwner);
         LongEventHandler.ExecuteWhenFinished(delegate { contentsRenderer.ResolveApparelGraphics(); });
     }
 

@@ -11,7 +11,7 @@ namespace Locker;
 
 internal class Dialog_RegisterItem : Window
 {
-    private static readonly List<TabRecord> tabsList = new List<TabRecord>();
+    private static readonly List<TabRecord> tabsList = [];
 
     private readonly Vector2 BottomButtonSize = new Vector2(160f, 40f);
 
@@ -103,7 +103,7 @@ internal class Dialog_RegisterItem : Window
 
     private void CalculateAndRecacheTransferables()
     {
-        allApparel = new List<LockerApparel>();
+        allApparel = [];
         AddApparelOnMap();
         AddApparelInner();
         AddApparelLoading();
@@ -138,7 +138,8 @@ internal class Dialog_RegisterItem : Window
     private void AddApparelOnMap()
     {
         var source = CaravanFormingUtility.AllReachableColonyItems(map, false, true);
-        foreach (var item in source.Where(t => t is Apparel))
+        foreach (var item in source.Where(t =>
+                     t is Apparel apparel && (apparel.Wearer == null || !apparel.Wearer.apparel.IsLocked(apparel))))
         {
             allApparel.Add(new LockerApparel((Apparel)item));
         }
@@ -166,14 +167,15 @@ internal class Dialog_RegisterItem : Window
 
     private void AddWornApparel()
     {
-        foreach (var item in Util.AllPawnsPotentialOwner(compLocker.parent.Map))
+        foreach (var wearingPawn in Util.AllPawnsPotentialOwner(compLocker.parent.Map))
         {
-            var otherPawnWearing = item != compLocker.parent.GetComp<CompAssignableToPawn_Locker>().AssignedPawn();
-            foreach (var item2 in item.apparel.WornApparel)
+            var otherPawnWearing =
+                wearingPawn != compLocker.parent.GetComp<CompAssignableToPawn_Locker>().AssignedPawn();
+            foreach (var apparelToCheck in wearingPawn.apparel.UnlockedApparel)
             {
-                var lockerApparel = new LockerApparel(item2)
+                var lockerApparel = new LockerApparel(apparelToCheck)
                 {
-                    WearingPawn = item,
+                    WearingPawn = wearingPawn,
                     OtherPawnWearing = otherPawnWearing
                 };
                 allApparel.Add(lockerApparel);
@@ -262,7 +264,7 @@ internal class Dialog_RegisterItem : Window
             var key = LockerSectionDef.Get(item.ThingDef.thingCategories);
             if (!sortedDictionary.TryGetValue(key, out var value))
             {
-                value = new List<LockerApparel>();
+                value = [];
                 sortedDictionary.Add(key, value);
             }
 
@@ -288,7 +290,7 @@ internal class Dialog_RegisterItem : Window
             var hasFoundItem = false;
             Thing t = item.Contents;
             var pawn_CarryTracker = t.ParentHolder as Pawn_CarryTracker;
-            if (Util.AllPawnsPotentialOwner(compLocker.Map).Any(p => p.apparel.Contains(t)) ||
+            if (Util.AllPawnsPotentialOwner(compLocker.Map).Any(p => p.apparel.UnlockedApparel.Contains(t)) ||
                 compLocker.InnerApparelsReadOnly().Contains(t) ||
                 parentMap.reachability.CanReach(t.Position, compLocker.parent, PathEndMode.Touch,
                     TraverseParms.For(TraverseMode.PassDoors)) ||

@@ -17,7 +17,7 @@ public class ApparelLayer : IComparable<ApparelLayer>
 
     static ApparelLayer()
     {
-        allList = new List<ApparelLayer>();
+        allList = [];
         UNKNOWN = new ApparelLayer(9999, null);
         allList.Add(new ApparelLayer(0, ApparelLayerDefOf.Overhead));
         allList.Add(new ApparelLayer(1, ApparelLayerDefOf.Shell));

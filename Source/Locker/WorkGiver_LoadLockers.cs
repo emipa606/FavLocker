@@ -79,7 +79,7 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
             return null;
         }
 
-        foreach (var item in p.apparel.WornApparel)
+        foreach (var item in p.apparel.UnlockedApparel)
         {
             if (compLocker.RegisteredApparelsReadOnly().Contains(item))
             {

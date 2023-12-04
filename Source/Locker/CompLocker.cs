@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -21,8 +22,8 @@ public class CompLocker : ThingComp, IThingHolder
     public CompLocker()
     {
         innerContainer = new ThingOwner<Apparel>(this);
-        registeredApparels = new List<Apparel>();
-        forcedApparels = new List<Apparel>();
+        registeredApparels = [];
+        forcedApparels = [];
         healthRange = FloatRange.ZeroToOne;
     }
 
@@ -172,7 +173,7 @@ public class CompLocker : ThingComp, IThingHolder
     {
         foreach (var registeredApparel in registeredApparels)
         {
-            if (!innerContainer.Contains(registeredApparel) && !p.apparel.WornApparel.Contains(registeredApparel))
+            if (!innerContainer.Contains(registeredApparel) && !p.apparel.UnlockedApparel.Contains(registeredApparel))
             {
                 return false;
             }
@@ -185,7 +186,7 @@ public class CompLocker : ThingComp, IThingHolder
     {
         foreach (var registeredApparel in registeredApparels)
         {
-            if (!p.apparel.WornApparel.Contains(registeredApparel))
+            if (!p.apparel.UnlockedApparel.Contains(registeredApparel))
             {
                 return false;
             }
@@ -198,7 +199,7 @@ public class CompLocker : ThingComp, IThingHolder
     {
         foreach (var registeredApparel in registeredApparels)
         {
-            if (p.apparel.WornApparel.Contains(registeredApparel))
+            if (p.apparel.UnlockedApparel.Contains(registeredApparel))
             {
                 return true;
             }

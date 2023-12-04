@@ -87,7 +87,7 @@ public class JobDriver_WearFavoriteOnPowerArmorStation : JobDriver_ChangeApparel
 
     public override Apparel GetNextRemoveApparel(TargetIndex containerInd)
     {
-        var list = Util.SortApparelListForDraw(pawn.apparel.WornApparel, true);
+        var list = Util.SortApparelListForDraw(pawn.apparel.UnlockedApparel, true);
         if (containerInd == TARGET_CONTAINER)
         {
             var apparelsRegisterdAndInner = CompLockerStation.GetApparelsRegisterdAndInner();

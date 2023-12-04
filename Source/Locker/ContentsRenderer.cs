@@ -7,9 +7,9 @@ namespace Locker;
 
 public class ContentsRenderer
 {
-    private readonly List<ApparelGraphicRecord> apparelGraphics = new List<ApparelGraphicRecord>();
+    private readonly List<ApparelGraphicRecord> apparelGraphics = [];
 
-    private readonly List<ApparelGraphicRecord> apparelGraphicsOverhead = new List<ApparelGraphicRecord>();
+    private readonly List<ApparelGraphicRecord> apparelGraphicsOverhead = [];
 
     private readonly CompLocker compLocker;
     private readonly Building_PowerArmorStation powerArmorStation;

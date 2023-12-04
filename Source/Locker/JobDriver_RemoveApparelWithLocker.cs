@@ -70,6 +70,11 @@ internal class JobDriver_RemoveApparelWithLocker : JobDriver, IGettableDestinati
             return;
         }
 
+        if (pawn.apparel.IsLocked(apparel))
+        {
+            return;
+        }
+
         pawn.apparel.Remove(apparel);
         Locker.GetComp<CompLocker>().AddApparel(apparel);
     }

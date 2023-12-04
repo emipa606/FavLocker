@@ -27,7 +27,7 @@ public class LockerApparelWidget
 
     private readonly float extraHeaderSpace;
 
-    private readonly List<Section> sections = new List<Section>();
+    private readonly List<Section> sections = [];
 
     private readonly Texture2D TexCaution = ContentFinder<Texture2D>.Get("UI/Icons/Caution");
 
@@ -141,7 +141,7 @@ public class LockerApparelWidget
         var item = default(Section);
         item.title = title;
         item.transferables = transferables;
-        item.cachedTransferables = new List<LockerApparel>();
+        item.cachedTransferables = [];
         sections.Add(item);
         transferablesCached = false;
     }

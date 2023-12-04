@@ -62,6 +62,12 @@ public static class Toils
                 return;
             }
 
+            if (actor.apparel.IsLocked(apparel))
+            {
+                actor.jobs.EndCurrentJob(JobCondition.Errored);
+                return;
+            }
+
             actor.apparel.TryDrop(apparel);
             actor.Reserve(apparel, actor.CurJob);
         };
@@ -91,6 +97,12 @@ public static class Toils
         {
             var actor = toil.actor;
             var apparel = (Apparel)(Thing)actor.CurJob.GetTarget(apparelInd);
+            if (!actor.apparel.CanWearWithoutDroppingAnything(apparel.def))
+            {
+                actor.jobs.EndCurrentJob(JobCondition.Errored);
+                return;
+            }
+
             var compLocker = actor.CurJob.GetTarget(containerInd).Thing.TryGetComp<CompLocker>();
             var forced = overwriteForced ?? compLocker.IsForced(apparel);
             compLocker.RemoveApparel(apparel);
@@ -181,6 +193,12 @@ public static class Toils
             for (var num = apparelsRegisterdAndInner.Count - 1; num >= 0; num--)
             {
                 var apparel = apparelsRegisterdAndInner[num];
+                if (!actor.apparel.CanWearWithoutDroppingAnything(apparel.def))
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Errored);
+                    continue;
+                }
+
                 compLocker.RemoveApparel(apparel);
                 actor.apparel.Wear(apparel);
                 actor.outfits?.forcedHandler?.SetForced(apparel, true);
@@ -200,6 +218,12 @@ public static class Toils
             for (var num = list.Count - 1; num >= 0; num--)
             {
                 var apparel = list[num];
+                if (actor.apparel.IsLocked(apparel))
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Errored);
+                    continue;
+                }
+
                 actor.apparel.Remove(apparel);
                 compLocker.AddApparel(apparel);
             }

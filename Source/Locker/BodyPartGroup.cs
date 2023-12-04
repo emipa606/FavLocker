@@ -16,7 +16,7 @@ public class BodyPartGroup : IComparable<BodyPartGroup>
 
     static BodyPartGroup()
     {
-        allList = new List<BodyPartGroup>();
+        allList = [];
         UNKNOWN = new BodyPartGroup(9999, null);
         allList.Add(new BodyPartGroup(0, DefDatabase<BodyPartGroupDef>.GetNamed("UpperHead")));
         allList.Add(new BodyPartGroup(0, DefDatabase<BodyPartGroupDef>.GetNamed("FullHead")));

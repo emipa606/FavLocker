@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.4.6 - The locker should now respect locked apparel, like the warcaskets in [url=https://steamcommunity.com/workshop/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]
+
+
 1.4.5 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1814988282]Vanilla Armour Expanded[/url] thanks to Llama3013
 
 

@@ -82,7 +82,7 @@ internal class JobDriver_RemoveRegisteredApparelWithLocker : JobDriver_ChangeApp
             throw new ArgumentException();
         }
 
-        var list = Util.SortApparelListForDraw(pawn.apparel.WornApparel, true);
+        var list = Util.SortApparelListForDraw(pawn.apparel.UnlockedApparel, true);
         foreach (var item in list)
         {
             if (CompLockerFavLocker.RegisteredApparelsReadOnly().Contains(item))

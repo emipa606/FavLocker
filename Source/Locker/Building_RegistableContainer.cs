@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Verse;
 
@@ -23,7 +24,7 @@ public abstract class Building_RegistableContainer : Building
             foreach (var item in comp.RegisteredApparelsReadOnly())
             {
                 var hasItem = comp.InnerApparelsReadOnly().Contains(item) ||
-                              (pawn?.apparel.WornApparel.Contains(item) ?? false);
+                              (pawn?.apparel.UnlockedApparel.Contains(item) ?? false);
 
                 if (!hasItem)
                 {
