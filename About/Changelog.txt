@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.4.7 - Fixed powerarmor station not rejecting too worn armor
+
+
 1.4.6 - The locker should now respect locked apparel, like the warcaskets in [url=https://steamcommunity.com/workshop/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]
 
 

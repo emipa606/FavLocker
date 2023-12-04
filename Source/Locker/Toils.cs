@@ -170,7 +170,7 @@ public static class Toils
                         new LookTargets(new GlobalTargetInfo[] { actor, apparel }),
                         MessageTypeDefOf.NeutralEvent);
                     compLocker.UnRegisterApparel(apparel);
-                    var unused = compLocker.FirstThingLeftToLoad;
+                    _ = compLocker.FirstThingLeftToLoad;
                     continue;
                 }
 
@@ -224,8 +224,19 @@ public static class Toils
                     continue;
                 }
 
-                actor.apparel.Remove(apparel);
-                compLocker.AddApparel(apparel);
+                if (compLocker.HealthRange.Includes((float)apparel.HitPoints / apparel.MaxHitPoints))
+                {
+                    actor.apparel.Remove(apparel);
+                    compLocker.AddApparel(apparel);
+                    continue;
+                }
+
+                actor.apparel.TryDrop(apparel);
+                Messages.Message("EKAI_ApparelRemoved".Translate(apparel.LabelCap, actor.NameFullColored),
+                    new LookTargets(new GlobalTargetInfo[] { actor, apparel }),
+                    MessageTypeDefOf.NeutralEvent);
+                compLocker.UnRegisterApparel(apparel);
+                _ = compLocker.FirstThingLeftToLoad;
             }
         };
         return toil;
