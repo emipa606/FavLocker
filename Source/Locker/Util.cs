@@ -215,4 +215,103 @@ public static class Util
         transferableOneWay.things.Add(source.Contents);
         return transferableOneWay;
     }
+
+    public static void SyncTechSetting()
+    {
+        CompProperties refuelableComp;
+        var def = ThingDef.Named("EKAI_PowerArmorStation");
+        var updateBuildings = false;
+        if (ResearchProjectDef.Named("AdvancedFabrication").IsFinished)
+        {
+            if (!def.HasComp(typeof(CompPowerTrader)))
+            {
+                var powerComp = new CompProperties_Power
+                    { compClass = typeof(CompPowerTrader), basePowerConsumption = 500 };
+                def.comps.Add(powerComp);
+                updateBuildings = true;
+            }
+
+            if (!def.HasComp(typeof(CompFlickable)))
+            {
+                var flickableComp = new CompProperties_Flickable
+                    { compClass = typeof(CompFlickable) };
+                def.comps.Add(flickableComp);
+                updateBuildings = true;
+            }
+
+            if (!def.HasComp(typeof(CompRefuelable)))
+            {
+                refuelableComp = new CompProperties_Refuelable
+                {
+                    compClass = typeof(CompRefuelable),
+                    fuelConsumptionRate = 0,
+                    initialFuelPercent = 0,
+                    showAllowAutoRefuelToggle = true,
+                    consumeFuelOnlyWhenUsed = true,
+                    initialAllowAutoRefuel = false,
+                    fuelCapacity = 150,
+                    fuelFilter = new ThingFilter { thingDefs = [ThingDefOf.Steel] },
+                    fuelIconPath = "UI/Icons/Fuel",
+                    fuelLabel = "EKAI_Fuel".Translate()
+                };
+                def.comps.Add(refuelableComp);
+                updateBuildings = true;
+            }
+
+            if (!updateBuildings)
+            {
+                return;
+            }
+
+            updateBuiltStations(def);
+            Messages.Message("EKAI_Msg_CanRepair".Translate(), MessageTypeDefOf.PositiveEvent, false);
+
+            return;
+        }
+
+        if (def.HasComp(typeof(CompPowerTrader)))
+        {
+            var powerComp =
+                def.comps.First(properties => properties.GetType() == typeof(CompProperties_Power));
+            def.comps.Remove(powerComp);
+            updateBuildings = true;
+        }
+
+        if (def.HasComp(typeof(CompFlickable)))
+        {
+            var flickableComp =
+                def.comps.First(properties => properties.GetType() == typeof(CompProperties_Flickable));
+            def.comps.Remove(flickableComp);
+            updateBuildings = true;
+        }
+
+        if (def.HasComp(typeof(CompRefuelable)))
+        {
+            refuelableComp = def.comps.First(properties => properties.GetType() == typeof(CompProperties_Refuelable));
+            def.comps.Remove(refuelableComp);
+            updateBuildings = true;
+        }
+
+        if (updateBuildings)
+        {
+            updateBuiltStations(def);
+        }
+    }
+
+    private static void updateBuiltStations(ThingDef stationDef)
+    {
+        foreach (var map in Current.Game.Maps)
+        {
+            var stationsInMap = map.listerBuildings.AllBuildingsColonistOfDef(stationDef);
+            if (!stationsInMap.Any())
+            {
+                continue;
+            }
+
+            foreach (var station in stationsInMap)
+            {
+                station.InitializeComps();
+            }
+        }
+    }
 }

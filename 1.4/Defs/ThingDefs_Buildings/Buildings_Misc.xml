@@ -106,6 +106,26 @@
         </storableThingDefs>
         <compClass>Locker.CompLocker</compClass>
       </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>500</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>0</fuelConsumptionRate>
+        <fuelCapacity>150</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0</initialFuelPercent>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <initialAllowAutoRefuel>false</initialAllowAutoRefuel>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Icons/Fuel</fuelIconPath>
+        <fuelLabel>Steel</fuelLabel>
+      </li>
     </comps>
     <drawGUIOverlay>true</drawGUIOverlay>
     <graphicData>

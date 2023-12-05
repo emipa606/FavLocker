@@ -45,7 +45,7 @@ public class JobDriver_RemoveFavoriteOnPowerArmorStation : JobDriver_ChangeAppar
         }
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedNullOrForbidden(TARGET_CONTAINER);
         this.FailOnOwnerStatus(TARGET_CONTAINER);

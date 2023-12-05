@@ -40,4 +40,6 @@
   <EKAI_Report_Wear_Default>Wearing Favorite.</EKAI_Report_Wear_Default>
   <EKAI_Report_Remove>Removing {0}.</EKAI_Report_Remove>
   <EKAI_Report_Remove_Default>Removing Favorite.</EKAI_Report_Remove_Default>
+  <EKAI_Fuel>Steel</EKAI_Fuel>
+  <EKAI_Msg_CanRepair>All power armor stations can now repair stored armors</EKAI_Msg_CanRepair>
 </LanguageData>

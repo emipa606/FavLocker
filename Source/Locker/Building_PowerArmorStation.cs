@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -209,7 +210,65 @@ public class Building_PowerArmorStation : Building_RegistableContainer
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
+        Util.SyncTechSetting();
         base.SpawnSetup(map, respawningAfterLoad);
         contentsRenderer = new ContentsRenderer(this);
+    }
+
+    public override void Tick()
+    {
+        base.Tick();
+
+        if (GenTicks.TicksGame % GenTicks.TickRareInterval != 0)
+        {
+            return;
+        }
+
+        var locker = this.TryGetComp<CompLocker>();
+        if (locker == null)
+        {
+            return;
+        }
+
+        if (!ResearchProjectDef.Named("AdvancedFabrication").IsFinished)
+        {
+            return;
+        }
+
+        var things = locker.InnerApparelsReadOnly();
+        if (!things.Any())
+        {
+            return;
+        }
+
+        var thingsToRepair =
+            things.Where(apparel => apparel.def.useHitPoints && apparel.HitPoints < apparel.MaxHitPoints);
+        if (!thingsToRepair.Any())
+        {
+            return;
+        }
+
+        var powerComp = this.TryGetComp<CompPowerTrader>();
+        if (!powerComp.PowerOn)
+        {
+            return;
+        }
+
+        var fuelComp = this.TryGetComp<CompRefuelable>();
+        if (fuelComp.Fuel < 1f)
+        {
+            return;
+        }
+
+        foreach (var apparel in thingsToRepair)
+        {
+            if (fuelComp.Fuel < 1f)
+            {
+                return;
+            }
+
+            apparel.hitPointsInt = Math.Min(apparel.hitPointsInt + 5, apparel.MaxHitPoints);
+            fuelComp.ConsumeFuel(1);
+        }
     }
 }

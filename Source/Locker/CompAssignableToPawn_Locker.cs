@@ -88,7 +88,7 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
         parent.ChangeOwner(oldOwner, null);
     }
 
-    protected override string GetAssignmentGizmoDesc()
+    public override string GetAssignmentGizmoDesc()
     {
         return "EKAI_Desc_AssignPawn".Translate(parent.def.label);
     }

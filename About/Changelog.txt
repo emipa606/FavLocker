@@ -1,5 +1,9 @@
 # Changelog for FavLocker
 
+1.4.8 - Power-armor stations can now repair armor using power and steel when Advanced Fabrication is researched.
+Used DeepL to update translations for ChineseSimplified, French, German, Japanese, Russian
+
+
 1.4.7 - Fixed powerarmor station not rejecting too worn armor
 
 

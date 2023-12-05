@@ -41,4 +41,6 @@
   <EKAI_Report_Remove_Default>Удаление Фаворита.</EKAI_Report_Remove_Default>
   <EKAI_ApparelRemoved>Хитпоинты {0}, носимого {1}, не находятся в выбранном допустимом диапазоне. Удалено из избранного.</EKAI_ApparelRemoved>
   <EKAI_AllowedHPRange>Не возвращать предметы, которые не находятся в пределах выбранного диапазона попадания</EKAI_AllowedHPRange>
+  <EKAI_Fuel>Сталь</EKAI_Fuel>
+  <EKAI_Msg_CanRepair>Все станции силовой брони теперь могут ремонтировать сохраненные доспехи</EKAI_Msg_CanRepair>
 </LanguageData>

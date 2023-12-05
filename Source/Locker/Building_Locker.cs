@@ -77,14 +77,14 @@ public class Building_Locker : Building_RegistableContainer
             return false;
         }
 
-        if (!owner.MapHeld.reachability.CanReach(owner.PositionHeld, this, PathEndMode.Touch,
+        if (owner.MapHeld.reachability.CanReach(owner.PositionHeld, this, PathEndMode.Touch,
                 TraverseParms.For(TraverseMode.PassDoors)))
         {
-            reason = "EKAI_Msg_NoPath".Translate(def.label);
-            return false;
+            return true;
         }
 
-        return true;
+        reason = "EKAI_Msg_NoPath".Translate(def.label);
+        return false;
     }
 
     private void SetCommandOfRemoveFavorite(Pawn owner, List<Gizmo> gizmoList)

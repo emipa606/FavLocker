@@ -53,7 +53,7 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
         return null;
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedNullOrForbidden(TARGET_CONTAINER);
         this.FailOnOwnerStatus(TARGET_CONTAINER);

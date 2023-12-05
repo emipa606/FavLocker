@@ -32,7 +32,7 @@ internal class JobDriver_HaulToLocker : JobDriver_HaulToContainer, IGettableDest
         job.count = job.targetA.Thing.stackCount;
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOnDestroyedNullOrForbidden(TargetIndex.B);

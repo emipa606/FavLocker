@@ -22,7 +22,7 @@ public class JobDriver_WearFavoriteOnPowerArmorStation : JobDriver_ChangeApparel
         return "EKAI_Report_Wear_Default".Translate();
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedNullOrForbidden(TARGET_CONTAINER);
         this.FailOnOwnerStatus(TARGET_CONTAINER);

@@ -41,4 +41,6 @@
   <EKAI_Report_Remove_Default>Suppression du favori.</EKAI_Report_Remove_Default>
   <EKAI_ApparelRemoved>Le nombre de points de vie de {0} porté par {1} n'est pas dans la plage autorisée sélectionnée. Retiré des favoris.</EKAI_ApparelRemoved>
   <EKAI_AllowedHPRange>Ne pas renvoyer les vêtements qui ne sont pas dans le rayon d'action sélectionné.</EKAI_AllowedHPRange>
+  <EKAI_Fuel>Acier</EKAI_Fuel>
+  <EKAI_Msg_CanRepair>Toutes les stations d'armures électriques peuvent désormais réparer les armures stockées.</EKAI_Msg_CanRepair>
 </LanguageData>

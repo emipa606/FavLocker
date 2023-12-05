@@ -43,7 +43,7 @@ internal class JobDriver_RemoveApparelWithLocker : JobDriver, IGettableDestinati
         duration = (int)(Apparel.GetStatValue(StatDefOf.EquipDelay) * 60f);
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOnDespawnedNullOrForbidden(TargetIndex.B);
