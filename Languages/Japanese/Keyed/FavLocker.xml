@@ -43,4 +43,5 @@
   <EKAI_AllowedHPRange>選択されたヒットポイントの範囲内にないアパレルを返さない</EKAI_AllowedHPRange>
   <EKAI_Fuel>スチール</EKAI_Fuel>
   <EKAI_Msg_CanRepair>すべてのパワーアーマーステーションで、保管されているアーマーを修理できるようになりました。</EKAI_Msg_CanRepair>
+  <EKAI_Msg_CannotWear>{0}は{1}を着用できない、登録解除</EKAI_Msg_CannotWear>
 </LanguageData>

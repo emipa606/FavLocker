@@ -43,4 +43,5 @@
   <EKAI_AllowedHPRange>Ne pas renvoyer les vêtements qui ne sont pas dans le rayon d'action sélectionné.</EKAI_AllowedHPRange>
   <EKAI_Fuel>Acier</EKAI_Fuel>
   <EKAI_Msg_CanRepair>Toutes les stations d'armures électriques peuvent désormais réparer les armures stockées.</EKAI_Msg_CanRepair>
+  <EKAI_Msg_CannotWear>{0} ne peut pas porter {1}, désinscription</EKAI_Msg_CannotWear>
 </LanguageData>

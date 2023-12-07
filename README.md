@@ -19,6 +19,7 @@ Added support for some other mods in the power armor station
 
 
 - Added a hit points filter to the lockers
+- Power-armor stations can now repair armor using power and steel when Advanced Fabrication is researched
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 

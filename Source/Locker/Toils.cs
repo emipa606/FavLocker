@@ -97,13 +97,20 @@ public static class Toils
         {
             var actor = toil.actor;
             var apparel = (Apparel)(Thing)actor.CurJob.GetTarget(apparelInd);
-            if (!actor.apparel.CanWearWithoutDroppingAnything(apparel.def))
+            var compLocker = actor.CurJob.GetTarget(containerInd).Thing.TryGetComp<CompLocker>();
+
+            if (!actor.apparel.CanWearWithoutDroppingAnything(apparel.def) ||
+                !ApparelUtility.HasPartsToWear(actor, apparel.def) ||
+                CompBiocodable.IsBiocoded(apparel) && !CompBiocodable.IsBiocodedFor(apparel, actor))
             {
                 actor.jobs.EndCurrentJob(JobCondition.Errored);
+                JobFailReason.Is($"{actor} cannot equip {apparel}");
+                Messages.Message("EKAI_Msg_CannotWear".Translate(actor.NameFullColored, apparel.LabelCap), actor,
+                    MessageTypeDefOf.NegativeEvent);
+                compLocker.UnRegisterApparel(apparel);
                 return;
             }
 
-            var compLocker = actor.CurJob.GetTarget(containerInd).Thing.TryGetComp<CompLocker>();
             var forced = overwriteForced ?? compLocker.IsForced(apparel);
             compLocker.RemoveApparel(apparel);
             actor.apparel.Wear(apparel);
@@ -193,10 +200,16 @@ public static class Toils
             for (var num = apparelsRegisterdAndInner.Count - 1; num >= 0; num--)
             {
                 var apparel = apparelsRegisterdAndInner[num];
-                if (!actor.apparel.CanWearWithoutDroppingAnything(apparel.def))
+                if (!actor.apparel.CanWearWithoutDroppingAnything(apparel.def) ||
+                    !ApparelUtility.HasPartsToWear(actor, apparel.def) ||
+                    CompBiocodable.IsBiocoded(apparel) && !CompBiocodable.IsBiocodedFor(apparel, actor))
                 {
                     actor.jobs.EndCurrentJob(JobCondition.Errored);
-                    continue;
+                    JobFailReason.Is($"{actor} cannot equip {apparel}");
+                    Messages.Message("EKAI_Msg_CannotWear".Translate(actor.NameFullColored, apparel.LabelCap), actor,
+                        MessageTypeDefOf.NegativeEvent);
+                    compLocker.UnRegisterApparel(apparel);
+                    return;
                 }
 
                 compLocker.RemoveApparel(apparel);

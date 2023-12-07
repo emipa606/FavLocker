@@ -210,16 +210,16 @@ public class Building_PowerArmorStation : Building_RegistableContainer
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        Util.SyncTechSetting();
         base.SpawnSetup(map, respawningAfterLoad);
         contentsRenderer = new ContentsRenderer(this);
+        Util.SyncTechSetting();
     }
 
     public override void Tick()
     {
         base.Tick();
 
-        if (GenTicks.TicksGame % GenTicks.TickRareInterval != 0)
+        if (GenTicks.TicksGame % Math.Round(GenTicks.TickRareInterval * 1.25) != 0)
         {
             return;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -250,7 +251,7 @@ public static class Util
                     consumeFuelOnlyWhenUsed = true,
                     initialAllowAutoRefuel = false,
                     fuelCapacity = 150,
-                    fuelFilter = new ThingFilter { thingDefs = [ThingDefOf.Steel] },
+                    fuelFilter = new ThingFilter { thingDefs = [ThingDefOf.Plasteel] },
                     fuelIconPath = "UI/Icons/Fuel",
                     fuelLabel = "EKAI_Fuel".Translate()
                 };
@@ -263,7 +264,7 @@ public static class Util
                 return;
             }
 
-            updateBuiltStations(def);
+            updateBuiltStations(def, true);
             Messages.Message("EKAI_Msg_CanRepair".Translate(), MessageTypeDefOf.PositiveEvent, false);
 
             return;
@@ -294,11 +295,11 @@ public static class Util
 
         if (updateBuildings)
         {
-            updateBuiltStations(def);
+            updateBuiltStations(def, false);
         }
     }
 
-    private static void updateBuiltStations(ThingDef stationDef)
+    private static void updateBuiltStations(ThingDef stationDef, bool adding)
     {
         foreach (var map in Current.Game.Maps)
         {
@@ -310,7 +311,39 @@ public static class Util
 
             foreach (var station in stationsInMap)
             {
-                station.InitializeComps();
+                if (adding)
+                {
+                    foreach (var compProperties in station.def.comps)
+                    {
+                        if (compProperties.GetType() != typeof(CompProperties_Power) &&
+                            compProperties.GetType() != typeof(CompProperties_Flickable) &&
+                            compProperties.GetType() != typeof(CompProperties_Refuelable))
+                        {
+                            continue;
+                        }
+
+                        ThingComp thingComp = null;
+                        try
+                        {
+                            thingComp = (ThingComp)Activator.CreateInstance(compProperties.compClass);
+                            thingComp.parent = station;
+                            station.comps.Add(thingComp);
+                            thingComp.Initialize(compProperties);
+                        }
+                        catch (Exception arg)
+                        {
+                            Log.Error($"Could not instantiate or initialize a ThingComp: {arg}");
+                            station.comps.Remove(thingComp);
+                        }
+                    }
+
+                    continue;
+                }
+
+                station.comps = station.comps.Where(comp => comp.GetType() != typeof(CompPowerTrader) &&
+                                                            comp.GetType() != typeof(CompFlickable) &&
+                                                            comp.GetType() != typeof(CompRefuelable))
+                    .ToList();
             }
         }
     }

@@ -124,7 +124,7 @@
         <initialAllowAutoRefuel>false</initialAllowAutoRefuel>
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <fuelIconPath>UI/Icons/Fuel</fuelIconPath>
-        <fuelLabel>Steel</fuelLabel>
+        <fuelLabel>Plasteel</fuelLabel>
       </li>
     </comps>
     <drawGUIOverlay>true</drawGUIOverlay>
