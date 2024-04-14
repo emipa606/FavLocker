@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- ================================= Industrial ==================================== -->
+  <ThingDef ParentName="FurnitureWithQualityBase">
+    <defName>EKAI_Locker</defName>
+    <label>fav locker</label>
+    <description>A locker where you can register your favorite apparels. \nLocker owners can change into their favorite apparels. At that time, colonists will change apparels much faster than usual.</description>
+    <thingClass>Locker.Building_Locker</thingClass>
+    <comps>
+      <li Class="Locker.CompProperties_AssignableToPawn_OnlyOne">
+        <drawAssignmentOverlay>true</drawAssignmentOverlay>
+        <buildingClass>Locker.Building_Locker</buildingClass>
+        <compClass>Locker.CompAssignableToPawn_Locker</compClass>
+      </li>
+      <li Class="Locker.CompProperties_Locker">
+        <commandLabelKey>EKAI_SelectRegisterApparel</commandLabelKey>
+        <commandDescKey>EKAI_Desc_SelectRegisterApparel</commandDescKey>
+        <dialogTitleKey>EKAI_SelectRegisterApparelWithOwner</dialogTitleKey>
+        <compClass>Locker.CompLocker</compClass>
+      </li>
+    </comps>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Locker</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+    <uiIconPath>Things/Building/Furniture/Locker_MenuIcon</uiIconPath>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.4</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <pathCost>50</pathCost>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>25</costStuffCount>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>8</Mass>
+      <WorkToBuild>600</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>0.5</Beauty>
+    </statBases>
+    <size>(1,1)</size>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <surfaceType>Item</surfaceType>
+    <canOverlapZones>false</canOverlapZones>
+    <researchPrerequisites>
+      <li>ComplexFurniture</li>
+    </researchPrerequisites>
+  </ThingDef>
+</Defs>

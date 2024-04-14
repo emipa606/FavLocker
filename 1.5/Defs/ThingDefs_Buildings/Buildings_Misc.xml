@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>EKAI_PowerArmorStation</defName>
+    <label>power armor station</label>
+    <description>This station where you can register your favorite power armors. \nStation owners can  change into their favorite power armors. \nThe station effectively assists the wearer, freeing the colonists from the hassle. \n\nIf colonists have a locker, colonists will also use the locker when changing power armors. \nIf colonists want to change apparels other than power armor, own a locker and register.</description>
+    <thingClass>Locker.Building_PowerArmorStation</thingClass>
+    <comps>
+      <li Class="Locker.CompProperties_AssignableToPawn_OnlyOne">
+        <drawAssignmentOverlay>true</drawAssignmentOverlay>
+        <buildingClass>Locker.Building_PowerArmorStation</buildingClass>
+        <compClass>Locker.CompAssignableToPawn_Locker</compClass>
+      </li>
+      <li Class="Locker.CompProperties_Locker">
+        <commandLabelKey>EKAI_SelectRegisterApparel</commandLabelKey>
+        <commandDescKey>EKAI_Desc_SelectRegisterPowerArmor</commandDescKey>
+        <dialogTitleKey>EKAI_SelectRegisterPowerArmorWithOwner</dialogTitleKey>
+        <storableThingDefs>
+          <li>Apparel_ArmorRecon</li>
+          <li>Apparel_ArmorReconPrestige</li>
+          <li>Apparel_PowerArmor</li>
+          <li>Apparel_ArmorMarinePrestige</li>
+          <li>Apparel_ArmorCataphract</li>
+          <li>Apparel_ArmorCataphractPrestige</li>
+          <li>Apparel_ArmorLocust</li>
+          <li>Apparel_ArmorMarineGrenadier</li>
+          <li>Apparel_ArmorCataphractPhoenix</li>
+          <li>Apparel_ArmorHelmetRecon</li>
+          <li>Apparel_ArmorHelmetReconPrestige</li>
+          <li>Apparel_PowerArmorHelmet</li>
+          <li>Apparel_ArmorMarineHelmetPrestige</li>
+          <li>Apparel_ArmorHelmetCataphract</li>
+          <li>Apparel_ArmorHelmetCataphractPrestige</li>
+          <li MayRequire="Mlie.CASPowerArmour">ArcticPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">ArcticPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">StonePowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">StonePowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">UrbanPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">UrbanPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">WoodlandPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">WoodlandPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">DesertPowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">DesertPowerArmor</li>
+          <li MayRequire="Mlie.CASPowerArmour">JunglePowerArmorHelmet</li>
+          <li MayRequire="Mlie.CASPowerArmour">JunglePowerArmor</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconArctic</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconArctic</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconDesert</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconDesert</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconJungle</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconJungle</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconStone</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconStone</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconUrban</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconUrban</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorReconWoodland</li>
+          <li MayRequire="Mlie.CASReconArmour">ArmorHelmetReconWoodland</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractArctic</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractArctic</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractDesert</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractDesert</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractJungle</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractJungle</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractStone</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractStone</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractUrban</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractUrban</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorCataphractWoodland</li>
+          <li MayRequire="Mlie.CASCataphractArmour">ArmorHelmetCataphractWoodland</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_RoyalTrooperArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_RoyalSiegeArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Footwear_MarineBoots</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_TrooperArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_HeavyMarineArmor</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Handwear_MarineGloves</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_HeavyMarineHelmet</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_TrooperHelmet</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_RoyalSiegeHelmet</li>
+          <li MayRequire="VanillaExpanded.VARME">VAE_Headgear_RoyalTrooperHelmet</li>
+          <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitBodyHeavy</li>
+          <li MayRequire="kentington.saveourship2">Apparel_SpaceSuitHelmetHeavy</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_PoweredAssaultArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_EngineerPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ExplorerPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_GrenadierPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_CommandoArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_HazardOperationsArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DiplomatPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DefenderPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ScoutPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_SamuraiPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ShockTrooperArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ReconPowerArmor</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_PoweredAssaultArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_EngineerPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ExplorerPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_GrenadierPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_CommandoArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_HazardOperationsArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DiplomatPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_DefenderPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ScoutPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_SamuraiPowerArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ShockTrooperArmorHelmet</li>
+          <li MayRequire="Mlie.RimworldSpartanFoundry">SF_ReconPowerArmorHelmet</li>
+        </storableThingDefs>
+        <compClass>Locker.CompLocker</compClass>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>500</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>0</fuelConsumptionRate>
+        <fuelCapacity>150</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0</initialFuelPercent>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <initialAllowAutoRefuel>false</initialAllowAutoRefuel>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Icons/Fuel</fuelIconPath>
+        <fuelLabel>Plasteel</fuelLabel>
+      </li>
+    </comps>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <graphicData>
+      <texPath>Things/Building/Misc/Station</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2.2,2.2)</drawSize>
+    </graphicData>
+    <uiIconPath>Things/Building/Misc/Station_MenuIcon</uiIconPath>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <castEdgeShadows>false</castEdgeShadows>
+    <fillPercent>0.3</fillPercent>
+    <designationCategory>Misc</designationCategory>
+    <pathCost>30</pathCost>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToBuild>4000</WorkToBuild>
+      <Flammability>0.4</Flammability>
+    </statBases>
+    <costList>
+      <Steel>160</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <building>
+      <destroySound>BuildingDestroyed_Metal_Medium</destroySound>
+    </building>
+    <size>(1,2)</size>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <researchPrerequisites>
+      <li>Fabrication</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </ThingDef>
+</Defs>

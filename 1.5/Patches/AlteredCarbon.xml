@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="EKAI_PowerArmorStation"]/comps/li[@Class="Locker.CompProperties_Locker"]/storableThingDefs</xpath>
+      <value>
+        <li>VFEU_Apparel_ProtectorHelmet</li>
+        <li>VFEU_Apparel_ProtectorArmor</li>
+      </value>
+    </match>
+  </Operation>
+</Patch>

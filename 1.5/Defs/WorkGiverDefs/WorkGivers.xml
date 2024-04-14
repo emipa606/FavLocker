@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- ============= Hauling ============= -->
+  <WorkGiverDef>
+    <defName>EKAI_LoadLocker</defName>
+    <label>load locker</label>
+    <giverClass>Locker.WorkGiver_LoadLockers</giverClass>
+    <workType>Hauling</workType>
+    <verb>load</verb>
+    <gerund>loading</gerund>
+    <priorityInType>105</priorityInType>
+    <!-- 優先度はLoadTransporterの下 -->
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+</Defs>

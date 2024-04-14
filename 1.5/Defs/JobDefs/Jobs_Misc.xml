@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--========= General ============-->
+  <JobDef>
+    <defName>EKAI_HaulToLocker</defName>
+    <driverClass>Locker.JobDriver_HaulToLocker</driverClass>
+    <reportString>hauling TargetA to the locker.</reportString>
+    <suspendable>false</suspendable>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>EKAI_RemoveApparelWithLocker</defName>
+    <driverClass>Locker.JobDriver_RemoveApparelWithLocker</driverClass>
+    <reportString>hauling worn TargetA to the locker.</reportString>
+    <suspendable>false</suspendable>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>EKAI_WearRegisteredApparelWithLocker</defName>
+    <driverClass>Locker.JobDriver_WearRegisteredApparelWithLocker</driverClass>
+    <reportString>wearing TargetA.</reportString>
+  </JobDef>
+  <JobDef>
+    <defName>EKAI_RemoveRegisteredApparelWithLocker</defName>
+    <driverClass>Locker.JobDriver_RemoveRegisteredApparelWithLocker</driverClass>
+    <reportString>removing TargetA.</reportString>
+  </JobDef>
+  <JobDef>
+    <defName>EKAI_WearFavoriteOnPowerArmorStation</defName>
+    <driverClass>Locker.JobDriver_WearFavoriteOnPowerArmorStation</driverClass>
+    <reportString>wearing TargetA.</reportString>
+  </JobDef>
+  <JobDef>
+    <defName>EKAI_RemoveFavoriteOnPowerArmorStation</defName>
+    <driverClass>Locker.JobDriver_RemoveFavoriteOnPowerArmorStation</driverClass>
+    <reportString>removing TargetA.</reportString>
+  </JobDef>
+</Defs>
