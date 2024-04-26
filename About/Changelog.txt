@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.5.0 - Updated for 1.5
+
+
 1.4.9 - Rebalanced the autorepair to use plasteel instead
 Added checks for apparel that cannot be worn due to bionics, locked or biocoded
 Fixed the updating of comps when adding/removing repairing features.

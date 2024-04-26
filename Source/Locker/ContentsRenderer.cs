@@ -1,27 +1,21 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
 namespace Locker;
 
-public class ContentsRenderer
+public class ContentsRenderer(Building_PowerArmorStation powerArmorStation)
 {
     private readonly List<ApparelGraphicRecord> apparelGraphics = [];
 
     private readonly List<ApparelGraphicRecord> apparelGraphicsOverhead = [];
 
-    private readonly CompLocker compLocker;
-    private readonly Building_PowerArmorStation powerArmorStation;
+    private readonly CompLocker compLocker = powerArmorStation.GetComp<CompLocker>();
     private readonly Quaternion QUAT_NO_ROTATION = Quaternion.AngleAxis(0f, Vector3.up);
 
     private bool allResolved;
-
-    public ContentsRenderer(Building_PowerArmorStation powerArmorStation)
-    {
-        this.powerArmorStation = powerArmorStation;
-        compLocker = powerArmorStation.GetComp<CompLocker>();
-    }
 
     public void RenderContents(Vector3 rootLoc)
     {
@@ -42,25 +36,25 @@ public class ContentsRenderer
         var loc = AdjustLoctaionToStandbyPosition(rootLoc) + vector;
         foreach (var item in apparelGraphicsOverhead)
         {
-            if (item.sourceApparel.def.apparel.hatRenderedFrontOfFace)
-            {
-                loc.y += 0.030303031f;
-                var mat = item.graphic.MatAt(rotation);
-                GenDraw.DrawMeshNowOrLater(mesh, loc, QUAT_NO_ROTATION, mat, false);
-            }
-            else
-            {
-                loc.y += rotation == Rot4.North ? 0.003787879f : 3f / 88f;
-                var mat2 = item.graphic.MatAt(rotation);
-                GenDraw.DrawMeshNowOrLater(mesh, loc, QUAT_NO_ROTATION, mat2, false);
-            }
+            //if (item.sourceApparel.def.apparel.hatRenderedFrontOfFace)
+            //{
+            //    loc.y += 0.030303031f;
+            //    var mat = item.graphic.MatAt(rotation);
+            //    GenDraw.DrawMeshNowOrLater(mesh, loc, QUAT_NO_ROTATION, mat, false);
+            //}
+            //else
+            //{
+            loc.y += rotation == Rot4.North ? 0.003787879f : 3f / 88f;
+            var mat2 = item.graphic.MatAt(rotation);
+            GenDraw.DrawMeshNowOrLater(mesh, loc, QUAT_NO_ROTATION, mat2, false);
+            //}
         }
     }
 
     private void DrawBody(Vector3 rootLoc)
     {
         var rotation = powerArmorStation.Rotation;
-        var mesh = MeshPool.humanlikeBodySet.MeshAt(rotation);
+        var mesh = MeshPool.humanlikeMeshSet_Custom.FirstOrDefault().Value.MeshAt(rotation);
         var loc = AdjustLoctaionToStandbyPosition(rootLoc);
         foreach (var apparelGraphic in apparelGraphics)
         {
@@ -143,18 +137,13 @@ public class ContentsRenderer
 
     public GraphicMeshSet GetHairMeshSet()
     {
-        return MeshPool.humanlikeHeadSet;
+        return MeshPool.GetMeshSetForSize(MeshPool.HumanlikeHeadAverageWidth, MeshPool.HumanlikeHeadAverageWidth);
     }
 
     private BodyTypeDef GetBodyTypeDef()
     {
         var owner = GetOwner();
-        if (owner == null)
-        {
-            return BodyTypeDefOf.Male;
-        }
-
-        return owner.story.bodyType;
+        return owner == null ? BodyTypeDefOf.Male : owner.story.bodyType;
     }
 
     private Pawn GetOwner()

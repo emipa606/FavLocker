@@ -4,8 +4,7 @@ using Verse;
 
 namespace Locker;
 
-[HarmonyPatch(typeof(Pawn))]
-[HarmonyPatch("GetGizmos")]
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
 internal class Patch_Pawn_GetGizmos
 {
     private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)

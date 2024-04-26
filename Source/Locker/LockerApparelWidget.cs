@@ -313,7 +313,7 @@ public class LockerApparelWidget
                     if (curY > num2 && curY < num3)
                     {
                         var rect = new Rect(0f, curY, viewRect.width, 30f);
-                        var unused = cachedTransferables[j].Registerd;
+                        _ = cachedTransferables[j].Registerd;
                         DoRow(rect, cachedTransferables[j], num4);
                         num4++;
                     }

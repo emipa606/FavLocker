@@ -1,3 +1,4 @@
+using System.Reflection;
 using HarmonyLib;
 using Verse;
 
@@ -8,7 +9,6 @@ public class Patcher
 {
     static Patcher()
     {
-        var harmony = new Harmony("Ekai.FavLocker");
-        harmony.PatchAll();
+        new Harmony("Ekai.FavLocker").PatchAll(Assembly.GetExecutingAssembly());
     }
 }

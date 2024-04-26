@@ -3,8 +3,7 @@ using RimWorld;
 
 namespace Locker;
 
-[HarmonyPatch(typeof(ResearchManager))]
-[HarmonyPatch("ReapplyAllMods")]
+[HarmonyPatch(typeof(ResearchManager), nameof(ResearchManager.ReapplyAllMods))]
 internal class Patch_ResearchManager_ReapplyAllMods
 {
     private static void Postfix()

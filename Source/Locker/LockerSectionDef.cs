@@ -8,7 +8,7 @@ public class LockerSectionDef : Def, IComparable<LockerSectionDef>
 {
     private static readonly int LOWEST_ORDER = 9999;
 
-    public bool derivation = false;
+    public readonly bool derivation = false;
 
     public int order;
 

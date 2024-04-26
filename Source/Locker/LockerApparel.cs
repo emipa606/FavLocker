@@ -3,15 +3,10 @@ using Verse;
 
 namespace Locker;
 
-public class LockerApparel
+public class LockerApparel(Apparel apparel)
 {
-    public Apparel apparel;
+    public readonly Apparel apparel = apparel;
 
-
-    public LockerApparel(Apparel apparel)
-    {
-        this.apparel = apparel;
-    }
 
     public Apparel Contents => apparel;
 
