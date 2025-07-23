@@ -34,7 +34,7 @@ public static class JobUtil
         EndQueuedJobOnContainer(linkedContainer);
     }
 
-    public static void EndCurrentJobOnContainer(Building_RegistableContainer container)
+    private static void EndCurrentJobOnContainer(Building_RegistableContainer container)
     {
         foreach (var item in Util.AllPawnsPotentialOwner(container.Map))
         {
@@ -51,7 +51,7 @@ public static class JobUtil
         }
     }
 
-    public static void EndQueuedJobOnContainer(Building_RegistableContainer container)
+    private static void EndQueuedJobOnContainer(Building_RegistableContainer container)
     {
         foreach (var item in Util.AllPawnsPotentialOwner(container.Map))
         {
@@ -62,11 +62,11 @@ public static class JobUtil
         }
     }
 
-    public static void EndQueuedJobOnContainer(Building_RegistableContainer container, Pawn pawn, JobDef jobDef)
+    private static void EndQueuedJobOnContainer(Building_RegistableContainer container, Pawn pawn, JobDef jobDef)
     {
         while (true)
         {
-            var jobFromQueue = GetJobFromQueue(pawn, container, jobDef);
+            var jobFromQueue = getJobFromQueue(pawn, container, jobDef);
             if (jobFromQueue == null)
             {
                 break;
@@ -81,7 +81,7 @@ public static class JobUtil
         return AnyDoingJobOnThing(target, jobDef) || AnyQueuedJobOnThing(target, jobDef);
     }
 
-    public static bool AnyQueuedJobOnThing(Thing target, JobDef jobDef)
+    private static bool AnyQueuedJobOnThing(Thing target, JobDef jobDef)
     {
         foreach (var item in Util.AllPawnsPotentialOwner(target.Map))
         {
@@ -94,18 +94,18 @@ public static class JobUtil
         return false;
     }
 
-    public static bool AnyQueuedJobOnThing(Pawn pawn, Thing target, JobDef jobDef)
+    private static bool AnyQueuedJobOnThing(Pawn pawn, Thing target, JobDef jobDef)
     {
-        return GetJobFromQueue(pawn, target, jobDef) != null;
+        return getJobFromQueue(pawn, target, jobDef) != null;
     }
 
-    public static Job GetJobFromQueue(Pawn pawn, Thing target, JobDef jobDef)
+    private static Job getJobFromQueue(Pawn pawn, Thing target, JobDef jobDef)
     {
         var jobQueue = pawn.jobs.jobQueue;
         foreach (var item in jobQueue)
         {
             var job = item.job;
-            if (job.def != jobDef || !IsTargetThing(job, target))
+            if (job.def != jobDef || !isTargetThing(job, target))
             {
                 continue;
             }
@@ -121,7 +121,7 @@ public static class JobUtil
         return GetDoingJobOnThing(dest, jobDef).Count > 0;
     }
 
-    public static List<Pawn> GetDoingJobOnThing(Thing dest, JobDef jobDef)
+    private static List<Pawn> GetDoingJobOnThing(Thing dest, JobDef jobDef)
     {
         var list = new List<Pawn>();
         foreach (var item in Util.AllPawnsPotentialOwner(dest.Map))
@@ -135,7 +135,7 @@ public static class JobUtil
         return list;
     }
 
-    public static bool IsDoingJobOnThing(Pawn pawn, Thing dest, JobDef jobDef)
+    private static bool IsDoingJobOnThing(Pawn pawn, Thing dest, JobDef jobDef)
     {
         if (pawn.CurJobDef != jobDef)
         {
@@ -155,7 +155,7 @@ public static class JobUtil
         var list = new List<Thing>();
         foreach (var item in Util.AllPawnsPotentialOwner(dest.Map))
         {
-            var carryThingToDest = GetCarryThingToDest(item, dest);
+            var carryThingToDest = getCarryThingToDest(item, dest);
             if (carryThingToDest != null)
             {
                 list.Add(carryThingToDest);
@@ -165,7 +165,7 @@ public static class JobUtil
         return list;
     }
 
-    public static Thing GetCarryThingToDest(Pawn pawn, Thing dest)
+    private static Thing getCarryThingToDest(Pawn pawn, Thing dest)
     {
         return IsDoingJobOnThing(pawn, dest, JobDefOf.EKAI_HaulToLocker) ? pawn.carryTracker.CarriedThing : null;
     }
@@ -175,7 +175,7 @@ public static class JobUtil
         var list = new List<Thing>();
         foreach (var item in Util.AllPawnsPotentialOwner(dest.Map))
         {
-            var assignedThingToDest = GetAssignedThingToDest(item, dest);
+            var assignedThingToDest = getAssignedThingToDest(item, dest);
             if (assignedThingToDest != null)
             {
                 list.Add(assignedThingToDest);
@@ -185,14 +185,14 @@ public static class JobUtil
         return list;
     }
 
-    public static Thing GetAssignedThingToDest(Pawn pawn, Thing dest)
+    private static Thing getAssignedThingToDest(Pawn pawn, Thing dest)
     {
         return IsDoingJobOnThing(pawn, dest, JobDefOf.EKAI_HaulToLocker)
             ? ((JobDriver_HaulToLocker)pawn.jobs.curDriver).ThingToCarry
             : null;
     }
 
-    public static bool IsTargetThing(Job job, Thing thing)
+    private static bool isTargetThing(Job job, Thing thing)
     {
         return job.targetA.Thing == thing || job.targetB.Thing == thing || job.targetC.Thing == thing;
     }

@@ -5,16 +5,13 @@ namespace Locker;
 
 public class LockerApparel(Apparel apparel)
 {
-    public readonly Apparel apparel = apparel;
+    public Apparel Contents { get; } = apparel;
 
+    public ThingDef ThingDef => Contents?.def;
 
-    public Apparel Contents => apparel;
+    public string TipDescription => Contents == null ? "" : Contents.DescriptionDetailed;
 
-    public ThingDef ThingDef => apparel?.def;
-
-    public string TipDescription => apparel == null ? "" : apparel.DescriptionDetailed;
-
-    public string Label => apparel.LabelNoCount;
+    private string Label => Contents.LabelNoCount;
 
     public string LabelCap => Label.CapitalizeFirst(ThingDef);
 

@@ -15,11 +15,11 @@ public class LockerApparelWidget
     private const float titleRowHeight = 30f;
     private static readonly float SortButtonAreaWidth = 350f;
 
-    private static readonly Color cantSelectColor = new Color(0.5f, 0.5f, 0.5f);
+    private static readonly Color cantSelectColor = new(0.5f, 0.5f, 0.5f);
 
-    public static readonly Color MouseoverColorInactive = new Color(0.6f, 0.6f, 0.6f);
+    private static readonly Color MouseoverColorInactive = new(0.6f, 0.6f, 0.6f);
 
-    public static readonly Color ColorInactive = new Color(0.4f, 0.4f, 0.4f);
+    private static readonly Color ColorInactive = new(0.4f, 0.4f, 0.4f);
 
     private readonly TransferableSorterDef bodyPartGroupAndLayerSorterDef;
 
@@ -184,7 +184,7 @@ public class LockerApparelWidget
             CacheTransferables();
         }
 
-        DoTransferableSorters(inRect, sorter1, sorter2, delegate(TransferableSorterDef x)
+        doTransferableSorters(inRect, sorter1, sorter2, delegate(TransferableSorterDef x)
         {
             sorter1 = x;
             CacheTransferables();
@@ -198,7 +198,7 @@ public class LockerApparelWidget
         FillMainRect(mainRect);
     }
 
-    public void DoTransferableSorters(Rect inRect, TransferableSorterDef sorterDef1,
+    private void doTransferableSorters(Rect inRect, TransferableSorterDef sorterDef1,
         TransferableSorterDef sorterDef2,
         Action<TransferableSorterDef> sorter1Setter, Action<TransferableSorterDef> sorter2Setter)
     {
@@ -346,28 +346,28 @@ public class LockerApparelWidget
         var width = rect.width;
         width -= 10f;
         var rect2 = new Rect(width - 30f, 0f, 30f, rect.height);
-        DrawCaution(rect2, trad);
+        drawCaution(rect2, trad);
         width -= 30f;
         var rect3 = new Rect(width - 360f, 0f, 360f, rect.height);
-        DoRegisterInterfaceInternal(rect3, trad);
+        doRegisterInterfaceInternal(rect3, trad);
         width -= 360f;
         var dropArrowRect = new Rect(width - 60f, 0f, 60f, rect.height);
-        DrawDropArrow(dropArrowRect, trad);
+        drawDropArrow(dropArrowRect, trad);
         width -= 60f;
         var stateRect = new Rect(width - 30f, 0f, 30f, rect.height);
-        DrawState(stateRect, trad);
+        drawState(stateRect, trad);
         width -= 30f;
         var rect4 = new Rect(width - 90f, 0f, 90f, rect.height);
         Text.Anchor = TextAnchor.MiddleLeft;
-        DrawMarketValue(rect4, trad);
+        drawMarketValue(rect4, trad);
         width -= 90f;
         var idRect = new Rect(0f, 0f, width, rect.height);
-        DrawTransferableInfo(trad, idRect, Color.white);
+        drawTransferableInfo(trad, idRect, Color.white);
         GenUI.ResetLabelAlign();
         GUI.EndGroup();
     }
 
-    private void DrawCaution(Rect rect, LockerApparel lApparel)
+    private void drawCaution(Rect rect, LockerApparel lApparel)
     {
         Widgets.DrawHighlightIfMouseover(rect);
         if (lApparel.CautionMessage == null)
@@ -379,7 +379,7 @@ public class LockerApparelWidget
         TooltipHandler.TipRegion(rect, lApparel.CautionMessage);
     }
 
-    private void DoRegisterInterfaceInternal(Rect rect, LockerApparel trad)
+    private void doRegisterInterfaceInternal(Rect rect, LockerApparel trad)
     {
         rect = rect.Rounded();
         var rect2 = new Rect(rect.x, rect.center.y - 12.5f, 25f, 25f).Rounded();
@@ -399,7 +399,7 @@ public class LockerApparelWidget
             Text.Anchor = TextAnchor.MiddleLeft;
             Widgets.Label(rect3, "EKAI_Msg_Unknown".Translate());
         }
-        else if (!CanWearTogetherPlanToRegister(trad))
+        else if (!canWearTogetherPlanToRegister(trad))
         {
             GUI.color = cantSelectColor;
             Text.Font = GameFont.Tiny;
@@ -417,7 +417,7 @@ public class LockerApparelWidget
         GUI.color = Color.white;
     }
 
-    private void DrawDropArrow(Rect dropArrowRect, LockerApparel trad)
+    private void drawDropArrow(Rect dropArrowRect, LockerApparel trad)
     {
         if (trad.Owner != compLocker)
         {
@@ -449,7 +449,7 @@ public class LockerApparelWidget
         GUI.EndGroup();
     }
 
-    private void DrawState(Rect stateRect, LockerApparel trad)
+    private void drawState(Rect stateRect, LockerApparel trad)
     {
         Widgets.DrawHighlightIfMouseover(stateRect);
         GUI.BeginGroup(stateRect);
@@ -473,14 +473,14 @@ public class LockerApparelWidget
         GUI.EndGroup();
     }
 
-    private void DrawMarketValue(Rect rect, LockerApparel trad)
+    private static void drawMarketValue(Rect rect, LockerApparel trad)
     {
         Widgets.DrawHighlightIfMouseover(rect);
         Widgets.Label(rect, trad.Contents.MarketValue.ToStringMoney());
         TooltipHandler.TipRegionByKey(rect, "MarketValueTip");
     }
 
-    private bool CanWearTogetherPlanToRegister(LockerApparel trad)
+    private bool canWearTogetherPlanToRegister(LockerApparel trad)
     {
         foreach (var section in sections)
         {
@@ -499,7 +499,7 @@ public class LockerApparelWidget
         return true;
     }
 
-    private void DrawTransferableInfo(LockerApparel trad, Rect idRect, Color labelColor)
+    private static void drawTransferableInfo(LockerApparel trad, Rect idRect, Color labelColor)
     {
         if (Mouse.IsOver(idRect))
         {

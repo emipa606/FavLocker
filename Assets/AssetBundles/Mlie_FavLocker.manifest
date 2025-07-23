@@ -1,0 +1,35 @@
+ManifestFileVersion: 0
+CRC: 1532872083
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0fb152ac8efb8f8d09c481612610b51c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 0fb152ac8efb8f8d09c481612610b51c
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.FavLocker/Textures/UI/Icons/Check.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Furniture/Locker_MenuIcon.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Icons/Caution.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Icons/Question.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Icons/Fuel.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Commands/WearFav.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Icons/UnCheck.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Commands/RegisterFav.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Furniture/Locker_south.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Furniture/Locker_east.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Misc/Station_north.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Misc/Station_MenuIcon.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Misc/Station_east.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Furniture/Locker_north.png
+- Assets/Data/Mlie.FavLocker/Textures/Things/Building/Misc/Station_south.png
+- Assets/Data/Mlie.FavLocker/Textures/UI/Commands/RemoveFav.png
+Dependencies: []

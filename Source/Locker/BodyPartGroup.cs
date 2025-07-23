@@ -8,7 +8,7 @@ public class BodyPartGroup : IComparable<BodyPartGroup>
 {
     private static readonly List<BodyPartGroup> allList;
 
-    private static readonly BodyPartGroup UNKNOWN;
+    private static readonly BodyPartGroup unknown;
 
     private readonly BodyPartGroupDef def;
 
@@ -17,7 +17,7 @@ public class BodyPartGroup : IComparable<BodyPartGroup>
     static BodyPartGroup()
     {
         allList = [];
-        UNKNOWN = new BodyPartGroup(9999, null);
+        unknown = new BodyPartGroup(9999, null);
         allList.Add(new BodyPartGroup(0, DefDatabase<BodyPartGroupDef>.GetNamed("UpperHead")));
         allList.Add(new BodyPartGroup(0, DefDatabase<BodyPartGroupDef>.GetNamed("FullHead")));
         allList.Add(new BodyPartGroup(2, DefDatabase<BodyPartGroupDef>.GetNamed("Neck")));
@@ -44,13 +44,13 @@ public class BodyPartGroup : IComparable<BodyPartGroup>
         var list = new List<BodyPartGroup>();
         foreach (var bodyPartGroup in bodyPartGroups)
         {
-            list.Add(Get(bodyPartGroup));
+            list.Add(get(bodyPartGroup));
         }
 
         return list;
     }
 
-    public static BodyPartGroup Get(BodyPartGroupDef def)
+    private static BodyPartGroup get(BodyPartGroupDef def)
     {
         foreach (var all in allList)
         {
@@ -60,7 +60,7 @@ public class BodyPartGroup : IComparable<BodyPartGroup>
             }
         }
 
-        return UNKNOWN;
+        return unknown;
     }
 
     public int GetOrder()

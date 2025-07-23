@@ -7,10 +7,10 @@ public class TransferableComparer_BodyPartGroupAndLayer : TransferableComparer
 {
     public override int Compare(Transferable lhs, Transferable rhs)
     {
-        return Compare(lhs?.ThingDef, rhs?.ThingDef);
+        return compare(lhs?.ThingDef, rhs?.ThingDef);
     }
 
-    public static int Compare(ThingDef lhsTh, ThingDef rhsTh)
+    private static int compare(ThingDef lhsTh, ThingDef rhsTh)
     {
         var minValueOnlyComparer = new MinValueOnlyComparer<BodyPartGroup>();
         var x = BodyPartGroup.Get(lhsTh.apparel.bodyPartGroups);

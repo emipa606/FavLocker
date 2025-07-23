@@ -7,9 +7,9 @@ namespace Locker;
 
 public abstract class Building_RegistableContainer : Building
 {
-    public CompAssignableToPawn_Locker CompAssignableToPawn => GetComp<CompAssignableToPawn_Locker>();
+    private CompAssignableToPawn_Locker CompAssignableToPawn => GetComp<CompAssignableToPawn_Locker>();
 
-    public List<Pawn> OwnersForReading => CompAssignableToPawn.AssignedPawnsForReading;
+    private List<Pawn> OwnersForReading => CompAssignableToPawn.AssignedPawnsForReading;
 
     private bool PlayerCanSeeOwners => CompAssignableToPawn.PlayerCanSeeAssignments;
 

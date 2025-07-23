@@ -28,7 +28,7 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         var compLocker = t.TryGetComp<CompLocker>();
-        var thing = FindRemoveApparel(pawn, compLocker);
+        var thing = findRemoveApparel(pawn, compLocker);
         if (thing != null)
         {
             var job = JobMaker.MakeJob(JobDefOf.EKAI_RemoveApparelWithLocker, thing, compLocker.parent);
@@ -36,7 +36,7 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
             return job;
         }
 
-        var thing2 = FindThingToLoad(pawn, compLocker);
+        var thing2 = findThingToLoad(pawn, compLocker);
         var job2 = JobMaker.MakeJob(JobDefOf.EKAI_HaulToLocker, thing2, compLocker.parent);
         job2.ignoreForbidden = true;
         return job2;
@@ -64,15 +64,15 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
             return false;
         }
 
-        if (FindRemoveApparel(pawn, compLocker) != null)
+        if (findRemoveApparel(pawn, compLocker) != null)
         {
             return true;
         }
 
-        return FindThingToLoad(pawn, compLocker) != null;
+        return findThingToLoad(pawn, compLocker) != null;
     }
 
-    private static Thing FindRemoveApparel(Pawn p, CompLocker compLocker)
+    private static Thing findRemoveApparel(Pawn p, CompLocker compLocker)
     {
         if (compLocker.parent.GetComp<CompAssignableToPawn_Locker>().Assigned(p))
         {
@@ -90,7 +90,7 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
         return null;
     }
 
-    private static Thing FindThingToLoad(Pawn p, CompLocker compLocker)
+    private static Thing findThingToLoad(Pawn p, CompLocker compLocker)
     {
         var neededThings = new HashSet<Thing>();
         var assignedRegisterdApparel = JobUtil.GetAssignedRegisterdApparel(compLocker.parent);

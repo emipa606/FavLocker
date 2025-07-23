@@ -43,7 +43,7 @@ public class CompLocker : ThingComp, IThingHolder
 
     public Thing FirstThingLeftToLoad => parent.FirstThingLeftToLoad;
 
-    public bool AnyPawnCanLoadAnythingNow
+    private bool AnyPawnCanLoadAnythingNow
     {
         get
         {
@@ -114,7 +114,7 @@ public class CompLocker : ThingComp, IThingHolder
 
     public void DropApparel(Apparel apparel)
     {
-        innerContainer.TryDrop(apparel, ThingPlaceMode.Near, out var _);
+        innerContainer.TryDrop(apparel, ThingPlaceMode.Near, out _);
         forcedApparels.Remove(apparel);
         parent.ChangeContents();
     }
@@ -238,7 +238,6 @@ public class CompLocker : ThingComp, IThingHolder
     public override void CompTick()
     {
         base.CompTick();
-        innerContainer.ThingOwnerTick();
         if (!parent.IsHashIntervalTick(60) || !parent.Spawned || !AnythingLeftToLoad || notifiedCantLoadMore ||
             AnyPawnCanLoadAnythingNow)
         {
@@ -283,9 +282,9 @@ public class CompLocker : ThingComp, IThingHolder
         }
     }
 
-    public override void PostDeSpawn(Map map)
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
-        base.PostDeSpawn(map);
+        base.PostDeSpawn(map, mode);
         innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near);
     }
 

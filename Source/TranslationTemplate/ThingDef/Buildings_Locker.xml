@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: fav locker -->
+  <EKAI_Locker.label>fav locker</EKAI_Locker.label>
+  <!-- EN: A locker where you can register your favorite apparels. \nLocker owners can change into their favorite apparels. At that time, colonists will change apparels much faster than usual. -->
+  <EKAI_Locker.description>A locker where you can register your favorite apparels. 
+Locker owners can change into their favorite apparels. At that time, colonists will change apparels much faster than usual.</EKAI_Locker.description>
+</LanguageData>

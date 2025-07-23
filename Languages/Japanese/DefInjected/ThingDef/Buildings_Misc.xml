@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <EKAI_PowerArmorStation.label>パワーアーマーステーション</EKAI_PowerArmorStation.label>
   <EKAI_PowerArmorStation.description>お気に入りのパワーアーマーを登録できるステーションです。\nステーションの所有者は、お気に入りのパワーアーマーに着替えることが出来ます。\nステーションが着替えを効率的に補助するため、入植者は煩わしさから解放されます。\n\n所有するロッカーがあれば、着替えの際にロッカーも利用するようになります。\nパワーアーマー以外の服にも着替えたい場合、ロッカーを所有して登録してみましょう。</EKAI_PowerArmorStation.description>

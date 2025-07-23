@@ -5,9 +5,9 @@ namespace Locker;
 
 public class CompAssignableToPawn_Locker : CompAssignableToPawn
 {
-    public new Building_RegistableContainer parent => (Building_RegistableContainer)base.parent;
+    private new Building_RegistableContainer parent => (Building_RegistableContainer)base.parent;
 
-    public new CompProperties_AssignableToPawn_OnlyOne Props => (CompProperties_AssignableToPawn_OnlyOne)props;
+    private new CompProperties_AssignableToPawn_OnlyOne Props => (CompProperties_AssignableToPawn_OnlyOne)props;
 
     public override bool AssignedAnything(Pawn pawn)
     {

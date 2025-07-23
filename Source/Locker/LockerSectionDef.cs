@@ -6,13 +6,13 @@ namespace Locker;
 
 public class LockerSectionDef : Def, IComparable<LockerSectionDef>
 {
-    private static readonly int LOWEST_ORDER = 9999;
+    private const int LowestOrder = 9999;
 
-    public readonly bool derivation = false;
+    private readonly bool derivation = false;
 
-    public int order;
+    private int order;
 
-    public ThingCategoryDef thingCategoryDef;
+    private ThingCategoryDef thingCategoryDef;
 
     public int CompareTo(LockerSectionDef other)
     {
@@ -41,7 +41,7 @@ public class LockerSectionDef : Def, IComparable<LockerSectionDef>
 
         var lockerSectionDef = new LockerSectionDef
         {
-            order = LOWEST_ORDER,
+            order = LowestOrder,
             thingCategoryDef = thingCategorys[0]
         };
         return lockerSectionDef;

@@ -92,29 +92,32 @@ public static class Util
                 }
 
                 num++;
-                if (num <= Global.DISPLAY_NUM_CANT_CHANGE_CLOTHES_PAWN_NAME)
+                switch (num)
                 {
-                    if (num > 1)
+                    case <= Global.DisplayNumCantChangeClothesPawnName:
                     {
-                        stringBuilder.Append("  ");
-                    }
+                        if (num > 1)
+                        {
+                            stringBuilder.Append("  ");
+                        }
 
-                    string value = null;
-                    if (item is Command_WearFavorite command_WearFavorite)
-                    {
-                        value = command_WearFavorite.pawn.LabelNoCount;
-                    }
+                        string value = null;
+                        if (item is Command_WearFavorite command_WearFavorite)
+                        {
+                            value = command_WearFavorite.pawn.LabelNoCount;
+                        }
 
-                    if (item is Command_RemoveFavorite command_RemoveFavorite)
-                    {
-                        value = command_RemoveFavorite.pawn.LabelNoCount;
-                    }
+                        if (item is Command_RemoveFavorite command_RemoveFavorite)
+                        {
+                            value = command_RemoveFavorite.pawn.LabelNoCount;
+                        }
 
-                    stringBuilder.Append(value);
-                }
-                else if (num == Global.DISPLAY_NUM_CANT_CHANGE_CLOTHES_PAWN_NAME + 1)
-                {
-                    stringBuilder.Append("...");
+                        stringBuilder.Append(value);
+                        break;
+                    }
+                    case Global.DisplayNumCantChangeClothesPawnName + 1:
+                        stringBuilder.Append("...");
+                        break;
                 }
             }
         }

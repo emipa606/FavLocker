@@ -1,4 +1,4 @@
-# FavLocker
+# [Fav Locker (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2586243600)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -8,13 +8,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2160977038
 Added support for some other mods in the power armor station
 
 
-- https://steamcommunity.com/sharedfiles/filedetails/?id=1814988282]Vanilla Armour Expanded 
-- https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119]CAS: Power Armour (Continued)
-- https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462]CAS: Recon Armour (Continued)
-- https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241]CAS: Cataphract Armour (Continued)
-- https://steamcommunity.com/sharedfiles/filedetails/?id=2196278117]Ultratech: Altered Carbon Remastered
-- https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2
-- https://steamcommunity.com/sharedfiles/filedetails/?id=2562018758]Rimworld: Spartan Foundry (Continued)
+- [Vanilla Armour Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=1814988282) 
+- [CAS: Power Armour (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119)
+- [CAS: Recon Armour (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462)
+- [CAS: Cataphract Armour (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241)
+- [Ultratech: Altered Carbon Remastered](https://steamcommunity.com/sharedfiles/filedetails/?id=2196278117)
+- [Save Our Ship 2](https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131)
+- [Rimworld: Spartan Foundry (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2562018758)
 
 
 
@@ -22,7 +22,6 @@ Added support for some other mods in the power armor station
 - Power-armor stations can now repair armor using power and steel when Advanced Fabrication is researched
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
@@ -57,7 +56,7 @@ The time to change apparels is significantly reduced.
 
 	- English
 	- Japanese(日本語)
-	- [strike]Russian(русский) by Tkhakiro[/strike] (Not supported from ver2.00)
+	- ~~Russian(русский) by Tkhakiro~~ (Not supported from ver2.00)
 
 
 
@@ -107,7 +106,7 @@ I appreciate your cooperation in translating Russian.
 
 
 
-### [u]Note! [/u]
+### <ins>Note! </ins>
 
 v2.xx is compatible with v1.xx.
 However, there are little trouble.
@@ -127,13 +126,12 @@ Thank you.
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600]![Image](https://img.shields.io/github/v/release/emipa606/FavLocker?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/FavLocker?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600) | tags:  container,  armor station

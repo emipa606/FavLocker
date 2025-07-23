@@ -12,13 +12,13 @@ public static class ToilFailConditions
         {
             var actor = f.GetActor();
             var thing = f.GetActor().jobs.curJob.GetTarget(containerInd).Thing;
-            var compAssignableToPawn_Locker = thing.TryGetComp<CompAssignableToPawn_Locker>();
-            if (compAssignableToPawn_Locker.Assigned(actor) && !FailOnNotOwner)
+            var compAssignableToPawnLocker = thing.TryGetComp<CompAssignableToPawn_Locker>();
+            if (compAssignableToPawnLocker.Assigned(actor) && !FailOnNotOwner)
             {
                 return JobCondition.Incompletable;
             }
 
-            return !(!compAssignableToPawn_Locker.Assigned(actor) && FailOnNotOwner)
+            return !(!compAssignableToPawnLocker.Assigned(actor) && FailOnNotOwner)
                 ? JobCondition.Ongoing
                 : JobCondition.Incompletable;
         });

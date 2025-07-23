@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: hauling TargetA to the locker. -->
+  <EKAI_HaulToLocker.reportString>hauling TargetA to the locker.</EKAI_HaulToLocker.reportString>
+  <!-- EN: hauling worn TargetA to the locker. -->
+  <EKAI_RemoveApparelWithLocker.reportString>hauling worn TargetA to the locker.</EKAI_RemoveApparelWithLocker.reportString>
+  <!-- EN: removing TargetA. -->
+  <EKAI_RemoveFavoriteOnPowerArmorStation.reportString>removing TargetA.</EKAI_RemoveFavoriteOnPowerArmorStation.reportString>
+  <!-- EN: removing TargetA. -->
+  <EKAI_RemoveRegisteredApparelWithLocker.reportString>removing TargetA.</EKAI_RemoveRegisteredApparelWithLocker.reportString>
+  <!-- EN: wearing TargetA. -->
+  <EKAI_WearFavoriteOnPowerArmorStation.reportString>wearing TargetA.</EKAI_WearFavoriteOnPowerArmorStation.reportString>
+  <!-- EN: wearing TargetA. -->
+  <EKAI_WearRegisteredApparelWithLocker.reportString>wearing TargetA.</EKAI_WearRegisteredApparelWithLocker.reportString>
+</LanguageData>

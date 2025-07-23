@@ -13,7 +13,7 @@ internal class Dialog_RegisterItem : Window
 {
     private static readonly List<TabRecord> tabsList = [];
 
-    private readonly Vector2 BottomButtonSize = new Vector2(160f, 40f);
+    private readonly Vector2 BottomButtonSize = new(160f, 40f);
 
     private readonly CompAssignableToPawn_Locker compAssignable;
 
@@ -36,14 +36,14 @@ internal class Dialog_RegisterItem : Window
         absorbInputAroundWindow = true;
     }
 
-    public override Vector2 InitialSize => new Vector2(1024f, UI.screenHeight);
+    public override Vector2 InitialSize => new(1024f, UI.screenHeight);
 
     public override float Margin => 0f;
 
     public override void PostOpen()
     {
         base.PostOpen();
-        CalculateAndRecacheTransferables();
+        calculateAndRecacheTransferables();
     }
 
     public override void DoWindowContents(Rect inRect)
@@ -64,7 +64,7 @@ internal class Dialog_RegisterItem : Window
         inRect = inRect.ContractedBy(17f);
         GUI.BeginGroup(inRect);
         var rect2 = inRect.AtZero();
-        DoBottomButtons(rect2);
+        doBottomButtons(rect2);
         var inRect2 = rect2;
         inRect2.yMax -= 59f;
         itemsTransfer.OnGUI(inRect2);
@@ -76,11 +76,11 @@ internal class Dialog_RegisterItem : Window
         return true;
     }
 
-    private void DoBottomButtons(Rect rect)
+    private void doBottomButtons(Rect rect)
     {
         var rect2 = new Rect((rect.width / 2f) - (BottomButtonSize.x / 2f), rect.height - 55f, BottomButtonSize.x,
             BottomButtonSize.y);
-        if (Widgets.ButtonText(rect2, "EKAI_Register".Translate()) && TryAccept())
+        if (Widgets.ButtonText(rect2, "EKAI_Register".Translate()) && tryAccept())
         {
             SoundDefOf.Tick_High.PlayOneShotOnCamera();
             Close(false);
@@ -91,7 +91,7 @@ internal class Dialog_RegisterItem : Window
                 "ResetButton".Translate()))
         {
             SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-            CalculateAndRecacheTransferables();
+            calculateAndRecacheTransferables();
         }
 
         if (Widgets.ButtonText(new Rect(rect2.xMax + 10f, rect2.y, BottomButtonSize.x, BottomButtonSize.y),
@@ -101,22 +101,22 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void CalculateAndRecacheTransferables()
+    private void calculateAndRecacheTransferables()
     {
         allApparel = [];
         AddApparelOnMap();
-        AddApparelInner();
-        AddApparelLoading();
-        AddWornApparel();
-        MarkRegisteredApparel();
-        SetCautionMessage();
-        RemoveRegisteredApparelsByOtherContainer();
-        InitWidget();
+        addApparelInner();
+        addApparelLoading();
+        addWornApparel();
+        markRegisteredApparel();
+        setCautionMessage();
+        removeRegisteredApparelsByOtherContainer();
+        initWidget();
     }
 
-    private bool TryAccept()
+    private bool tryAccept()
     {
-        if (!CheckForErrors())
+        if (!checkForErrors())
         {
             return false;
         }
@@ -145,7 +145,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void AddApparelInner()
+    private void addApparelInner()
     {
         foreach (var item in compLocker.InnerApparelsReadOnly())
         {
@@ -157,7 +157,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void AddApparelLoading()
+    private void addApparelLoading()
     {
         foreach (var item in JobUtil.GetCarryThingsToDest(compLocker.parent))
         {
@@ -165,7 +165,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void AddWornApparel()
+    private void addWornApparel()
     {
         foreach (var wearingPawn in Util.AllPawnsPotentialOwner(compLocker.parent.Map))
         {
@@ -183,7 +183,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void MarkRegisteredApparel()
+    private void markRegisteredApparel()
     {
         foreach (var regApparel in compLocker.RegisteredApparelsReadOnly())
         {
@@ -204,7 +204,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void SetCautionMessage()
+    private void setCautionMessage()
     {
         var linkedContainer = container.GetLinkedContainer<Building_RegistableContainer>();
         if (linkedContainer == null)
@@ -226,7 +226,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void RemoveRegisteredApparelsByOtherContainer()
+    private void removeRegisteredApparelsByOtherContainer()
     {
         var list = new List<LockerApparel>();
         foreach (var item in allApparel)
@@ -249,7 +249,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private void InitWidget()
+    private void initWidget()
     {
         itemsTransfer = new LockerApparelWidget(compLocker, null);
         if (!compLocker.Props.storableThingDefs.NullOrEmpty())
@@ -277,7 +277,7 @@ internal class Dialog_RegisterItem : Window
         }
     }
 
-    private bool CheckForErrors()
+    private bool checkForErrors()
     {
         var parentMap = compLocker.parent.Map;
         foreach (var item in allApparel)

@@ -13,7 +13,7 @@ internal class JobDriver_RemoveApparelWithLocker : JobDriver, IGettableDestinati
 
     private Apparel Apparel => (Apparel)job.GetTarget(TargetIndex.A).Thing;
 
-    public ThingWithComps Locker => (ThingWithComps)job.GetTarget(TargetIndex.B).Thing;
+    private ThingWithComps Locker => (ThingWithComps)job.GetTarget(TargetIndex.B).Thing;
 
     public Thing GetDestination()
     {
@@ -54,7 +54,7 @@ internal class JobDriver_RemoveApparelWithLocker : JobDriver, IGettableDestinati
         {
             toil.actor.rotationTracker.FaceTarget(toil.actor.CurJob.GetTarget(TargetIndex.B));
             unequipBuffer++;
-            TryUnequip();
+            tryUnequip();
         };
         toil.WithProgressBarToilDelay(TargetIndex.A);
         toil.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -62,7 +62,7 @@ internal class JobDriver_RemoveApparelWithLocker : JobDriver, IGettableDestinati
         yield return toil;
     }
 
-    private void TryUnequip()
+    private void tryUnequip()
     {
         var apparel = Apparel;
         if (unequipBuffer < duration - 1)

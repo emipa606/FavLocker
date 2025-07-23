@@ -14,25 +14,25 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
         WEARING
     }
 
-    public static readonly TargetIndex TARGET_APPAREL = TargetIndex.A;
+    protected const TargetIndex TargetApparel = TargetIndex.A;
 
-    public static readonly TargetIndex TARGET_CONTAINER = TargetIndex.B;
+    protected const TargetIndex TargetIndex = Verse.AI.TargetIndex.B;
 
-    public static readonly TargetIndex TARGET_LINKED_CONTAINER = TargetIndex.C;
+    protected const TargetIndex TargetLinkedContainer = TargetIndex.C;
 
-    public static readonly TargetIndex TARGET_QUEUE_WORN_APPARELS_AT_EXEC = TargetIndex.A;
+    protected const TargetIndex TargetQueueWornApparelsAtExec = TargetIndex.A;
 
-    protected int duration;
+    private int duration;
 
     public Progress progress = Progress.NONE;
 
     protected Building_RegistableContainer TargetContainer =>
-        (Building_RegistableContainer)job.GetTarget(TARGET_CONTAINER).Thing;
+        (Building_RegistableContainer)job.GetTarget(TargetIndex).Thing;
 
     protected CompLocker TargetCompLocker => TargetContainer.GetComp<CompLocker>();
 
     protected Building_RegistableContainer LinkedContainer =>
-        (Building_RegistableContainer)job.GetTarget(TARGET_LINKED_CONTAINER).Thing;
+        (Building_RegistableContainer)job.GetTarget(TargetLinkedContainer).Thing;
 
     protected CompLocker LinkedCompLocker => LinkedContainer?.GetComp<CompLocker>();
 
@@ -43,7 +43,7 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
 
     public override string GetReport()
     {
-        var thing = job.GetTarget(TARGET_APPAREL).Thing;
+        var thing = job.GetTarget(TargetApparel).Thing;
         switch (progress)
         {
             case Progress.REMOVING when thing != null:
@@ -68,7 +68,7 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
     public override void Notify_Starting()
     {
         base.Notify_Starting();
-        var targetQueue = job.GetTargetQueue(TARGET_QUEUE_WORN_APPARELS_AT_EXEC);
+        var targetQueue = job.GetTargetQueue(TargetQueueWornApparelsAtExec);
         if (targetQueue.Any())
         {
             return;
@@ -85,12 +85,12 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
 
     public virtual bool NeedGoto(TargetIndex containerInd)
     {
-        if (containerInd == TARGET_CONTAINER)
+        if (containerInd == TargetIndex)
         {
             return true;
         }
 
-        if (containerInd == TARGET_LINKED_CONTAINER)
+        if (containerInd == TargetLinkedContainer)
         {
             return false;
         }

@@ -11,13 +11,13 @@ namespace Locker;
 
 public class Building_PowerArmorStation : Building_RegistableContainer
 {
-    private static readonly ReadOnlyCollection<JobDef> ALL_DEFS;
+    private static readonly ReadOnlyCollection<JobDef> allDefs;
 
     private ContentsRenderer contentsRenderer;
 
     static Building_PowerArmorStation()
     {
-        ALL_DEFS = new ReadOnlyCollection<JobDef>(new List<JobDef>
+        allDefs = new ReadOnlyCollection<JobDef>(new List<JobDef>
         {
             JobDefOf.EKAI_HaulToLocker,
             JobDefOf.EKAI_RemoveApparelWithLocker,
@@ -28,18 +28,18 @@ public class Building_PowerArmorStation : Building_RegistableContainer
 
     public override IReadOnlyList<JobDef> GetAllJobDefs()
     {
-        return ALL_DEFS;
+        return allDefs;
     }
 
     public override void SetGizmosWhenSelectedOwner(Pawn owner, ref IEnumerable<Gizmo> gizmos)
     {
         var list = gizmos.ToList();
-        SetCommandOfWearFavorite(owner, list);
-        SetCommandOfRemoveFavorite(owner, list);
+        setCommandOfWearFavorite(owner, list);
+        setCommandOfRemoveFavorite(owner, list);
         gizmos = list.AsEnumerable();
     }
 
-    private void SetCommandOfWearFavorite(Pawn owner, List<Gizmo> gizmoList)
+    private void setCommandOfWearFavorite(Pawn owner, List<Gizmo> gizmoList)
     {
         if (CompLocker.AnyRegisteredApparel && CompLocker.AllWear(owner))
         {
@@ -49,7 +49,7 @@ public class Building_PowerArmorStation : Building_RegistableContainer
         var key = AnyLinkedContainer<Building_Locker>()
             ? "EKAI_Desc_WearFavoritePowerArmor"
             : "EKAI_Desc_WearFavoritePowerArmorNotLink";
-        var command_WearFavorite = new Command_WearFavorite
+        var commandWearFavorite = new Command_WearFavorite
         {
             defaultLabel = "EKAI_WearRegisterApparel".Translate(),
             defaultDesc = key.Translate(),
@@ -59,15 +59,15 @@ public class Building_PowerArmorStation : Building_RegistableContainer
             favLocker = GetLinkedContainer<Building_Locker>(),
             pawn = owner
         };
-        if (!CanCommandOfWearFavorite(owner, out var reason))
+        if (!canCommandOfWearFavorite(owner, out var reason))
         {
-            command_WearFavorite.Disable(reason);
+            commandWearFavorite.Disable(reason);
         }
 
-        gizmoList.Add(command_WearFavorite);
+        gizmoList.Add(commandWearFavorite);
     }
 
-    private bool CanCommandOfWearFavorite(Pawn owner, out string reason)
+    private bool canCommandOfWearFavorite(Pawn owner, out string reason)
     {
         reason = "";
         var comp = GetComp<CompLocker>();
@@ -113,7 +113,7 @@ public class Building_PowerArmorStation : Building_RegistableContainer
         return false;
     }
 
-    private void SetCommandOfRemoveFavorite(Pawn owner, List<Gizmo> gizmoList)
+    private void setCommandOfRemoveFavorite(Pawn owner, List<Gizmo> gizmoList)
     {
         if (!CompLocker.RegisteredApparelsReadOnly().Any() || !CompLocker.AnyWear(owner))
         {
@@ -123,7 +123,7 @@ public class Building_PowerArmorStation : Building_RegistableContainer
         var key = AnyLinkedContainer<Building_Locker>()
             ? "EKAI_Desc_RemoveFavoritePowerArmor"
             : "EKAI_Desc_RemoveFavoritePowerArmorNotLink";
-        var command_RemoveFavorite = new Command_RemoveFavorite
+        var commandRemoveFavorite = new Command_RemoveFavorite
         {
             defaultLabel = "EKAI_RemoveRegisterApparel".Translate(),
             defaultDesc = key.Translate(),
@@ -133,15 +133,15 @@ public class Building_PowerArmorStation : Building_RegistableContainer
             favLocker = GetLinkedContainer<Building_Locker>(),
             pawn = owner
         };
-        if (!CanCommandOfRemoveFavorite(owner, out var reason))
+        if (!canCommandOfRemoveFavorite(owner, out var reason))
         {
-            command_RemoveFavorite.Disable(reason);
+            commandRemoveFavorite.Disable(reason);
         }
 
-        gizmoList.Add(command_RemoveFavorite);
+        gizmoList.Add(commandRemoveFavorite);
     }
 
-    private bool CanCommandOfRemoveFavorite(Pawn owner, out string reason)
+    private bool canCommandOfRemoveFavorite(Pawn owner, out string reason)
     {
         reason = "";
         if (!owner.MapHeld.reachability.CanReach(owner.PositionHeld, this, PathEndMode.Touch,

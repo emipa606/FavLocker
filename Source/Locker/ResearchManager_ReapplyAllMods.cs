@@ -4,7 +4,7 @@ using RimWorld;
 namespace Locker;
 
 [HarmonyPatch(typeof(ResearchManager), nameof(ResearchManager.ReapplyAllMods))]
-internal class Patch_ResearchManager_ReapplyAllMods
+internal class ResearchManager_ReapplyAllMods
 {
     private static void Postfix()
     {

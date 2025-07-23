@@ -18,7 +18,7 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
 
     public override Apparel GetNextWearApparel(TargetIndex containerInd)
     {
-        if (containerInd != TARGET_CONTAINER)
+        if (containerInd != TargetIndex)
         {
             throw new ArgumentException();
         }
@@ -35,7 +35,7 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
 
     public override Apparel GetNextRemoveApparel(TargetIndex containerInd)
     {
-        if (containerInd != TARGET_CONTAINER)
+        if (containerInd != TargetIndex)
         {
             throw new ArgumentException();
         }
@@ -55,25 +55,25 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
 
     public override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDespawnedNullOrForbidden(TARGET_CONTAINER);
-        this.FailOnOwnerStatus(TARGET_CONTAINER);
-        yield return Toils_Goto.GotoThing(TARGET_CONTAINER, PathEndMode.Touch);
-        var setRemove = Toils.SetRemoveApparel(TARGET_APPAREL, TARGET_CONTAINER);
+        this.FailOnDespawnedNullOrForbidden(TargetIndex);
+        this.FailOnOwnerStatus(TargetIndex);
+        yield return Toils_Goto.GotoThing(TargetIndex, PathEndMode.Touch);
+        var setRemove = Toils.SetRemoveApparel(TargetApparel, TargetIndex);
         yield return setRemove;
-        var setWear = Toils.SetWearApparel(TARGET_APPAREL, TARGET_CONTAINER);
-        yield return Toils_Jump.JumpIfTargetInvalid(TARGET_APPAREL, setWear);
+        var setWear = Toils.SetWearApparel(TargetApparel, TargetIndex);
+        yield return Toils_Jump.JumpIfTargetInvalid(TargetApparel, setWear);
         yield return Toils.SetProgress(Progress.REMOVING);
-        yield return Toils.WaitEquipDelay(TARGET_APPAREL, TARGET_CONTAINER,
-            Global.FACTOR_EQUIPDELAY_WHEN_WEAR_FAVORITE);
-        yield return Toils.RemoveAndDropApparel(TARGET_APPAREL);
+        yield return Toils.WaitEquipDelay(TargetApparel, TargetIndex,
+            Global.FactorEquipdelayWhenWearFavorite);
+        yield return Toils.RemoveAndDropApparel(TargetApparel);
         yield return Toils_Jump.Jump(setRemove);
         yield return setWear;
-        var putToil = Toils.PutApparelInTheLocker(TARGET_QUEUE_WORN_APPARELS_AT_EXEC, TARGET_CONTAINER);
-        yield return Toils_Jump.JumpIfTargetInvalid(TARGET_APPAREL, putToil);
+        var putToil = Toils.PutApparelInTheLocker(TargetQueueWornApparelsAtExec, TargetIndex);
+        yield return Toils_Jump.JumpIfTargetInvalid(TargetApparel, putToil);
         yield return Toils.SetProgress(Progress.WEARING);
-        yield return Toils.WaitEquipDelay(TARGET_APPAREL, TARGET_CONTAINER,
-            Global.FACTOR_EQUIPDELAY_WHEN_WEAR_FAVORITE);
-        yield return Toils.TakeApparelFromContainerAndWear(TARGET_APPAREL, TARGET_CONTAINER, true);
+        yield return Toils.WaitEquipDelay(TargetApparel, TargetIndex,
+            Global.FactorEquipdelayWhenWearFavorite);
+        yield return Toils.TakeApparelFromContainerAndWear(TargetApparel, TargetIndex, true);
         yield return Toils_Jump.Jump(setWear);
         yield return putToil;
     }

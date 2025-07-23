@@ -9,7 +9,7 @@ public class ApparelLayer : IComparable<ApparelLayer>
 {
     private static readonly List<ApparelLayer> allList;
 
-    private static readonly ApparelLayer UNKNOWN;
+    private static readonly ApparelLayer unknown;
 
     private readonly ApparelLayerDef def;
 
@@ -18,7 +18,7 @@ public class ApparelLayer : IComparable<ApparelLayer>
     static ApparelLayer()
     {
         allList = [];
-        UNKNOWN = new ApparelLayer(9999, null);
+        unknown = new ApparelLayer(9999, null);
         allList.Add(new ApparelLayer(0, ApparelLayerDefOf.Overhead));
         allList.Add(new ApparelLayer(1, ApparelLayerDefOf.Shell));
         allList.Add(new ApparelLayer(2, ApparelLayerDefOf.Middle));
@@ -58,6 +58,6 @@ public class ApparelLayer : IComparable<ApparelLayer>
             }
         }
 
-        return UNKNOWN;
+        return unknown;
     }
 }
