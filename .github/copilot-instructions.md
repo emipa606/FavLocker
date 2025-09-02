@@ -1,33 +1,42 @@
-# GitHub Copilot Instructions for RimWorld Modding Project
+# GitHub Copilot Instructions for Fav Locker (Continued) Mod Development
 
 ## Mod Overview and Purpose
-This mod for RimWorld extends the game by introducing new functionalities involving apparel management using lockers and power armor stations. The mod's main purpose is to enhance the way players interact with and manage their pawns' apparel by providing streamlined interfaces and behaviors for favorite apparel storage and retrieval. It adds gameplay depth and convenience by allowing players to register and manage favorite pieces of apparel that pawns can automatically wear under specific conditions.
+
+**Mod Name**: Fav Locker (Continued)
+
+**Description**: This mod is an update of the original mod by Ekais. It enhances the functionality of Fav Locker and integrates support for several additional mods focused on power armor integration within RimWorld. Fav Locker allows colonists to manage, wear, and store their favorite apparels with ease, aiming to streamline transitions between everyday and combat attire.
 
 ## Key Features and Systems
-- **Locker and Power Armor Station Buildings**: Allows players to store and manage apparel items efficiently. These buildings come with commands to wear and remove favorite apparel from a designated inventory.
-- **Job Drivers**: Custom job drivers such as `JobDriver_WearFavoriteOnPowerArmorStation` and `JobDriver_RemoveFavoriteOnPowerArmorStation` to automate apparel management tasks for pawns.
-- **Gizmo Commands**: Custom commands for pawns to interact with lockers and power armor stations, including wearing and removing favorite apparel.
-- **Comparison and Sorting**: Uses custom comparers for apparel, allowing sorting by body part group and layer, as well as by thing definition name.
-- **Dialog and UI Integration**: Custom dialog for registering apparel, and UI elements like `LockerApparelWidget` for managing apparel in the interface.
-- **Harmony Patching**: Extends and modifies game behavior using Harmony patches for integration with the base game's systems.
+
+- **Favorite Container System**: Allows registration of colonists' favorite apparels. It simplifies the process of dressing and undressing by enabling quick toggling between stored outfits.
+- **Power Armor Station**: Functions similarly to the Power Armor Station from Fallout 4, designed specifically for managing end-game power armors with reduced time for apparel changes.
+- **Hit Points Filter**: Added to lockers for better apparel management.
+- **Repair Functionality**: Power Armor Stations can repair armors using power and steel, once the Advanced Fabrication research is completed.
 
 ## Coding Patterns and Conventions
-- **Interfaces and Comparables**: The code heavily uses interfaces like `IComparable` and `IThingHolder` to define comparable and container behaviors.
-- **Encapsulation and Abstraction**: Use abstract classes like `Building_RegistableContainer` to encapsulate shared behaviors between derived classes.
-- **Method Access Modifiers**: Private methods are extensively used to control class behavior and access, promoting encapsulation and reducing interference between classes.
+
+- **Class Structures**: Classes implement interfaces like `IComparable`, `IGettableDestination`, and various Comp classes. Naming conventions follow a clear and descriptive pattern.
+  
+- **Method Naming**: Methods are named to clearly reflect their action, e.g., `setCommandOfWearFavorite`, `canCommandOfWearFavorite`.
+
+- **Inheritance and Interfaces**: The code extensively utilizes inheritance and interfaces to ensure modular and reusable components.
 
 ## XML Integration
-Though this specific structure did not include direct XML summaries, the mod likely integrates with RimWorld's XML configuration system for defining things like entity definitions (e.g., Apparel, Building) and other in-game elements. XML files are utilized within mod development for setting up def types, item recipes, traits, and other elements that do not require C# backing but define data-driven elements of the mod. Ensure XML definitions align with serialized member expectations in your C# code.
+
+- XML files are used for defining configurations and settings related to apparel, pawns, and mod settings. Manage these configurations to ensure new features are accurately reflected in the game.
 
 ## Harmony Patching
-Harmony is used to modify or extend game functionality:
-- **Adding New Behaviors**: Introduce new methods or override existing ones to enhance functionality, as shown in `Patch_Pawn_GetGizmos`.
-- **Reapplying Modifications**: To ensure compatibility across updates and save-game reloads, patches like `Patch_ResearchManager_ReapplyAllMods` are used to maintain consistent mod functionality.
+
+- The mod uses Harmony to modify existing gameplay elements without altering the original game code. Ensure patches are applied responsibly to maintain compatibility and prevent potential conflicts with other mods.
 
 ## Suggestions for Copilot
-- **Automated Method Generation**: Employ Copilot to generate common methods like comparers (`CompareTo`, `Compare` functions) or boilerplate code for dialog interfaces.
-- **XML Definitions**: Suggest specific XML templates for new apparel and building definitions to align with mod logic defined in C#.
-- **Harmony Integration**: Use Copilot to draft potential patches by analyzing the behavior of existing methods and suggesting alterations or insertions that fit the mod's needs.
-- **Refactoring Assistance**: Help refactor classes for better modularity and maintainability, such as suggesting method extraction or consolidation.
 
-By following these instructions, you can maximize the utility of GitHub Copilot in your RimWorld mod development projects, ensuring efficient and effective code generation that matches the specific needs of your mod enhancements.
+To effectively utilize GitHub Copilot in this project, consider the following tips:
+
+1. **Boilerplate Code**: Use Copilot to quickly generate boilerplate code like class definitions, method stubs, and interface implementations.
+2. **Patch Optimization**: When adding new Harmony patches, allow Copilot to suggest patterns for efficient and conflict-free integration.
+3. **Error Handling**: Leverage Copilot for generating standard error-handling routines to manage exceptions effectively within Unity and C# contexts.
+4. **Code Documentation**: Utilize Copilot to assist in writing clear and concise comments to explain complex logic or new features.
+5. **XML File Edits**: Utilize Copilot’s capabilities to update and integrate XML configurations for new functionalities seamlessly.
+
+By following these guidelines, you'll ensure that the integration of GitHub Copilot maximizes productivity and maintains code quality across the Fav Locker mod project.

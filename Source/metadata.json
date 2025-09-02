@@ -6,10 +6,10 @@
   "Patches": true,
   "Defs": true,
   "Assemblies": true,
-  "LinesOfCode": 132208,
+  "LinesOfCode": 132308,
   "LinesOfXML": 16681,
-  "CodeBaseSize": 82,
-  "LastXmlCleaning": "2025-07-23T22:48:53.1568871+02:00",
+  "CodeBaseSize": 81,
+  "LastXmlCleaning": "2025-09-02T20:41:57.448587+02:00",
   "SocialImageSet": true,
   "SearchTags": [
     " container",

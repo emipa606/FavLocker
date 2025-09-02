@@ -285,7 +285,10 @@ public class CompLocker : ThingComp, IThingHolder
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
         base.PostDeSpawn(map, mode);
-        innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near);
+        if (mode != DestroyMode.WillReplace)
+        {
+            innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near);
+        }
     }
 
     public override string CompInspectStringExtra()

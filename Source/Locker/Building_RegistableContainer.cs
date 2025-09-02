@@ -45,13 +45,14 @@ public abstract class Building_RegistableContainer : Building
             return stringBuilder.ToString();
         }
 
-        if (OwnersForReading.Count == 0)
+        switch (OwnersForReading.Count)
         {
-            stringBuilder.AppendInNewLine("Owner".Translate() + ": " + "Nobody".Translate());
-        }
-        else if (OwnersForReading.Count == 1)
-        {
-            stringBuilder.AppendInNewLine("Owner".Translate() + ": " + OwnersForReading[0].Label);
+            case 0:
+                stringBuilder.AppendInNewLine("Owner".Translate() + ": " + "Nobody".Translate());
+                break;
+            case 1:
+                stringBuilder.AppendInNewLine("Owner".Translate() + ": " + OwnersForReading[0].Label);
+                break;
         }
 
         return stringBuilder.ToString();
