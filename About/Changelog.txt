@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.6.2 - PAwns in bioscultor should not cause issues when selecting the locker
+
+
 1.6.1 - Fixed ship-travel issue
 
 

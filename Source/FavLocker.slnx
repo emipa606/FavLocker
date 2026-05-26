@@ -6,4 +6,26 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Locker/FavLocker.csproj" />
+  <Folder Name="/XML/1.6/Defs/WorkGiverDefs/">
+    <File Path="../1.6/Defs/WorkGiverDefs/WorkGivers.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/AlteredCarbon.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/JobDefs/">
+    <File Path="../1.6/Defs/JobDefs/Jobs_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThingDefs_Buildings/">
+    <File Path="../1.6/Defs/ThingDefs_Buildings/Buildings_Locker.xml" />
+    <File Path="../1.6/Defs/ThingDefs_Buildings/Buildings_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/LockerSectionDefs/">
+    <File Path="../1.6/Defs/LockerSectionDefs/LockerSections.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/FavLocker.xml" />
+  </Folder>
 </Solution>

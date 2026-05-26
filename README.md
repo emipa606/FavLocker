@@ -1,6 +1,6 @@
 # [Fav Locker (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2586243600)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Ekais mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2160977038
@@ -21,9 +21,9 @@ Added support for some other mods in the power armor station
 - Added a hit points filter to the lockers
 - Power-armor stations can now repair armor using power and steel when Advanced Fabrication is researched
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 # Features
 
@@ -120,13 +120,13 @@ However, there are little trouble.
 
 Thank you.
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -134,4 +134,4 @@ Thank you.
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/FavLocker?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600) | tags:  container,  armor station
+[![Image](https://img.shields.io/github/v/release/emipa606/FavLocker?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600) | tags: armor station, container

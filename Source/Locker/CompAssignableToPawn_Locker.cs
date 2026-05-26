@@ -11,7 +11,13 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
 
     public override bool AssignedAnything(Pawn pawn)
     {
-        foreach (var item in Util.AllMapBuildings<Building_RegistableContainer>(pawn.Map))
+        var map = pawn.MapHeld;
+        if (map == null)
+        {
+            return false;
+        }
+
+        foreach (var item in Util.AllMapBuildings<Building_RegistableContainer>(map))
         {
             if (item.GetType() != Props.buildingClass)
             {
@@ -62,15 +68,19 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
 
         var oldOwner = AssignedPawn();
         assignedPawns.Clear();
-        foreach (var item in Util.AllMapBuildings<Building_RegistableContainer>(newOwner.Map))
+        var map = newOwner.MapHeld;
+        if (map != null)
         {
-            if (item.GetType() != Props.buildingClass)
+            foreach (var item in Util.AllMapBuildings<Building_RegistableContainer>(map))
             {
-                continue;
-            }
+                if (item.GetType() != Props.buildingClass)
+                {
+                    continue;
+                }
 
-            var compAssignableToPawn_Locker = item.TryGetComp<CompAssignableToPawn_Locker>();
-            compAssignableToPawn_Locker.TryUnassignPawn(newOwner);
+                var compAssignableToPawn_Locker = item.TryGetComp<CompAssignableToPawn_Locker>();
+                compAssignableToPawn_Locker.TryUnassignPawn(newOwner);
+            }
         }
 
         assignedPawns.Add(newOwner);
