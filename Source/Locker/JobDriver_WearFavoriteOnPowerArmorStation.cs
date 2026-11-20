@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -82,7 +81,7 @@ public class JobDriver_WearFavoriteOnPowerArmorStation : JobDriver_ChangeApparel
         }
 
         list = Util.SortApparelListForDraw(list);
-        return list.First();
+        return list[0];
     }
 
     public override Apparel GetNextRemoveApparel(TargetIndex containerInd)
@@ -91,15 +90,7 @@ public class JobDriver_WearFavoriteOnPowerArmorStation : JobDriver_ChangeApparel
         if (containerInd == TargetIndex)
         {
             var apparelsRegisterdAndInner = CompLockerStation.GetApparelsRegisterdAndInner();
-            foreach (var item in list)
-            {
-                if (Util.AnyCantWearTogetherApparels(apparelsRegisterdAndInner, item))
-                {
-                    return item;
-                }
-            }
-
-            return null;
+            return list.FirstOrDefault(item => Util.AnyCantWearTogetherApparels(apparelsRegisterdAndInner, item));
         }
 
         if (containerInd != TargetLinkedContainer)
@@ -108,16 +99,9 @@ public class JobDriver_WearFavoriteOnPowerArmorStation : JobDriver_ChangeApparel
         }
 
         var apparelsRegisterdAndInner2 = CompLockerFavLocker.GetApparelsRegisterdAndInner();
-        foreach (var item2 in list)
-        {
-            if (Util.AnyCantWearTogetherApparels(apparelsRegisterdAndInner2, item2) ||
-                Util.AnyCantWearTogetherApparels(CompLockerStation.GetApparelsRegisterdAndInner(), item2))
-            {
-                return item2;
-            }
-        }
-
-        return null;
+        return list.FirstOrDefault(item2 => Util.AnyCantWearTogetherApparels(apparelsRegisterdAndInner2, item2) ||
+                                            Util.AnyCantWearTogetherApparels(
+                                                CompLockerStation.GetApparelsRegisterdAndInner(), item2));
     }
 
     public override bool NeedGoto(TargetIndex containerInd)

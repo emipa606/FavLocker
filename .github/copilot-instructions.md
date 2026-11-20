@@ -1,50 +1,53 @@
 # GitHub Copilot Instructions for Fav Locker (Continued)
 
+Welcome to the Fav Locker (Continued) mod project! This mod is an update to Ekais' original mod and provides additional support for power armor stations in other mods, including Vanilla Armor Expanded, CAS: Power Armor (Continued), CAS: Recon Armor (Continued), CAS: Cataphract Armor (Continued), Ultratech: Altered Carbon Remastered, and Save Our Ship 2. The mod also includes a hit points filter for lockers and the ability to repair armor using power and steel at power armor stations.
+
 ## Mod Overview and Purpose
-"Fav Locker (Continued)" is a mod designed to enhance apparel management in RimWorld by providing specialized storage solutions for your colonists' favorite outfits. Inspired by an original mod by Ekais, this project continues to expand on its capabilities, offering integration with several other popular mods to support varied armor and apparel types.
 
-### Mod Features and Systems
-- **Fav Locker**: A storage container that allows colonists to register and quickly change into their favorite apparels with the added benefit of faster apparel changes.
-- **Power Armor Station**: A specialized station akin to Fallout 4's power armor stations, enabling repairs on power armors using power and steel, with a significant reduction in change time.
-- **Integration with External Mods**: Comprehensive support for mods such as Vanilla Armour Expanded, CAS Armor series, Ultratech: Altered Carbon Remastered, Save Our Ship 2, and Rimworld: Spartan Foundry.
+Fav Locker (Continued) allows players to create containers where they can register their favorite apparels. The recommended way to use it is to register combat apparels in your favorites, allowing colonists to easily change between normal and combat apparels. This mod aims to enhance the gameplay experience by providing a more efficient and convenient way for colonists to manage their apparels.
 
-### Key Improvements
-- Added hit points filter for apparel management.
-- Enhanced compatibility with RimWorld Core ver1.2.
-- Bugfixes addressing UI behaviors in the "Register Favorite" dialog.
+## Key Features and Systems
+
+### Container System
+- **Fav Locker**: A container where you can register any apparels. Colonists can change into their favorite apparels with one click.
+- **Power Armor Station**: A station that allows colonists to register power armor and change into it quickly.
+
+### Armor Management
+- **Hit Points Filter**: Adds a hit points filter to the lockers to allow players to manage the condition of their apparels.
+- **Armor Repair**: Power armor stations can repair armor using power and steel when the Advanced Fabrication research is unlocked.
 
 ## Coding Patterns and Conventions
-- **OOP Principles**: Utilize object-oriented programming principles, leveraging inheritance and interfaces for class design.
-- **Class Naming**: Classes follow PascalCase naming conventions with prefixes to denote their functionality (e.g., `Building_Locker`, `CompLocker`).
-- **Method Design**: Method names are descriptive and convey their purpose clearly, adhering to camelCase.
+
+- **Code Organization**: The mod is organized into several classes, each responsible for specific functionality. For example, `Building_Locker` handles the logic for the Fav Locker, while `Building_PowerArmorStation` handles the logic for the Power Armor Station.
+- **Naming Conventions**: Class names and method names are descriptive and follow the naming conventions used in the RimWorld codebase.
+- **Modding Best Practices**: The mod adheres to best practices for RimWorld modding, including proper XML integration and Harmony patching.
 
 ## XML Integration
-XML is used to define data-driven aspects of the mod, such as item definitions and language support. Key XML files should use clear and hierarchical structures to ensure maintainability and ease of modification.
+
+The mod uses XML files to define various game entities such as job definitions, locker section definitions, thing definitions, and work giver definitions. These files are located in the `Defs` directory and are essential for the mod's functionality. The following XML files are included in the mod:
+
+- `Jobs_Misc.xml`
+- `LockerSections.xml`
+- `Buildings_Locker.xml`
+- `Buildings_Misc.xml`
+- `WorkGivers.xml`
 
 ## Harmony Patching
-The project utilizes [Harmony](https://github.com/pardeike/Harmony) for method alterations:
-- Ensure Harmony patches are well-contained and documented.
-- Always use prefixes (`Prefix`) and postfixes (`Postfix`) to hook into or modify game behaviors without directly altering the base code.
+
+The mod uses Harmony patching to modify the behavior of vanilla RimWorld methods and add new functionality. The following Harmony patches are included in the mod:
+
+- Patches to the `Building_PowerArmorStation` class to add the ability to repair armor using power and steel.
+- Patches to the `Building_Locker` class to add the hit points filter to the lockers.
 
 ## Suggestions for Copilot
-To enhance Copilot's effectiveness in this project:
-- **Document thoroughly**: Ensure all methods and class purposes are well-documented with XML comments to give Copilot more context.
-- **Unit Tests**: Implement unit testing where possible to define expected behaviors clearly.
-- **Code Examples**: Incorporate code snippets for common patterns, such as registering apparels or repairing armor, to guide Copilot in generating relevant code suggestions.
 
-### Known Issues and Reporting
-When encountering issues:
-- Validate by running the mod standalone with its dependencies.
-- Use the game's Log Uploader for bug reporting, mainly through the Discord channel dedicated to the mod's development.
-- Contributions via GitHub are welcome, particularly solutions to known bugs or enhancements for feature requests.
+1. **Understanding the Codebase**: Familiarize yourself with the existing codebase to understand the functionality of each class and method.
+2. **XML Integration**: Ensure that any new XML definitions are correctly integrated into the mod's XML files.
+3. **Harmony Patching**: When adding new functionality, consider using Harmony patching to modify vanilla RimWorld methods.
+4. **Testing and Validation**: Always test any new features or modifications thoroughly to ensure that they work as expected and do not cause any issues.
+5. **Documentation**: Keep the documentation up to date with any new changes or additions to the mod.
 
-### Future Plans
-- Expand compatibility patches for additional power armor mods.
-- Consider adding new functions to the Power Armor Station, like advanced armor modifications.
-
----
-
-This document serves as a guide to understanding and extending the Fav Locker (Continued) mod. Contributors are encouraged to follow the outlined practices to maintain a coherent development environment.
+By following these guidelines, you can effectively contribute to the Fav Locker (Continued) mod project and help enhance the gameplay experience for players.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -53,3 +56,11 @@ This document serves as a guide to understanding and extending the Fav Locker (C
 - When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
 - In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
 - For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
+

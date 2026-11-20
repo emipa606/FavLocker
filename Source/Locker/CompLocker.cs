@@ -158,12 +158,10 @@ public class CompLocker : ThingComp, IThingHolder
     public List<Apparel> GetApparelsRegisterdAndInner()
     {
         var list = new List<Apparel>();
-        foreach (var registeredApparel in registeredApparels)
+        foreach (var registeredApparel in registeredApparels.Where(registeredApparel =>
+                     innerContainer.Contains(registeredApparel)))
         {
-            if (innerContainer.Contains(registeredApparel))
-            {
-                list.Add(registeredApparel);
-            }
+            list.Add(registeredApparel);
         }
 
         return list;
@@ -171,41 +169,18 @@ public class CompLocker : ThingComp, IThingHolder
 
     public bool AllStoredOrWear(Pawn p)
     {
-        foreach (var registeredApparel in registeredApparels)
-        {
-            if (!innerContainer.Contains(registeredApparel) && !p.apparel.UnlockedApparel.Contains(registeredApparel))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return registeredApparels.All(registeredApparel =>
+            innerContainer.Contains(registeredApparel) || p.apparel.UnlockedApparel.Contains(registeredApparel));
     }
 
     public bool AllWear(Pawn p)
     {
-        foreach (var registeredApparel in registeredApparels)
-        {
-            if (!p.apparel.UnlockedApparel.Contains(registeredApparel))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return registeredApparels.All(registeredApparel => p.apparel.UnlockedApparel.Contains(registeredApparel));
     }
 
     public bool AnyWear(Pawn p)
     {
-        foreach (var registeredApparel in registeredApparels)
-        {
-            if (p.apparel.UnlockedApparel.Contains(registeredApparel))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return registeredApparels.Any(registeredApparel => p.apparel.UnlockedApparel.Contains(registeredApparel));
     }
 
     public override void PostExposeData()

@@ -59,16 +59,16 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
         TryUnassignPawn(pawn);
     }
 
-    public override void TryAssignPawn(Pawn newOwner)
+    public override void TryAssignPawn(Pawn pawn)
     {
-        if (Assigned(newOwner))
+        if (Assigned(pawn))
         {
             return;
         }
 
         var oldOwner = AssignedPawn();
         assignedPawns.Clear();
-        var map = newOwner.MapHeld;
+        var map = pawn.MapHeld;
         if (map != null)
         {
             foreach (var item in Util.AllMapBuildings<Building_RegistableContainer>(map))
@@ -79,23 +79,23 @@ public class CompAssignableToPawn_Locker : CompAssignableToPawn
                 }
 
                 var compAssignableToPawn_Locker = item.TryGetComp<CompAssignableToPawn_Locker>();
-                compAssignableToPawn_Locker.TryUnassignPawn(newOwner);
+                compAssignableToPawn_Locker.TryUnassignPawn(pawn);
             }
         }
 
-        assignedPawns.Add(newOwner);
-        parent.ChangeOwner(oldOwner, newOwner);
+        assignedPawns.Add(pawn);
+        parent.ChangeOwner(oldOwner, pawn);
     }
 
-    public override void TryUnassignPawn(Pawn oldOwner, bool sort = true, bool uninstall = false)
+    public override void TryUnassignPawn(Pawn pawn, bool sort = true, bool uninstall = false)
     {
-        if (!Assigned(oldOwner))
+        if (!Assigned(pawn))
         {
             return;
         }
 
-        assignedPawns.Remove(oldOwner);
-        parent.ChangeOwner(oldOwner, null);
+        assignedPawns.Remove(pawn);
+        parent.ChangeOwner(pawn, null);
     }
 
     public override string GetAssignmentGizmoDesc()

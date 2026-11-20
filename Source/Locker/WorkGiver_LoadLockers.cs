@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -74,32 +75,19 @@ public class WorkGiver_LoadLockers : WorkGiver_Scanner
 
     private static Thing findRemoveApparel(Pawn p, CompLocker compLocker)
     {
-        if (compLocker.parent.GetComp<CompAssignableToPawn_Locker>().Assigned(p))
-        {
-            return null;
-        }
-
-        foreach (var item in p.apparel.UnlockedApparel)
-        {
-            if (compLocker.RegisteredApparelsReadOnly().Contains(item))
-            {
-                return item;
-            }
-        }
-
-        return null;
+        return compLocker.parent.GetComp<CompAssignableToPawn_Locker>().Assigned(p)
+            ? null
+            : p.apparel.UnlockedApparel.FirstOrDefault(item => compLocker.RegisteredApparelsReadOnly().Contains(item));
     }
 
     private static Thing findThingToLoad(Pawn p, CompLocker compLocker)
     {
         var neededThings = new HashSet<Thing>();
         var assignedRegisterdApparel = JobUtil.GetAssignedRegisterdApparel(compLocker.parent);
-        foreach (var item in compLocker.RegisteredApparelsReadOnly())
+        foreach (var item in compLocker.RegisteredApparelsReadOnly().Where(item =>
+                     !compLocker.InnerApparelsReadOnly().Contains(item) && !assignedRegisterdApparel.Contains(item)))
         {
-            if (!compLocker.InnerApparelsReadOnly().Contains(item) && !assignedRegisterdApparel.Contains(item))
-            {
-                neededThings.Add(item);
-            }
+            neededThings.Add(item);
         }
 
         if (!neededThings.Any())

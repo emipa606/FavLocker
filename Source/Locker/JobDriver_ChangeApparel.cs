@@ -90,12 +90,7 @@ public abstract class JobDriver_ChangeApparel : JobDriver, IGettableDestination
             return true;
         }
 
-        if (containerInd == TargetLinkedContainer)
-        {
-            return false;
-        }
-
-        throw new ArgumentException();
+        return containerInd == TargetLinkedContainer ? false : throw new ArgumentException();
     }
 
     public virtual Apparel GetNextWearApparel(TargetIndex containerInd)

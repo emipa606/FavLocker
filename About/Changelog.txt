@@ -1,5 +1,8 @@
 # Changelog for FavLocker
 
+1.7.0 - Mod updated for 1.7 and passed autotests
+
+
 1.6.2 - PAwns in bioscultor should not cause issues when selecting the locker
 
 

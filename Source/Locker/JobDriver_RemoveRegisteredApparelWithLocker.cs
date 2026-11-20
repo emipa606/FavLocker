@@ -72,7 +72,7 @@ internal class JobDriver_RemoveRegisteredApparelWithLocker : JobDriver_ChangeApp
         }
 
         list = Util.SortApparelListForDraw(list);
-        return list.First();
+        return list[0];
     }
 
     public override Apparel GetNextRemoveApparel(TargetIndex containerInd)
@@ -83,14 +83,6 @@ internal class JobDriver_RemoveRegisteredApparelWithLocker : JobDriver_ChangeApp
         }
 
         var list = Util.SortApparelListForDraw(pawn.apparel.UnlockedApparel, true);
-        foreach (var item in list)
-        {
-            if (CompLockerFavLocker.RegisteredApparelsReadOnly().Contains(item))
-            {
-                return item;
-            }
-        }
-
-        return null;
+        return list.FirstOrDefault(item => CompLockerFavLocker.RegisteredApparelsReadOnly().Contains(item));
     }
 }

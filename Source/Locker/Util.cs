@@ -27,27 +27,18 @@ public static class Util
 
     public static T GetOwnsContainer<T>(Pawn pawn) where T : Building_RegistableContainer
     {
-        foreach (var item in AllMapBuildings<T>(pawn.Map))
-        {
-            if (item.GetComp<CompAssignableToPawn_Locker>().Assigned(pawn))
-            {
-                return item;
-            }
-        }
-
-        return null;
+        return AllMapBuildings<T>(pawn.Map)
+            .FirstOrDefault(item => item.GetComp<CompAssignableToPawn_Locker>().Assigned(pawn));
     }
 
     public static List<T> GetContainersRegisteredApparel<T>(Map map, Thing thing)
         where T : Building_RegistableContainer
     {
         var list = new List<T>();
-        foreach (var item in AllMapBuildings<T>(map))
+        foreach (var item in AllMapBuildings<T>(map)
+                     .Where(item => item.GetComp<CompLocker>().RegisteredApparelsReadOnly().Contains(thing)))
         {
-            if (item.GetComp<CompLocker>().RegisteredApparelsReadOnly().Contains(thing))
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
 
         return list;
@@ -132,12 +123,9 @@ public static class Util
     public static List<Apparel> AndList(IEnumerable<Apparel> apparels1, IEnumerable<Apparel> apparels2)
     {
         var list = new List<Apparel>();
-        foreach (var item in apparels1)
+        foreach (var item in apparels1.Where(apparels2.Contains))
         {
-            if (apparels2.Contains(item))
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
 
         return list;
@@ -154,12 +142,9 @@ public static class Util
         IEnumerable<Apparel> checkApparels)
     {
         var list = new List<Apparel>();
-        foreach (var item in target)
+        foreach (var item in target.Where(item => AnyCantWearTogetherApparels(checkApparels, item)))
         {
-            if (AnyCantWearTogetherApparels(checkApparels, item))
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
 
         return list;
@@ -168,12 +153,9 @@ public static class Util
     public static List<Apparel> GetCantWearTogetherApparels(IEnumerable<Apparel> target, Thing t)
     {
         var list = new List<Apparel>();
-        foreach (var item in target)
+        foreach (var item in target.Where(item => !ApparelUtility.CanWearTogether(t.def, item.def, BodyDefOf.Human)))
         {
-            if (!ApparelUtility.CanWearTogether(t.def, item.def, BodyDefOf.Human))
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
 
         return list;
@@ -329,9 +311,9 @@ public static class Util
                         try
                         {
                             thingComp = (ThingComp)Activator.CreateInstance(compProperties.compClass);
-                            thingComp.parent = station;
+                            thingComp?.parent = station;
                             station.comps.Add(thingComp);
-                            thingComp.Initialize(compProperties);
+                            thingComp?.Initialize(compProperties);
                         }
                         catch (Exception arg)
                         {

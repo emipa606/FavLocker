@@ -99,7 +99,7 @@ public class JobDriver_RemoveFavoriteOnPowerArmorStation : JobDriver_ChangeAppar
         }
 
         list = Util.SortApparelListForDraw(list);
-        return list.First();
+        return list[0];
     }
 
     public override Apparel GetNextRemoveApparel(TargetIndex containerInd)
@@ -110,15 +110,7 @@ public class JobDriver_RemoveFavoriteOnPowerArmorStation : JobDriver_ChangeAppar
         }
 
         var list = Util.SortApparelListForDraw(pawn.apparel.UnlockedApparel, true);
-        foreach (var item in list)
-        {
-            if (CompLockerFavLocker.RegisteredApparelsReadOnly().Contains(item))
-            {
-                return item;
-            }
-        }
-
-        return null;
+        return list.FirstOrDefault(apparel => CompLockerFavLocker.RegisteredApparelsReadOnly().Contains(apparel));
     }
 
     public override bool NeedGoto(TargetIndex containerInd)

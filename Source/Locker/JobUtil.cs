@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -8,15 +9,8 @@ public static class JobUtil
 {
     public static bool AnyPawnHasHaulJob(Building_RegistableContainer container)
     {
-        foreach (var item in Util.AllPawnsPotentialOwner(container.Map))
-        {
-            if (WorkGiver_LoadLockers.HasJobOnTransporter(item, container.TryGetComp<CompLocker>()))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return Util.AllPawnsPotentialOwner(container.Map).Any(item =>
+            WorkGiver_LoadLockers.HasJobOnTransporter(item, container.TryGetComp<CompLocker>()));
     }
 
     public static void EndCurrentAndQueuedJobOnContainer(Building_RegistableContainer container,
@@ -83,15 +77,7 @@ public static class JobUtil
 
     private static bool AnyQueuedJobOnThing(Thing target, JobDef jobDef)
     {
-        foreach (var item in Util.AllPawnsPotentialOwner(target.Map))
-        {
-            if (AnyQueuedJobOnThing(item, target, jobDef))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return Util.AllPawnsPotentialOwner(target.Map).Any(item => AnyQueuedJobOnThing(item, target, jobDef));
     }
 
     private static bool AnyQueuedJobOnThing(Pawn pawn, Thing target, JobDef jobDef)
@@ -102,9 +88,8 @@ public static class JobUtil
     private static Job getJobFromQueue(Pawn pawn, Thing target, JobDef jobDef)
     {
         var jobQueue = pawn.jobs.jobQueue;
-        foreach (var item in jobQueue)
+        foreach (var job in jobQueue.Select(item => item.job))
         {
-            var job = item.job;
             if (job.def != jobDef || !isTargetThing(job, target))
             {
                 continue;
@@ -124,12 +109,9 @@ public static class JobUtil
     private static List<Pawn> GetDoingJobOnThing(Thing dest, JobDef jobDef)
     {
         var list = new List<Pawn>();
-        foreach (var item in Util.AllPawnsPotentialOwner(dest.Map))
+        foreach (var item in Util.AllPawnsPotentialOwner(dest.Map).Where(item => IsDoingJobOnThing(item, dest, jobDef)))
         {
-            if (IsDoingJobOnThing(item, dest, jobDef))
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
 
         return list;

@@ -240,12 +240,9 @@ internal class Dialog_RegisterItem : Window
             }
         }
 
-        foreach (var item2 in list)
+        foreach (var item2 in list.Where(item2 => !compLocker.InnerApparelsReadOnly().Contains(item2.Contents)))
         {
-            if (!compLocker.InnerApparelsReadOnly().Contains(item2.Contents))
-            {
-                allApparel.Remove(item2);
-            }
+            allApparel.Remove(item2);
         }
     }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace Locker;
@@ -31,12 +32,10 @@ public class LockerSectionDef : Def, IComparable<LockerSectionDef>
 
     public static LockerSectionDef Get(List<ThingCategoryDef> thingCategorys)
     {
-        foreach (var item in DefDatabase<LockerSectionDef>.AllDefsListForReading)
+        foreach (var item in DefDatabase<LockerSectionDef>.AllDefsListForReading.Where(item =>
+                     thingCategorys.Contains(item.thingCategoryDef)))
         {
-            if (thingCategorys.Contains(item.thingCategoryDef))
-            {
-                return item;
-            }
+            return item;
         }
 
         var lockerSectionDef = new LockerSectionDef

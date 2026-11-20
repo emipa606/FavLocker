@@ -1,5 +1,4 @@
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -174,7 +173,7 @@ public static class Toils
                 if (!compLocker.HealthRange.Includes((float)apparel.HitPoints / apparel.MaxHitPoints))
                 {
                     Messages.Message("EKAI_ApparelRemoved".Translate(apparel.LabelCap, actor.NameFullColored),
-                        new LookTargets(new GlobalTargetInfo[] { actor, apparel }),
+                        new LookTargets(actor, apparel),
                         MessageTypeDefOf.NeutralEvent);
                     compLocker.UnRegisterApparel(apparel);
                     _ = compLocker.FirstThingLeftToLoad;
@@ -246,7 +245,7 @@ public static class Toils
 
                 actor.apparel.TryDrop(apparel);
                 Messages.Message("EKAI_ApparelRemoved".Translate(apparel.LabelCap, actor.NameFullColored),
-                    new LookTargets(new GlobalTargetInfo[] { actor, apparel }),
+                    new LookTargets(actor, apparel),
                     MessageTypeDefOf.NeutralEvent);
                 compLocker.UnRegisterApparel(apparel);
                 _ = compLocker.FirstThingLeftToLoad;

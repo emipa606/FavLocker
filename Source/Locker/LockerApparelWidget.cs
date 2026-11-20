@@ -21,14 +21,6 @@ public class LockerApparelWidget
 
     private static readonly Color ColorInactive = new(0.4f, 0.4f, 0.4f);
 
-    private readonly TransferableSorterDef bodyPartGroupAndLayerSorterDef;
-
-    private readonly CompLocker compLocker;
-
-    private readonly float extraHeaderSpace;
-
-    private readonly List<Section> sections = [];
-
     private readonly Texture2D TexCaution = ContentFinder<Texture2D>.Get("UI/Icons/Caution");
 
     private readonly Texture2D TexChecked = ContentFinder<Texture2D>.Get("UI/Icons/Check");
@@ -36,6 +28,14 @@ public class LockerApparelWidget
     private readonly Texture2D TexQuestion = ContentFinder<Texture2D>.Get("UI/Icons/Question");
 
     private readonly Texture2D TexUnChecked = ContentFinder<Texture2D>.Get("UI/Icons/UnCheck");
+
+    private readonly TransferableSorterDef bodyPartGroupAndLayerSorterDef;
+
+    private readonly CompLocker compLocker;
+
+    private readonly float extraHeaderSpace;
+
+    private readonly List<Section> sections = [];
 
     private readonly TransferableSorterDef thingDefNameSorterDef;
 
@@ -91,7 +91,7 @@ public class LockerApparelWidget
         }
     }
 
-    private TransferableSorterDef GetBodyPartGropuAndLayerSorterDef()
+    private static TransferableSorterDef GetBodyPartGropuAndLayerSorterDef()
     {
         var transferableSorterDef = new TransferableSorterDef
         {
@@ -102,7 +102,7 @@ public class LockerApparelWidget
         return transferableSorterDef;
     }
 
-    private TransferableSorterDef GetThingDefNameSorterDef()
+    private static TransferableSorterDef GetThingDefNameSorterDef()
     {
         var transferableSorterDef = new TransferableSorterDef
         {

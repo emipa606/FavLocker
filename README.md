@@ -134,4 +134,4 @@ Thank you.
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/FavLocker?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600) | tags: armor station, container
+[![Image](https://img.shields.io/github/v/release/emipa606/FavLocker?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2586243600) | armor station, container

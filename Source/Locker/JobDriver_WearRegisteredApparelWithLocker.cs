@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -30,7 +29,7 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
         }
 
         list = Util.SortApparelListForDraw(list);
-        return list.First();
+        return list[0];
     }
 
     public override Apparel GetNextRemoveApparel(TargetIndex containerInd)
@@ -42,15 +41,7 @@ internal class JobDriver_WearRegisteredApparelWithLocker : JobDriver_ChangeAppar
 
         var list = Util.SortApparelListForDraw(pawn.apparel.UnlockedApparel, true);
         var apparelsRegisterdAndInner = CompLockerFavLocker.GetApparelsRegisterdAndInner();
-        foreach (var item in list)
-        {
-            if (Util.AnyCantWearTogetherApparels(apparelsRegisterdAndInner, item))
-            {
-                return item;
-            }
-        }
-
-        return null;
+        return list.FirstOrDefault(item => Util.AnyCantWearTogetherApparels(apparelsRegisterdAndInner, item));
     }
 
     public override IEnumerable<Toil> MakeNewToils()

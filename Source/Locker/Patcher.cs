@@ -5,7 +5,7 @@ using Verse;
 namespace Locker;
 
 [StaticConstructorOnStartup]
-public class Patcher
+public static class Patcher
 {
     static Patcher()
     {
